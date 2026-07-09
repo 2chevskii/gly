@@ -33,10 +33,10 @@
                 <PropertyName>Mode</PropertyName>
               </TableColumnItem>
               <TableColumnItem>
-                <ScriptBlock>$_.LastWriteTime</ScriptBlock>
+                <PropertyName>LastWriteTime</PropertyName>
               </TableColumnItem>
               <TableColumnItem>
-                <ScriptBlock>if ($_ -is [System.IO.FileInfo]) { $_.Length } else { '' }</ScriptBlock>
+                <PropertyName>Length</PropertyName>
               </TableColumnItem>
               <TableColumnItem>
                 <ScriptBlock>Get-GlyFileSystemDisplayName -InputObject $_</ScriptBlock>

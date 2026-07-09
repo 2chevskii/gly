@@ -74,25 +74,13 @@ function Initialize-GlyGlyphSetRegistry {
     }
   }
 
-  $definitions = @(Get-GlyBuiltInSelectorCatalog)
   foreach ($name in @('NerdFonts', 'ANSI', 'ANSICompact', 'Unicode', 'Emoji')) {
     $map = $maps[$name]
-    $rules = foreach ($definition in $definitions) {
-      if (-not $map.ContainsKey($definition.Token)) {
-        throw "Glyph map '$name' does not define token '$($definition.Token)'."
-      }
-
-      [GlyGlyphRule]@{
-        Selector = ConvertTo-GlySelector -Selector $definition.Selector
-        Glyph = [string] $map[$definition.Token]
-      }
-    }
-
-    $script:GlyGlyphSets[$name] = [GlyGlyphSet]@{
-      Name = $name
-      BuiltIn = $true
-      Default = [string] $map.Default
-      Rules = [GlyGlyphRule[]] @($rules)
+    $script:GlyGlyphSets[$name] = [pscustomobject]@{
+      Name           = $name
+      BuiltIn        = $true
+      DefinitionKind = 'GlyphSet'
+      Map            = $map
     }
   }
 }

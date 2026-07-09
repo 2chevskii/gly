@@ -29,6 +29,8 @@ class GlySelector {
   [string[]] $Extension = @()
   [string[]] $Glob = @()
   [System.IO.FileAttributes[]] $Attributes = @()
+  hidden [string[]] $NormalizedExtension = @()
+  hidden [System.Management.Automation.WildcardPattern[]] $GlobPattern = @()
 }
 
 class GlyStyle {
@@ -50,6 +52,7 @@ class GlyGlyphRule {
 }
 
 class GlyBuiltInSelectorDefinition {
+  [int] $Index
   [string] $Token
   [string] $Palette
   [bool] $Bold

@@ -36,6 +36,20 @@ npm run module:publish:whatif
 pwsh -NoProfile -Command "Invoke-Pester ./tests"
 ```
 
+## Performance Benchmarks
+
+Measure `Import-Module` in isolated PowerShell processes:
+
+```powershell
+npm run bench:startup
+```
+
+Measure display-name, standard table, and renderer performance against generated file-system data:
+
+```powershell
+npm run bench:rendering
+```
+
 ## Documentation Site
 
 Install Node dependencies:

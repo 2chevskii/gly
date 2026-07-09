@@ -12,7 +12,7 @@ function Copy-GlyGlyphSet {
     throw "Unknown gly glyph set '$Name'."
   }
 
-  $copy = ConvertTo-GlyGlyphSet -GlyphSet $script:GlyGlyphSets[$Name]
+  $copy = ConvertTo-GlyGlyphSet -GlyphSet (Get-GlyGlyphSetRegistryEntry -Name $Name)
   $copy.Name = $NewName
   $copy.BuiltIn = $false
   $copy

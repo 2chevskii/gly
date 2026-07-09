@@ -1,42 +1,6 @@
 function Initialize-GlyThemeRegistry {
   $script:GlyThemes = [ordered]@{}
 
-  function New-GlyThemeStyle {
-    param(
-      [AllowNull()]
-      [string] $Foreground,
-
-      [bool] $Bold = $false,
-
-      [bool] $Italic = $false,
-
-      [bool] $Underline = $false
-    )
-
-    [GlyStyle]@{
-      Foreground = $Foreground
-      Background = $null
-      Bold       = $Bold
-      Italic     = $Italic
-      Underline  = $Underline
-    }
-  }
-
-  function New-GlyThemeRule {
-    param(
-      [Parameter(Mandatory)]
-      [object] $Selector,
-
-      [Parameter(Mandatory)]
-      [GlyStyle] $Style
-    )
-
-    [GlyThemeRule]@{
-      Selector = $Selector
-      Style    = $Style
-    }
-  }
-
   function New-GlyBuiltInTheme {
     param(
       [Parameter(Mandatory)]
@@ -78,25 +42,13 @@ function Initialize-GlyThemeRegistry {
       Markdown   = $Markdown
     }
 
-    $styles = @{}
-    $boldStyles = @{}
-    foreach ($paletteName in $palette.Keys) {
-      $styles[$paletteName] = New-GlyThemeStyle -Foreground $palette[$paletteName]
-      $boldStyles[$paletteName] = New-GlyThemeStyle -Foreground $palette[$paletteName] -Bold $true
-    }
-
-    $rules = foreach ($definition in Get-GlyBuiltInSelectorCatalog) {
-      $style = if ($definition.Bold) { $boldStyles[$definition.Palette] } else { $styles[$definition.Palette] }
-      New-GlyThemeRule `
-        -Selector $definition.Selector `
-        -Style $style
-    }
-
-    [GlyTheme]@{
-      Name    = $Name
-      BuiltIn = $true
-      Default = $styles.File
-      Rules   = [GlyThemeRule[]] @($rules)
+    [pscustomobject]@{
+      Name           = $Name
+      BuiltIn        = $true
+      DefinitionKind = 'Theme'
+      Palette        = $palette
+      StyleCache     = @{}
+      HasRules       = $true
     }
   }
 
@@ -122,11 +74,13 @@ function Initialize-GlyThemeRegistry {
     -Json '#953800' `
     -Markdown '#116329'
 
-  $noColor = [GlyTheme]@{
-    Name    = 'NoColor'
-    BuiltIn = $true
-    Default = New-GlyThemeStyle -Foreground $null
-    Rules   = @()
+  $noColor = [pscustomobject]@{
+    Name           = 'NoColor'
+    BuiltIn        = $true
+    DefinitionKind = 'Theme'
+    Palette        = @{ File = $null }
+    StyleCache     = @{}
+    HasRules       = $false
   }
 
   $dracula = New-GlyBuiltInTheme `
@@ -334,7 +288,6 @@ function Initialize-GlyThemeRegistry {
       $solarizedDark,
       $solarizedLight
     ) + $additionalThemes) {
-    $typedTheme = if ($theme -is [GlyTheme]) { $theme } else { ConvertTo-GlyTheme -Theme $theme }
-    $script:GlyThemes[$typedTheme.Name] = $typedTheme
+    $script:GlyThemes[$theme.Name] = $theme
   }
 }

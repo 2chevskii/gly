@@ -115,6 +115,13 @@ Build the PowerShell Gallery package layout:
 npm run module:pack
 ```
 
+Run repeatable startup and rendering benchmarks:
+
+```powershell
+npm run bench:startup
+npm run bench:rendering
+```
+
 ## License
 
 MIT. See [LICENSE](LICENSE).

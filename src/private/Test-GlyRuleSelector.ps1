@@ -17,16 +17,11 @@ function Test-GlyRuleSelector {
     return $false
   }
 
-  if ($Selector.Extension.Count -gt 0) {
+  if ($Selector.NormalizedExtension.Count -gt 0) {
     $name = $InputObject.Name
     $matched = $false
-    foreach ($extension in $Selector.Extension) {
-      $extensionText = [string] $extension
-      if (-not $extensionText.StartsWith('.')) {
-        $extensionText = ".$extensionText"
-      }
-
-      if ($name.EndsWith($extensionText, [System.StringComparison]::OrdinalIgnoreCase)) {
+    foreach ($extension in $Selector.NormalizedExtension) {
+      if ($name.EndsWith($extension, [System.StringComparison]::OrdinalIgnoreCase)) {
         $matched = $true
         break
       }
@@ -37,14 +32,9 @@ function Test-GlyRuleSelector {
     }
   }
 
-  if ($Selector.Glob.Count -gt 0) {
+  if ($Selector.GlobPattern.Count -gt 0) {
     $globMatched = $false
-    foreach ($glob in $Selector.Glob) {
-      $pattern = [System.Management.Automation.WildcardPattern]::new(
-        [string] $glob,
-        [System.Management.Automation.WildcardOptions]::IgnoreCase
-      )
-
+    foreach ($pattern in $Selector.GlobPattern) {
       if ($pattern.IsMatch($InputObject.Name) -or $pattern.IsMatch($InputObject.FullName)) {
         $globMatched = $true
         break

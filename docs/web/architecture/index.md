@@ -18,12 +18,12 @@ PowerShell format data is session-wide, so the view can remain active after `Rem
 
 The module:
 
-- loads private functions;
-- loads public functions;
+- parses module types and functions as one combined script block to minimize import overhead;
 - initializes session configuration;
-- initializes built-in themes;
-- initializes built-in glyph sets;
+- registers compact built-in theme and glyph-set definitions;
 - calls `Enable-Gly`.
+
+Built-in rules are expanded into detached strongly typed objects only when a registry command returns them. Formatting reads the compact immutable definitions directly.
 
 ## Rule Resolution
 
@@ -36,6 +36,8 @@ Theme and glyph rules share the same selector model:
 - `Attributes`
 
 Rules are applied in order. The last matching rule wins.
+
+The built-in resolver caches an index for kinds, extensions, exact names, globs, and attributes. User-registered rules keep the general selector evaluator and the same precedence semantics.
 
 ## Strongly Typed Models
 
