@@ -7,8 +7,9 @@ function Resolve-GlyFileSystemRule {
     [object[]] $Rules
   )
 
-  $matchedRule = $null
-  foreach ($rule in @($Rules)) {
+  $ruleList = @($Rules)
+  for ($i = $ruleList.Count - 1; $i -ge 0; $i--) {
+    $rule = $ruleList[$i]
     $selector = Get-GlyValue -InputObject $rule -Name 'Selector'
     if ($null -eq $selector) {
       continue
@@ -16,7 +17,7 @@ function Resolve-GlyFileSystemRule {
 
     try {
       if (Test-GlyRuleSelector -Selector $selector -InputObject $InputObject) {
-        $matchedRule = $rule
+        return $rule
       }
     }
     catch {
@@ -24,5 +25,5 @@ function Resolve-GlyFileSystemRule {
     }
   }
 
-  return $matchedRule
+  return $null
 }
