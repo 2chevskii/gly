@@ -1,9 +1,10 @@
 # Quick Start
 
-Import the module:
+Install and import the module:
 
 ```powershell
-Import-Module ./src/gly.psd1 -Force
+Install-Module -Name gly -Repository PSGallery -Scope CurrentUser
+Import-Module gly
 ```
 
 Use normal PowerShell commands:
@@ -30,4 +31,3 @@ gly .
 glytr . -Depth 2
 glygr .
 ```
-

@@ -22,13 +22,13 @@ function Show-GlyGrid {
   }
 
   end {
-    $items = @(Get-GlyFileSystemItems -Path $Path -LiteralPath $LiteralPath -InputObject $pipelineItems)
+    $items = @(Get-GlyFileSystemItem -Path $Path -LiteralPath $LiteralPath -InputObject $pipelineItems)
     if ($items.Count -eq 0) {
       return
     }
 
     $names = @($items | ForEach-Object { Get-GlyFileSystemDisplayName -InputObject $_ })
-    $widths = @($names | ForEach-Object { (Remove-GlyAnsiEscape -Text $_).Length })
+    $widths = @($names | ForEach-Object { (ConvertFrom-GlyAnsiEscape -Text $_).Length })
     $maxWidth = (($widths | Measure-Object -Maximum).Maximum + 2)
     if ($maxWidth -lt 1) { $maxWidth = 1 }
 
@@ -42,7 +42,7 @@ function Show-GlyGrid {
       $line = ''
       for ($column = 0; $column -lt $columns -and ($i + $column) -lt $names.Count; $column++) {
         $name = $names[$i + $column]
-        $visible = (Remove-GlyAnsiEscape -Text $name).Length
+        $visible = (ConvertFrom-GlyAnsiEscape -Text $name).Length
         $padding = [Math]::Max(1, $maxWidth - $visible)
         $line += $name + (' ' * $padding)
       }

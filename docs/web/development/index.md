@@ -3,7 +3,7 @@
 ## PowerShell Checks
 
 ```powershell
-pwsh -NoProfile -Command "Import-Module ./src/gly.psd1 -Force"
+npm run module:pack
 pwsh -NoProfile -Command "Invoke-Pester ./tests"
 ```
 
@@ -17,4 +17,3 @@ npm run docs:preview
 ```
 
 The VitePress source root is `docs/web`.
-

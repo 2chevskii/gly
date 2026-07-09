@@ -1,4 +1,4 @@
-function Initialize-GlyThemes {
+function Initialize-GlyThemeRegistry {
   $script:GlyThemes = [ordered]@{}
 
   $defaultDark = [ordered]@{

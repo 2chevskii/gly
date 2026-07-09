@@ -1,4 +1,4 @@
-function Remove-GlyAnsiEscape {
+function ConvertFrom-GlyAnsiEscape {
   param(
     [AllowNull()]
     [string] $Text

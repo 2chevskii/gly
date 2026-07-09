@@ -1,9 +1,10 @@
 # Quick Start
 
-Import the module:
+Install and import the module:
 
 ```powershell
-Import-Module ./src/gly.psd1 -Force
+Install-Module -Name gly -Repository PSGallery -Scope CurrentUser
+Import-Module gly
 ```
 
 Run standard PowerShell commands:
@@ -57,4 +58,3 @@ Re-enable:
 ```powershell
 Enable-Gly
 ```
-

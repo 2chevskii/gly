@@ -1,5 +1,5 @@
 function Set-GlyGlyphSet {
-  [CmdletBinding()]
+  [CmdletBinding(SupportsShouldProcess)]
   param(
     [Parameter(Mandatory, Position = 0)]
     [string] $Name
@@ -9,6 +9,9 @@ function Set-GlyGlyphSet {
     throw "Unknown gly glyph set '$Name'. Use Get-GlyGlyphSet to list available glyph sets."
   }
 
-  $script:GlyConfiguration.GlyphSet = $Name
+  if ($PSCmdlet.ShouldProcess($Name, 'Set active gly glyph set')) {
+    $script:GlyConfiguration.GlyphSet = $Name
+  }
+
   Get-GlyConfiguration
 }

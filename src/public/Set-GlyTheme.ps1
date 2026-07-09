@@ -1,5 +1,5 @@
 function Set-GlyTheme {
-  [CmdletBinding()]
+  [CmdletBinding(SupportsShouldProcess)]
   param(
     [Parameter(Mandatory, Position = 0)]
     [string] $Name
@@ -9,6 +9,9 @@ function Set-GlyTheme {
     throw "Unknown gly theme '$Name'. Use Get-GlyTheme to list available themes."
   }
 
-  $script:GlyConfiguration.Theme = $Name
+  if ($PSCmdlet.ShouldProcess($Name, 'Set active gly theme')) {
+    $script:GlyConfiguration.Theme = $Name
+  }
+
   Get-GlyConfiguration
 }

@@ -55,7 +55,7 @@ function Show-GlyTree {
   }
 
   end {
-    $items = Get-GlyFileSystemItems -Path $Path -LiteralPath $LiteralPath -InputObject $pipelineItems
+    $items = Get-GlyFileSystemItem -Path $Path -LiteralPath $LiteralPath -InputObject $pipelineItems
     for ($i = 0; $i -lt $items.Count; $i++) {
       Write-GlyTreeItem -Item $items[$i] -Prefix '' -RemainingDepth $Depth -IsLast ($i -eq ($items.Count - 1)) -IsRoot $true
     }

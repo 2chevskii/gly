@@ -1,4 +1,4 @@
-function New-GlyDisplayRecord {
+function ConvertTo-GlyDisplayRecord {
   param(
     [Parameter(Mandatory)]
     [System.IO.FileSystemInfo] $InputObject

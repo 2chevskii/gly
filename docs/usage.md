@@ -7,10 +7,11 @@
 
 Модуль рассчитан на PowerShell `7+`. Windows PowerShell `5.1` в MVP не поддерживается.
 
-## Импорт
+## Установка
 
 ```powershell
-Import-Module ./src/gly.psd1 -Force
+Install-Module -Name gly -Repository PSGallery -Scope CurrentUser
+Import-Module gly
 ```
 
 При импорте модуль автоматически вызывает `Enable-Gly` и загружает format data для стандартного табличного вывода `FileInfo` / `DirectoryInfo`.

@@ -22,9 +22,9 @@ function Show-Gly {
   }
 
   end {
-    $items = Get-GlyFileSystemItems -Path $Path -LiteralPath $LiteralPath -InputObject $pipelineItems
+    $items = Get-GlyFileSystemItem -Path $Path -LiteralPath $LiteralPath -InputObject $pipelineItems
     foreach ($item in $items) {
-      New-GlyDisplayRecord -InputObject $item
+      ConvertTo-GlyDisplayRecord -InputObject $item
     }
   }
 }

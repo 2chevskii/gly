@@ -1,4 +1,4 @@
-function Initialize-GlyGlyphSets {
+﻿function Initialize-GlyGlyphSetRegistry {
   $script:GlyGlyphSets = [ordered]@{}
 
   $commonRules = @(

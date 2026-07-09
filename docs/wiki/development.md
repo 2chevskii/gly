@@ -14,16 +14,20 @@ docs/
 assets/branding/
 ```
 
-## Import Smoke Test
+## Gallery Package Layout
+
+PowerShell Gallery publishing expects a module directory named `gly`. Build that layout before publishing:
 
 ```powershell
-pwsh -NoProfile -Command "Import-Module ./src/gly.psd1 -Force"
+npm run module:pack
 ```
 
-## Public Command Check
+The package script validates the generated module manifest.
+
+## Publish Dry Run
 
 ```powershell
-pwsh -NoProfile -Command "Import-Module ./src/gly.psd1 -Force; Get-Command -Module gly"
+npm run module:publish:whatif
 ```
 
 ## Pester Tests
@@ -57,4 +61,3 @@ Preview the production build:
 ```powershell
 npm run docs:preview
 ```
-

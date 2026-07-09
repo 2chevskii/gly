@@ -28,10 +28,11 @@ Windows PowerShell `5.1` is not supported by the MVP.
 
 ## Quick Start
 
-Import the module from the repository:
+Install the module from PowerShell Gallery:
 
 ```powershell
-Import-Module ./src/gly.psd1 -Force
+Install-Module -Name gly -Repository PSGallery -Scope CurrentUser
+Import-Module gly
 ```
 
 After import, standard PowerShell file system output uses the custom view:
@@ -106,6 +107,12 @@ npm ci
 npm run docs:build
 ```
 
+Build the PowerShell Gallery package layout:
+
+```powershell
+npm run module:pack
+```
+
 ## License
 
-No repository license has been declared yet.
+MIT. See [LICENSE](LICENSE).

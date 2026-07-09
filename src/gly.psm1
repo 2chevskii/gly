@@ -11,8 +11,8 @@ Get-ChildItem -Path (Join-Path $PSScriptRoot 'public') -Filter '*.ps1' |
   ForEach-Object { . $_.FullName }
 
 Initialize-GlyConfiguration
-Initialize-GlyThemes
-Initialize-GlyGlyphSets
+Initialize-GlyThemeRegistry
+Initialize-GlyGlyphSetRegistry
 Enable-Gly
 
 Set-Alias -Name gly -Value Show-Gly

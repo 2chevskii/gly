@@ -1,4 +1,4 @@
-function Get-GlyFileSystemItems {
+function Get-GlyFileSystemItem {
   param(
     [string[]] $Path,
     [string[]] $LiteralPath,
