@@ -37,3 +37,8 @@ Theme and glyph rules share the same selector model:
 
 Rules are applied in order. The last matching rule wins.
 
+## Типизированные модели
+
+Состояние сессии использует `GlyConfiguration`, `GlyTheme`, `GlyThemeRule`, `GlyStyle`, `GlyGlyphSet`, `GlyGlyphRule` и `GlySelector`.
+
+Команды регистрации принимают hashtable и `pscustomobject`, проверяют и преобразуют их до сохранения. Getter- и copy-команды возвращают отдельные типизированные копии. Встроенные темы и наборы глифов разделяют один каталог селекторов.

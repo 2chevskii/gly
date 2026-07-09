@@ -43,6 +43,19 @@ Rules are evaluated from top to bottom. The last matching rule wins.
 
 The resolver does not read file contents, does not run Git commands, and does not perform expensive file system lookups in the hot path.
 
+## Типизированные модели
+
+Состояние модуля использует PowerShell-классы из `src/GlyTypes.ps1`:
+
+- `GlyConfiguration`;
+- `GlyTheme`, `GlyThemeRule`, `GlyStyle`;
+- `GlyGlyphSet`, `GlyGlyphRule`;
+- `GlySelector`.
+
+Команды регистрации по-прежнему принимают hashtable и `pscustomobject`. Входные данные проверяются и преобразуются до записи в реестр. Getter- и copy-команды возвращают отдельные типизированные копии, поэтому вызывающий код не может изменить встроенную запись через полученный объект.
+
+Встроенные темы и наборы глифов используют единый каталог селекторов, поэтому их покрытие и приоритет правил синхронизированы.
+
 ## Session State
 
 The MVP stores state in memory only:
@@ -53,4 +66,3 @@ The MVP stores state in memory only:
 - format data load flag.
 
 Persistent user configuration is intentionally out of scope for the MVP.
-

@@ -1,8 +1,10 @@
-# Themes
+# Темы
 
-Themes define color and text style.
+Темы определяют цвета и начертание текста. Глифы выбираются отдельно.
 
-Built-in themes:
+## Полный каталог встроенных тем
+
+В модуль входят 90 тем:
 
 - `DefaultDark`
 - `DefaultLight`
@@ -95,11 +97,11 @@ Built-in themes:
 - `ParaisoDark`
 - `ParaisoLight`
 
-The built-in palettes are `gly` adaptations for file-system output. Source projects keep their own names, licenses, and distribution terms.
+Палитры адаптированы для вывода файловой системы. Исходные проекты сохраняют собственные названия, лицензии и условия распространения.
 
-## Built-in Theme Sources
+## Источники палитр
 
-| `gly` theme(s) | Source |
+| Темы `gly` | Источник |
 | --- | --- |
 | `DefaultDark`, `DefaultLight`, `NoColor` | `gly` project palette |
 | `SolarizedDark`, `SolarizedLight` | [altercation/solarized](https://github.com/altercation/solarized) |
@@ -158,7 +160,27 @@ Get-GlyTheme
 Set-GlyTheme DefaultLight
 ```
 
-## Custom Theme
+## Общий каталог правил
+
+Все цветные темы используют общий каталог из более чем 60 селекторов. Он распределяется по группам `File`, `Directory`, `Symlink`, `Hidden`, `ReadOnly`, `PowerShell`, `Json` и `Markdown`.
+
+| Группа | Основное покрытие |
+| --- | --- |
+| `Directory` | Обычные каталоги и downloads. |
+| `Symlink` | Links, Git, Docker, CI, infrastructure, databases. |
+| `Hidden` | Hidden items, logs, caches. |
+| `ReadOnly` | Settings, archives, fonts, certificates, binaries, licenses. |
+| `PowerShell` | Programming languages, shell/web, source/build, projects. |
+| `Json` | Structured data, packages, tests/dependencies, office documents. |
+| `Markdown` | Documentation, text, README/changelog, media. |
+
+У `NoColor` нет правил и цветового foreground/background. Точные селекторы перечислены в [каталоге селекторов](./selectors.md#встроенный-каталог).
+
+## Типизированная структура
+
+`Get-GlyTheme` и `Copy-GlyTheme` возвращают `GlyTheme` с вложенными `GlyStyle`, `GlyThemeRule` и `GlySelector`. Hashtable и `pscustomobject`, переданные в `Register-GlyTheme`, валидируются и преобразуются в эти типы.
+
+## Пользовательская тема
 
 ```powershell
 $theme = Copy-GlyTheme DefaultDark MyDark
@@ -177,4 +199,4 @@ Register-GlyTheme $theme
 Set-GlyTheme MyDark
 ```
 
-Built-in themes cannot be overwritten. Theme file imports are not part of the MVP.
+Встроенные темы нельзя перезаписать. Импорт файлов тем не входит в MVP.

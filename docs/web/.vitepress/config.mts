@@ -27,6 +27,7 @@ export default defineConfig({
           { text: "Installation", link: "/guide/installation" },
           { text: "Quick Start", link: "/guide/quick-start" },
           { text: "Configuration", link: "/guide/configuration" },
+          { text: "Selectors", link: "/guide/selectors" },
           { text: "Themes", link: "/guide/themes" },
           { text: "Glyph Sets", link: "/guide/glyph-sets" },
           { text: "Renderer Commands", link: "/guide/renderers" },

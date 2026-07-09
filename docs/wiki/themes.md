@@ -1,8 +1,10 @@
-# Themes
+# Темы
 
-Themes define colors and text style. They do not define glyphs.
+Темы определяют цвета и начертание текста, но не глифы.
 
-Built-in themes:
+## Полный каталог встроенных тем
+
+В модуль входят 90 тем:
 
 - `DefaultDark`
 - `DefaultLight`
@@ -95,11 +97,11 @@ Built-in themes:
 - `ParaisoDark`
 - `ParaisoLight`
 
-The built-in palettes are `gly` adaptations for file-system output. Source projects keep their own names, licenses, and distribution terms.
+Встроенные палитры адаптированы для вывода файловой системы. Исходные проекты сохраняют собственные названия, лицензии и условия распространения.
 
-## Built-in Theme Sources
+## Источники палитр
 
-| `gly` theme(s) | Source |
+| Темы `gly` | Источник |
 | --- | --- |
 | `DefaultDark`, `DefaultLight`, `NoColor` | `gly` project palette |
 | `SolarizedDark`, `SolarizedLight` | [altercation/solarized](https://github.com/altercation/solarized) |
@@ -153,21 +155,38 @@ The built-in palettes are `gly` adaptations for file-system output. Source proje
 | `Flatland` | [thinkpixellab/flatland](https://github.com/thinkpixellab/flatland) |
 | `ParaisoDark`, `ParaisoLight` | [idleberg/Paraiso-Color-Scheme](https://github.com/idleberg/Paraiso-Color-Scheme) |
 
-List themes:
+Список тем:
 
 ```powershell
 Get-GlyTheme
 ```
 
-Select a theme:
+Выбор темы:
 
 ```powershell
 Set-GlyTheme DefaultLight
 ```
 
-## Theme Structure
+## Общий каталог правил
 
-Themes are PowerShell `hashtable` or `pscustomobject` values:
+Все цветные встроенные темы используют тот же каталог из более чем 60 селекторов, что и встроенные наборы глифов. Цвета конкретной палитры распределяются по восьми стабильным группам:
+
+| Группа палитры | Селекторы |
+| --- | --- |
+| File | Неизвестные файлы и fallback. |
+| Directory | Обычные каталоги и downloads. |
+| Symlink | Links/junctions, Git, Docker, CI, infrastructure и databases. |
+| Hidden | Атрибут `Hidden`, logs и cache directories. |
+| ReadOnly | Атрибут `ReadOnly`, settings/configs, archives, fonts, certificates, binaries и licenses. |
+| PowerShell | Языки программирования, shell/web, source/build directories и project files. |
+| Json | JSON/YAML/XML, package files, test/dependency directories и office documents. |
+| Markdown | Documentation, README/changelog, text и media. |
+
+`NoColor` — исключение: у него нет правил, а стиль по умолчанию не задаёт foreground/background. Полный список имён, шаблонов и расширений находится в [каталоге наборов глифов](glyph-sets.md#полный-каталог-встроенных-селекторов).
+
+## Типизированная структура
+
+`Get-GlyTheme` и `Copy-GlyTheme` возвращают `GlyTheme`. Вложенные объекты имеют типы `GlyStyle`, `GlyThemeRule` и `GlySelector`. `Register-GlyTheme` также принимает hashtable или `pscustomobject` и преобразует его в типизированную модель после проверки:
 
 ```powershell
 @{
@@ -189,18 +208,18 @@ Themes are PowerShell `hashtable` or `pscustomobject` values:
 }
 ```
 
-Supported color values in the MVP:
+Поддерживаемые значения цветов:
 
 - `#RRGGBB`
 - `$null`
 
-## Rule Selectors
+## Селекторы правил
 
-Themes use the shared [selector model](selectors.md). It defines supported fields, matching behavior, rule precedence, and examples.
+Темы используют общую [модель селекторов](selectors.md): там описаны поля, сопоставление и приоритет правил.
 
-## Custom Theme
+## Пользовательская тема
 
-Built-in themes are immutable. Copy a built-in theme, edit the copy, and register it under a new name:
+Встроенные темы неизменяемы. Скопируйте тему, измените копию и зарегистрируйте её под новым именем:
 
 ```powershell
 $theme = Copy-GlyTheme DefaultDark MyDark
@@ -219,4 +238,4 @@ Register-GlyTheme $theme
 Set-GlyTheme MyDark
 ```
 
-The MVP does not import themes from `.json`, `.yaml`, `.psd1`, or `.ps1` files.
+Импорт тем из `.json`, `.yaml`, `.psd1` и `.ps1` не входит в MVP.
