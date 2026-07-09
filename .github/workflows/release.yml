@@ -73,4 +73,3 @@ jobs:
           name: gly v${{ steps.version.outputs.version }}
           files: artifacts/gly-${{ steps.version.outputs.version }}.zip
           generate_release_notes: true
-

@@ -1,12 +1,12 @@
 function Remove-GlyAnsiEscape {
-    param(
-        [AllowNull()]
-        [string] $Text
-    )
+  param(
+    [AllowNull()]
+    [string] $Text
+  )
 
-    if ($null -eq $Text) {
-        return ''
-    }
+  if ($null -eq $Text) {
+    return ''
+  }
 
-    return [regex]::Replace($Text, "`e\[[0-9;]*m", '')
+  return [regex]::Replace($Text, "`e\[[0-9;]*m", '')
 }

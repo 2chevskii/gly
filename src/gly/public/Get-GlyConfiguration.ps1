@@ -1,6 +1,6 @@
 function Get-GlyConfiguration {
-    [CmdletBinding()]
-    param()
+  [CmdletBinding()]
+  param()
 
-    [pscustomobject] (Copy-GlyObject -InputObject $script:GlyConfiguration)
+  [pscustomobject] (Copy-GlyObject -InputObject $script:GlyConfiguration)
 }

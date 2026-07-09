@@ -1,59 +1,55 @@
-import { defineConfig } from 'vitepress'
+import { defineConfig } from "vitepress";
 
-const base = process.env.VITEPRESS_BASE ?? '/'
+const base = process.env.VITEPRESS_BASE ?? "/";
 
 export default defineConfig({
-  lang: 'en-US',
-  title: 'gly',
-  description: 'Custom visual formatting for PowerShell file system objects.',
+  lang: "en-US",
+  title: "gly",
+  description: "Custom visual formatting for PowerShell file system objects.",
   base,
   cleanUrls: true,
   lastUpdated: true,
-  head: [
-    ['link', { rel: 'icon', href: `${base}branding/gly-logo-64.png` }]
-  ],
+  head: [["link", { rel: "icon", href: `${base}branding/gly-logo-64.png` }]],
   themeConfig: {
-    logo: '/branding/gly-logo-64.png',
-    siteTitle: 'gly',
+    logo: "/branding/gly-logo-64.png",
+    siteTitle: "gly",
     nav: [
-      { text: 'Guide', link: '/guide/' },
-      { text: 'API', link: '/api/' },
-      { text: 'Architecture', link: '/architecture/' },
-      { text: 'Limitations', link: '/limitations/' }
+      { text: "Guide", link: "/guide/" },
+      { text: "API", link: "/api/" },
+      { text: "Architecture", link: "/architecture/" },
+      { text: "Limitations", link: "/limitations/" },
     ],
     sidebar: [
       {
-        text: 'Guide',
+        text: "Guide",
         items: [
-          { text: 'Overview', link: '/guide/' },
-          { text: 'Installation', link: '/guide/installation' },
-          { text: 'Quick Start', link: '/guide/quick-start' },
-          { text: 'Configuration', link: '/guide/configuration' },
-          { text: 'Themes', link: '/guide/themes' },
-          { text: 'Glyph Sets', link: '/guide/glyph-sets' },
-          { text: 'Renderer Commands', link: '/guide/renderers' }
-        ]
+          { text: "Overview", link: "/guide/" },
+          { text: "Installation", link: "/guide/installation" },
+          { text: "Quick Start", link: "/guide/quick-start" },
+          { text: "Configuration", link: "/guide/configuration" },
+          { text: "Themes", link: "/guide/themes" },
+          { text: "Glyph Sets", link: "/guide/glyph-sets" },
+          { text: "Renderer Commands", link: "/guide/renderers" },
+        ],
       },
       {
-        text: 'Reference',
+        text: "Reference",
         items: [
-          { text: 'API Reference', link: '/api/' },
-          { text: 'Architecture', link: '/architecture/' },
-          { text: 'Troubleshooting', link: '/troubleshooting/' },
-          { text: 'Limitations', link: '/limitations/' },
-          { text: 'Development', link: '/development/' }
-        ]
-      }
+          { text: "API Reference", link: "/api/" },
+          { text: "Architecture", link: "/architecture/" },
+          { text: "Troubleshooting", link: "/troubleshooting/" },
+          { text: "Limitations", link: "/limitations/" },
+          { text: "Development", link: "/development/" },
+        ],
+      },
     ],
-    socialLinks: [
-      { icon: 'github', link: 'https://github.com/2CHEVSKII/gly' }
-    ],
+    socialLinks: [{ icon: "github", link: "https://github.com/2CHEVSKII/gly" }],
     search: {
-      provider: 'local'
+      provider: "local",
     },
     footer: {
-      message: 'PowerShell-native visual formatting for file system objects.',
-      copyright: 'Copyright (c) 2026 2CHEVSKII'
-    }
-  }
-})
+      message: "PowerShell-native visual formatting for file system objects.",
+      copyright: "Copyright (c) 2026 2CHEVSKII",
+    },
+  },
+});

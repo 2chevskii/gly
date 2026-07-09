@@ -1,7 +1,7 @@
 function Test-GlyAnsiOutputSupported {
-    if ($Host.Name -eq 'ServerRemoteHost') {
-        return $false
-    }
+  if ($Host.Name -eq 'ServerRemoteHost') {
+    return $false
+  }
 
-    return $true
+  return $true
 }
