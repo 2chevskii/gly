@@ -115,6 +115,15 @@ Describe 'gly theme registry' {
     $thrown | Should -Be $true
   }
 
+  It 'returns strongly typed themes, rules, styles, and selectors' {
+    $theme = Get-GlyTheme DefaultDark
+    $theme.GetType().Name | Should -Be 'GlyTheme'
+    $theme.Default.GetType().Name | Should -Be 'GlyStyle'
+    $theme.Rules[0].GetType().Name | Should -Be 'GlyThemeRule'
+    $theme.Rules[0].Selector.GetType().Name | Should -Be 'GlySelector'
+    $theme.Rules.Count | Should -BeGreaterThan 50
+  }
+
   It 'copies and registers a user theme' {
     $copy = Copy-GlyTheme -Name DefaultDark -NewName UserDark
     $registered = Register-GlyTheme -Theme $copy
@@ -128,5 +137,11 @@ Describe 'gly theme registry' {
     $thrown = $false
     try { Set-GlyTheme MissingTheme } catch { $thrown = $true }
     $thrown | Should -Be $true
+  }
+
+  It 'does not expose mutable built-in registry instances' {
+    $copy = Get-GlyTheme DefaultDark
+    $copy.Name = 'ChangedOutsideRegistry'
+    (Get-GlyTheme DefaultDark).Name | Should -Be 'DefaultDark'
   }
 }

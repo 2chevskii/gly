@@ -26,4 +26,9 @@ Describe 'gly module' {
     $item.FullName | Should -Not -BeNullOrEmpty
     $item.Attributes | Should -Not -BeNullOrEmpty
   }
+
+  It 'returns strongly typed session configuration' {
+    Import-Module $modulePath -Force
+    (Get-GlyConfiguration).GetType().Name | Should -Be 'GlyConfiguration'
+  }
 }

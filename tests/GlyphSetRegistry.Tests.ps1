@@ -13,6 +13,14 @@ Describe 'gly glyph set registry' {
     ($names -contains 'Emoji') | Should -Be $true
   }
 
+  It 'returns strongly typed glyph sets, rules, and selectors' {
+    $glyphSet = Get-GlyGlyphSet ANSI
+    $glyphSet.GetType().Name | Should -Be 'GlyGlyphSet'
+    $glyphSet.Rules[0].GetType().Name | Should -Be 'GlyGlyphRule'
+    $glyphSet.Rules[0].Selector.GetType().Name | Should -Be 'GlySelector'
+    $glyphSet.Rules.Count | Should -BeGreaterThan 50
+  }
+
   It 'does not allow overwriting a built-in glyph set' {
     $glyphSet = @{
       Name    = 'NerdFonts'
@@ -37,5 +45,14 @@ Describe 'gly glyph set registry' {
     $thrown = $false
     try { Set-GlyGlyphSet MissingGlyphSet } catch { $thrown = $true }
     $thrown | Should -Be $true
+  }
+
+  It 'rejects invalid selector kinds during registration' {
+    $glyphSet = @{
+      Name = 'InvalidSelectorGlyphs'
+      Default = '?'
+      Rules = @(@{ Selector = @{ Kind = 'file' }; Glyph = 'x' })
+    }
+    { Register-GlyGlyphSet -GlyphSet $glyphSet } | Should -Throw
   }
 }
