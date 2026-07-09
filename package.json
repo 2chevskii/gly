@@ -9,6 +9,7 @@
   "scripts": {
     "module:pack": "pwsh -NoProfile -File ./scripts/New-GlyGalleryPackage.ps1 -Clean",
     "module:publish:whatif": "pwsh -NoProfile -Command \"./scripts/New-GlyGalleryPackage.ps1 -Clean | Out-Null; Publish-Module -Path ./artifacts/psgallery/gly -Repository PSGallery -NuGetApiKey $env:PSGALLERY_API_KEY -WhatIf -Verbose\"",
+    "bench:rendering": "pwsh -NoProfile -File ./benchmarks/Measure-GlyRendering.ps1",
     "docs:dev": "vitepress dev docs/web",
     "docs:build": "vitepress build docs/web",
     "docs:preview": "vitepress preview docs/web"
