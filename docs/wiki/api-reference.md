@@ -22,7 +22,7 @@ PowerShell format data remains loaded in the current session.
 
 ### Get-GlyConfiguration
 
-Возвращает отдельную копию конфигурации с типом `GlyConfiguration`.
+Returns a detached `GlyConfiguration` copy of the current session configuration.
 
 ```powershell
 Get-GlyConfiguration
@@ -48,7 +48,7 @@ Register-GlyTheme $theme
 
 Built-in themes cannot be overwritten.
 
-`Get-GlyTheme` и `Copy-GlyTheme` возвращают `GlyTheme` с типизированными стилями, правилами и селекторами. `Register-GlyTheme` принимает этот тип или совместимый hashtable/`pscustomobject`.
+`Get-GlyTheme` and `Copy-GlyTheme` return `GlyTheme` values with typed styles, rules, and selectors. `Register-GlyTheme` accepts that type or a compatible hashtable/`pscustomobject`.
 
 ### Glyph Set Commands
 
@@ -62,7 +62,7 @@ Register-GlyGlyphSet $glyphs
 
 Built-in glyph sets cannot be overwritten.
 
-`Get-GlyGlyphSet` и `Copy-GlyGlyphSet` возвращают `GlyGlyphSet` с типизированными правилами и селекторами. `Register-GlyGlyphSet` принимает этот тип или совместимый hashtable/`pscustomobject`.
+`Get-GlyGlyphSet` and `Copy-GlyGlyphSet` return `GlyGlyphSet` values with typed rules and selectors. `Register-GlyGlyphSet` accepts that type or a compatible hashtable/`pscustomobject`.
 
 ### Renderer Commands
 

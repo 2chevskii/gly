@@ -1,10 +1,10 @@
 # AGENTS.md
 
-Правила для агентов, работающих в репозитории `gly`.
+Instructions for agents working in the `gly` repository.
 
-## Обязательный контекст
+## Required context
 
-Перед изменением кода или документации прочитать актуальные пользовательские и developer-документы:
+Before changing code or documentation, read the current user and developer documentation:
 
 1. `README.md`
 2. `docs/wiki/index.md`
@@ -12,17 +12,17 @@
 4. `docs/wiki/development.md`
 5. `docs/wiki/limitations.md`
 
-## Язык
+## Language
 
-- Пользовательская документация проекта пишется на русском языке.
-- Имена PowerShell-команд, параметров, файлов, функций и переменных пишутся на английском.
-- Комментарии в коде добавлять только для неочевидных решений и edge cases.
+- Project user documentation is written in English.
+- PowerShell command, parameter, file, function, and variable names remain in English.
+- Add code comments only for non-obvious decisions and edge cases.
 
-## Команды
+## Commands
 
-В этом окружении shell-команды запускаются с префиксом `rtk`.
+Shell commands in this environment use the `rtk` prefix.
 
-Примеры:
+Examples:
 
 ```powershell
 rtk npm run module:pack
@@ -30,33 +30,33 @@ rtk pwsh -NoProfile -Command "Invoke-Pester ./tests"
 rtk git status --short
 ```
 
-Если `pwsh` недоступен, зафиксировать это в ответе и не подменять целевую совместимость Windows PowerShell `5.1`: MVP ориентирован на PowerShell `7+`.
+If `pwsh` is unavailable, report that fact and do not replace the target PowerShell 7+ compatibility with Windows PowerShell `5.1`: the MVP targets PowerShell `7+`.
 
-## Границы MVP
+## MVP boundaries
 
-Не добавлять без отдельного решения:
+Do not add the following without a separate decision:
 
-- поддержку Windows PowerShell `5.1`;
-- постоянное хранение пользовательской конфигурации на диске;
-- автоматический fallback между glyph sets;
-- автоматическое определение Nerd Font;
-- автоматическое определение dark/light темы терминала;
-- Git-aware форматирование;
-- выделение executable-файлов;
-- сложную систему импортов тем из `.json`, `.yaml`, `.psd1` или `.ps1`.
+- Windows PowerShell `5.1` support;
+- persistent user configuration on disk;
+- automatic fallback between glyph sets;
+- automatic Nerd Font detection;
+- automatic dark/light terminal theme detection;
+- Git-aware formatting;
+- executable-file highlighting;
+- a complex theme import system for `.json`, `.yaml`, `.psd1`, or `.ps1` files.
 
-## Архитектурные правила
+## Architectural rules
 
-- Стандартное форматирование `FileInfo` / `DirectoryInfo` делается через `*.format.ps1xml`.
-- Tree/grid/compact/long/human-readable представления делаются отдельными renderer-командами.
-- Встроенные темы и glyph sets неизменяемы; пользователь может создать копию и зарегистрировать ее под новым именем.
-- Конфигурация MVP хранится только в памяти текущей PowerShell-сессии.
-- Модуль не должен менять входные `FileInfo` / `DirectoryInfo` объекты.
-- Модуль не должен менять порядок сортировки, поведение провайдеров или семантику `Get-ChildItem` / `Get-Item`.
+- Standard `FileInfo` / `DirectoryInfo` formatting is implemented through `*.format.ps1xml`.
+- Tree/grid/compact/long/human-readable views are separate renderer commands.
+- Built-in themes and glyph sets are immutable; users may copy and register them under a new name.
+- MVP configuration is stored only in memory for the current PowerShell session.
+- The module must not modify input `FileInfo` / `DirectoryInfo` objects.
+- The module must not change sort order, provider behavior, or the semantics of `Get-ChildItem` / `Get-Item`.
 
-## Работа с изменениями
+## Working with changes
 
-- Делать минимальные, проверяемые изменения.
-- Не переписывать структуру проекта без причины.
-- Не удалять и не перегенерировать branding assets без явной задачи.
-- Перед финальным ответом выполнить релевантную проверку из `docs/wiki/development.md` или явно объяснить, почему она не выполнена.
+- Make minimal, verifiable changes.
+- Do not restructure the project without a reason.
+- Do not remove or regenerate branding assets without an explicit task.
+- Before the final response, run the relevant check from `docs/wiki/development.md`, or explain why it was not run.

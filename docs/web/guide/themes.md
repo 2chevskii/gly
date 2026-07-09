@@ -1,10 +1,10 @@
-# Темы
+# Themes
 
-Темы определяют цвета и начертание текста. Глифы выбираются отдельно.
+Themes define colors and text style. Glyphs are selected separately.
 
-## Полный каталог встроенных тем
+## Complete Built-in Theme Catalog
 
-В модуль входят 90 тем:
+The module includes 90 themes:
 
 - `DefaultDark`
 - `DefaultLight`
@@ -97,11 +97,11 @@
 - `ParaisoDark`
 - `ParaisoLight`
 
-Палитры адаптированы для вывода файловой системы. Исходные проекты сохраняют собственные названия, лицензии и условия распространения.
+The palettes are adapted for file-system output. Source projects retain their own names, licenses, and distribution terms.
 
-## Источники палитр
+## Palette Sources
 
-| Темы `gly` | Источник |
+| `gly` themes | Source |
 | --- | --- |
 | `DefaultDark`, `DefaultLight`, `NoColor` | `gly` project palette |
 | `SolarizedDark`, `SolarizedLight` | [altercation/solarized](https://github.com/altercation/solarized) |
@@ -160,27 +160,27 @@ Get-GlyTheme
 Set-GlyTheme DefaultLight
 ```
 
-## Общий каталог правил
+## Shared Rule Catalog
 
-Все цветные темы используют общий каталог из более чем 60 селекторов. Он распределяется по группам `File`, `Directory`, `Symlink`, `Hidden`, `ReadOnly`, `PowerShell`, `Json` и `Markdown`.
+All color themes use a shared catalog of more than 60 selectors. It is divided into `File`, `Directory`, `Symlink`, `Hidden`, `ReadOnly`, `PowerShell`, `Json`, and `Markdown` groups.
 
-| Группа | Основное покрытие |
+| Group | Main coverage |
 | --- | --- |
-| `Directory` | Обычные каталоги и downloads. |
-| `Symlink` | Links, Git, Docker, CI, infrastructure, databases. |
-| `Hidden` | Hidden items, logs, caches. |
-| `ReadOnly` | Settings, archives, fonts, certificates, binaries, licenses. |
-| `PowerShell` | Programming languages, shell/web, source/build, projects. |
-| `Json` | Structured data, packages, tests/dependencies, office documents. |
-| `Markdown` | Documentation, text, README/changelog, media. |
+| `Directory` | Ordinary directories and downloads. |
+| `Symlink` | Links, Git, Docker, CI, infrastructure, and databases. |
+| `Hidden` | Hidden items, logs, and caches. |
+| `ReadOnly` | Settings, archives, fonts, certificates, binaries, and licenses. |
+| `PowerShell` | Programming languages, shell/web, source/build, and projects. |
+| `Json` | Structured data, packages, tests/dependencies, and office documents. |
+| `Markdown` | Documentation, text, README/changelog, and media. |
 
-У `NoColor` нет правил и цветового foreground/background. Точные селекторы перечислены в [каталоге селекторов](./selectors.md#встроенный-каталог).
+`NoColor` has no rules and no foreground/background color. Exact selectors are listed in the [selector catalog](./selectors.md#built-in-catalog).
 
-## Типизированная структура
+## Strongly Typed Structure
 
-`Get-GlyTheme` и `Copy-GlyTheme` возвращают `GlyTheme` с вложенными `GlyStyle`, `GlyThemeRule` и `GlySelector`. Hashtable и `pscustomobject`, переданные в `Register-GlyTheme`, валидируются и преобразуются в эти типы.
+`Get-GlyTheme` and `Copy-GlyTheme` return `GlyTheme` with nested `GlyStyle`, `GlyThemeRule`, and `GlySelector` values. Hashtables and `pscustomobject` values passed to `Register-GlyTheme` are validated and converted to these types.
 
-## Пользовательская тема
+## Custom Theme
 
 ```powershell
 $theme = Copy-GlyTheme DefaultDark MyDark
@@ -199,4 +199,4 @@ Register-GlyTheme $theme
 Set-GlyTheme MyDark
 ```
 
-Встроенные темы нельзя перезаписать. Импорт файлов тем не входит в MVP.
+Built-in themes cannot be overwritten. Theme file imports are outside the MVP.

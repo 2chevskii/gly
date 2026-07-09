@@ -18,7 +18,7 @@ Copy-GlyTheme
 Register-GlyTheme
 ```
 
-Getter- и copy-команды возвращают `GlyTheme`; вложенные значения используют `GlyStyle`, `GlyThemeRule` и `GlySelector`.
+Getter and copy commands return `GlyTheme`; nested values use `GlyStyle`, `GlyThemeRule`, and `GlySelector`.
 
 ## Glyph Sets
 
@@ -29,7 +29,7 @@ Copy-GlyGlyphSet
 Register-GlyGlyphSet
 ```
 
-Getter- и copy-команды возвращают `GlyGlyphSet`; вложенные значения используют `GlyGlyphRule` и `GlySelector`.
+Getter and copy commands return `GlyGlyphSet`; nested values use `GlyGlyphRule` and `GlySelector`.
 
 ## Renderers
 

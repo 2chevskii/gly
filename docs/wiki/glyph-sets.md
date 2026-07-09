@@ -1,25 +1,25 @@
-# Наборы глифов
+# Glyph Sets
 
-Набор глифов определяет символ перед именем файла или каталога. Все встроенные наборы используют один и тот же каталог селекторов и отличаются только символами.
+A glyph set defines the symbol shown before a file or directory name. All built-in sets use the same selector catalog and differ only in their symbols.
 
-## Встроенные наборы
+## Built-in Sets
 
-| Набор | Глиф файла по умолчанию | Назначение |
+| Set | Default file glyph | Purpose |
 | --- | --- | --- |
-| `NerdFonts` | `` | Полный набор иконок из Nerd Fonts. Используется по умолчанию. |
-| `ANSI` | `[file]` | Читаемые ASCII-метки: `[dir]`, `[package]`, `[image]` и другие. Не требует специального шрифта. |
-| `ANSICompact` | `f` | Короткие текстовые метки для узких терминалов. |
-| `Unicode` | `□` | Символы Unicode без Private Use Area; для некоторых типов используются короткие метки `JS`, `TS`, `PDF`. |
-| `Emoji` | `📄` | Цветные emoji и короткие текстовые метки. Фактическая ширина зависит от терминала. |
+| `NerdFonts` | `` | Full Nerd Font icon set; the default. |
+| `ANSI` | `[file]` | Readable ASCII labels such as `[dir]`, `[package]`, and `[image]`; no special font required. |
+| `ANSICompact` | `f` | Short text labels for narrow terminals. |
+| `Unicode` | `□` | Unicode symbols without the Private Use Area; some types use short labels such as `JS`, `TS`, and `PDF`. |
+| `Emoji` | `📄` | Emoji and short text labels; actual width depends on the terminal. |
 
-Просмотреть и выбрать набор:
+List and select a set:
 
 ```powershell
 Get-GlyGlyphSet
 Set-GlyGlyphSet Unicode
 ```
 
-Если глифы `NerdFonts` отображаются неправильно, fallback нужно выбрать явно:
+If `NerdFonts` glyphs do not render correctly, select a fallback explicitly:
 
 ```powershell
 Set-GlyGlyphSet ANSI
@@ -28,47 +28,47 @@ Set-GlyGlyphSet Unicode
 Set-GlyGlyphSet Emoji
 ```
 
-`gly` не определяет активный шрифт и не переключает наборы автоматически.
+`gly` does not detect the active terminal font or switch sets automatically.
 
-## Полный каталог встроенных селекторов
+## Complete Built-in Selector Catalog
 
-В каждом встроенном наборе есть правила для следующих групп. Более специфичные правила известных имён объявлены после правил расширений и поэтому имеют приоритет.
+Every built-in set contains rules for the groups below. More specific well-known-name rules are declared after extension rules and therefore take precedence.
 
-### Каталоги
+### Directories
 
-| Группа | Имена |
+| Group | Names |
 | --- | --- |
 | Git | `.git`, `.github` |
-| Настройки редакторов | `.config`, `.vscode`, `.vscode-insiders`, `.idea` |
-| Зависимости | `node_modules`, `vendor`, `packages`, `bower_components` |
-| Исходный код | `src`, `source`, `scripts` |
-| Тесты | `test`, `tests`, `spec`, `specs`, `coverage` |
-| Документация | `doc`, `docs`, `documentation` |
-| Сборка | `build`, `dist`, `out`, `output`, `artifacts`, `target`, `bin` |
-| Кеш | `.cache`, `__pycache__`, `.pytest_cache`, `.mypy_cache` |
-| Загрузки | `download`, `downloads` |
-| Изображения | `image`, `images`, `photo`, `photos`, `picture`, `pictures` |
-| Аудио | `audio`, `music`, `songs` |
-| Видео | `video`, `videos`, `movie`, `movies` |
-| Инфраструктура | `.docker`, `.kube`, `.terraform`, `infra`, `deploy`, `charts` |
+| Editor settings | `.config`, `.vscode`, `.vscode-insiders`, `.idea` |
+| Dependencies | `node_modules`, `vendor`, `packages`, `bower_components` |
+| Source | `src`, `source`, `scripts` |
+| Tests | `test`, `tests`, `spec`, `specs`, `coverage` |
+| Documentation | `doc`, `docs`, `documentation` |
+| Build | `build`, `dist`, `out`, `output`, `artifacts`, `target`, `bin` |
+| Cache | `.cache`, `__pycache__`, `.pytest_cache`, `.mypy_cache` |
+| Downloads | `download`, `downloads` |
+| Images | `image`, `images`, `photo`, `photos`, `picture`, `pictures` |
+| Audio | `audio`, `music`, `songs` |
+| Video | `video`, `videos`, `movie`, `movies` |
+| Infrastructure | `.docker`, `.kube`, `.terraform`, `infra`, `deploy`, `charts` |
 
-Для остальных каталогов используются отдельные правила `Directory`, `Junction` и `Symlink`.
+Other directories use separate `Directory`, `Junction`, and `Symlink` rules.
 
-### Известные файлы
+### Well-known Files
 
-| Группа | Шаблоны и имена |
+| Group | Patterns and names |
 | --- | --- |
 | Git | `.gitignore`, `.gitattributes`, `.gitmodules`, `.gitconfig`, `.gitkeep` |
 | Docker Compose | `Dockerfile`, `Dockerfile.*`, `.dockerignore`, `docker-compose*.yml`, `docker-compose*.yaml`, `compose*.yml`, `compose*.yaml` |
-| Основная документация | `README*`, `LICENSE*`, `LICENCE*`, `COPYING*`, `CHANGELOG*`, `HISTORY*` |
-| Пакеты | `package.json`, `package-lock.json`, `yarn.lock`, `pnpm-lock.yaml`, `composer.json`, `composer.lock`, `go.mod`, `go.sum`, `Cargo.toml`, `Cargo.lock`, `requirements.txt`, `pyproject.toml`, `Pipfile` |
-| Проекты и сборка | `*.sln`, `*.slnx`, `*.csproj`, `*.fsproj`, `*.vbproj`, `CMakeLists.txt`, `Makefile` |
-| Настройки | `.editorconfig`, ESLint/Prettier config-файлы, `tsconfig*.json`, `jsconfig*.json` |
+| Core documentation | `README*`, `LICENSE*`, `LICENCE*`, `COPYING*`, `CHANGELOG*`, `HISTORY*` |
+| Packages | `package.json`, `package-lock.json`, `yarn.lock`, `pnpm-lock.yaml`, `composer.json`, `composer.lock`, `go.mod`, `go.sum`, `Cargo.toml`, `Cargo.lock`, `requirements.txt`, `pyproject.toml`, `Pipfile` |
+| Projects and build | `*.sln`, `*.slnx`, `*.csproj`, `*.fsproj`, `*.vbproj`, `CMakeLists.txt`, `Makefile` |
+| Settings | `.editorconfig`, ESLint/Prettier config files, `tsconfig*.json`, `jsconfig*.json` |
 | CI | GitLab CI, Travis CI, Azure Pipelines, Bitbucket Pipelines, `Jenkinsfile` |
 
-### Расширения
+### Extensions
 
-| Группа | Поддерживаемые расширения |
+| Group | Supported extensions |
 | --- | --- |
 | PowerShell | `.ps1`, `.psm1`, `.psd1`, `.ps1xml`, `.psc1`, `.pssc` |
 | Shell | `.sh`, `.bash`, `.zsh`, `.fish`, `.bat`, `.cmd` |
@@ -76,32 +76,32 @@ Set-GlyGlyphSet Emoji
 | C/C++ | `.c`, `.h`, `.cpp`, `.cc`, `.cxx`, `.hpp` |
 | JVM | `.java`, `.class`, `.jar`, `.kt`, `.kts`, `.scala`, `.gradle` |
 | JavaScript/TypeScript | `.js`, `.mjs`, `.cjs`, `.ts`, `.d.ts`, `.jsx`, `.tsx` |
-| Другие языки | Python/Jupyter, Rust, Go, Ruby, PHP |
+| Other languages | Python/Jupyter, Rust, Go, Ruby, PHP |
 | Web | HTML, CSS, Sass, Less, Vue, Svelte |
-| Данные и настройки | JSON/JSONC, YAML, TOML, INI, CFG, CONF, ENV, XML/XSD/XSL/XAML/PLIST |
-| Текст | Markdown/MDX/RST, TXT/RTF, LOG/TRACE |
-| Архивы | TAR и compound TAR, ZIP, GZip, BZip2, XZ, 7z, RAR, TGZ, Zstandard |
-| Медиа | распространённые изображения, аудио и видео |
-| Документы | PDF, Word/OpenDocument, Excel/CSV/TSV, PowerPoint/OpenDocument |
-| Прочее | базы данных/SQL, шрифты, сертификаты/ключи, executable и binary-файлы |
+| Data and settings | JSON/JSONC, YAML, TOML, INI, CFG, CONF, ENV, XML/XSD/XSL/XAML/PLIST |
+| Text | Markdown/MDX/RST, TXT/RTF, LOG/TRACE |
+| Archives | TAR and compound TAR, ZIP, GZip, BZip2, XZ, 7z, RAR, TGZ, Zstandard |
+| Media | Common image, audio, and video formats |
+| Documents | PDF, Word/OpenDocument, Excel/CSV/TSV, PowerPoint/OpenDocument |
+| Other | Databases/SQL, fonts, certificates/keys, executable and binary files |
 
-Атрибуты `ReadOnly` и `Hidden` также имеют отдельные правила; правило `Hidden` объявлено последним.
+`ReadOnly` and `Hidden` attributes also have dedicated rules; the `Hidden` rule is declared last.
 
-Каталог составлен по устойчивым mappings из reference-проектов:
+The catalog was assembled from stable mappings in these reference projects:
 
-| Проект | Использованный источник идей |
+| Project | Inspiration |
 | --- | --- |
-| [devblackops/Terminal-Icons](https://github.com/devblackops/Terminal-Icons) | Well-known directories/files, extension groups и Nerd Font glyphs. |
-| [SemperFu/GlyphShell](https://github.com/SemperFu/GlyphShell) | Расширенное покрытие современных project/tool directories и файлов. |
-| [hanthor/PSFileIcons](https://github.com/hanthor/PSFileIcons) | Компактное ядро common development, document и media mappings. |
+| [devblackops/Terminal-Icons](https://github.com/devblackops/Terminal-Icons) | Well-known directories/files, extension groups, and Nerd Font glyphs. |
+| [SemperFu/GlyphShell](https://github.com/SemperFu/GlyphShell) | Broader coverage of modern project/tool directories and files. |
+| [hanthor/PSFileIcons](https://github.com/hanthor/PSFileIcons) | Compact core of common development, document, and media mappings. |
 
-`gly` не добавляет Git-aware или executable-aware поведение: сопоставление использует только имя, расширение, вид и атрибуты объекта.
+`gly` does not add Git-aware or executable-aware behavior: matching uses only the object name, extension, kind, and attributes.
 
-## Типизированная структура
+## Strongly Typed Structure
 
-`Get-GlyGlyphSet` и `Copy-GlyGlyphSet` возвращают `GlyGlyphSet`. Его правила имеют тип `GlyGlyphRule`, а селекторы — `GlySelector`.
+`Get-GlyGlyphSet` and `Copy-GlyGlyphSet` return `GlyGlyphSet`. Its rules use `GlyGlyphRule`, and its selectors use `GlySelector`.
 
-Публичная регистрация по-прежнему принимает удобный hashtable или `pscustomobject`; перед сохранением он проверяется и преобразуется в типизированную модель:
+Registration still accepts a hashtable or `pscustomobject`; the input is validated and converted to the typed model before storage:
 
 ```powershell
 @{
@@ -117,11 +117,11 @@ Set-GlyGlyphSet Emoji
 }
 ```
 
-Если `Default` не задан и ни одно правило не совпало, глиф не добавляется.
+If `Default` is not set and no rule matches, no glyph is added.
 
-## Пользовательский набор
+## Custom Glyph Set
 
-Встроенные наборы неизменяемы. Создайте копию, измените её и зарегистрируйте под новым именем:
+Built-in sets are immutable. Copy a set, edit the copy, and register it under a new name:
 
 ```powershell
 $glyphs = Copy-GlyGlyphSet ANSI MyGlyphs
@@ -134,4 +134,4 @@ Register-GlyGlyphSet $glyphs
 Set-GlyGlyphSet MyGlyphs
 ```
 
-Правила используют общую [модель селекторов](selectors.md).
+Rules use the shared [selector model](selectors.md).

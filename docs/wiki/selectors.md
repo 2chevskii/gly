@@ -1,22 +1,22 @@
-# Селекторы
+# Selectors
 
-Темы и наборы глифов используют `GlySelector`, чтобы выбрать правило для `FileInfo` или `DirectoryInfo`.
+Themes and glyph sets use `GlySelector` to select a rule for a `FileInfo` or `DirectoryInfo` object.
 
-## Поля
+## Fields
 
-| Поле | Значение и сопоставление |
+| Field | Value and matching behavior |
 | --- | --- |
-| `Kind` | `File`, `Directory`, `Symlink`, `Junction` или `Other`. Регистр учитывается при регистрации из hashtable. |
-| `Name` | Точное имя файла или каталога; регистр учитывается. |
-| `Extension` | Одно расширение или массив. Начальная точка необязательна, регистр не учитывается, проверяется конец имени; compound extensions поддерживаются. |
-| `Glob` | Один PowerShell wildcard или массив. Регистр не учитывается, шаблон проверяется для `Name` и `FullName`. |
-| `Attributes` | Один `System.IO.FileAttributes` или массив, например `Hidden` и `ReadOnly`. |
+| `Kind` | `File`, `Directory`, `Symlink`, `Junction`, or `Other`. Case is preserved when registering from a hashtable. |
+| `Name` | Exact file or directory name; matching is case-sensitive. |
+| `Extension` | One extension or an array. The leading dot is optional, matching is case-insensitive, and the end of the name is checked; compound extensions are supported. |
+| `Glob` | One PowerShell wildcard or an array. Matching is case-insensitive against `Name` and `FullName`. |
+| `Attributes` | One `System.IO.FileAttributes` value or an array, such as `Hidden` and `ReadOnly`. |
 
-Все заданные поля должны совпасть. Для массивов `Extension` и `Glob` достаточно одного совпадения, а для `Attributes` объект должен иметь каждый указанный атрибут.
+All specified fields must match. For `Extension` and `Glob` arrays, any value may match; for `Attributes`, the object must have every specified attribute.
 
-## Порядок правил
+## Rule Order
 
-Правила проверяются с конца списка: побеждает последнее совпавшее правило. Общие правила размещайте раньше, специфичные — позже.
+Rules are evaluated from the end of the list: the last matching rule wins. Put general rules first and specific rules later.
 
 ```powershell
 Rules = @(
@@ -31,21 +31,21 @@ Rules = @(
 )
 ```
 
-## Встроенный каталог
+## Built-in Catalog
 
-Встроенные темы и наборы глифов разделяют каталог из более чем 60 правил. Он покрывает:
+Built-in themes and glyph sets share a catalog of more than 60 rules. It covers:
 
-- основные виды и атрибуты: `Directory`, `Junction`, `Symlink`, `ReadOnly`, `Hidden`;
+- core kinds and attributes: `Directory`, `Junction`, `Symlink`, `ReadOnly`, `Hidden`;
 - well-known directories: Git, editor settings, dependencies, source, tests, documentation, build, cache, downloads, media, infrastructure;
 - well-known files: Git, Docker/Compose, README, licenses, changelogs, package manifests/lockfiles, project files, formatter/linter settings, CI;
-- языки и платформы: PowerShell, shell, .NET, C/C++, JVM, JavaScript/TypeScript/React, Python, Rust, Go, Ruby, PHP, web;
-- данные и документы: JSON, YAML, TOML/INI/ENV, XML, Markdown/text/logs, archives, media, office documents, databases, fonts, certificates, binaries.
+- languages and platforms: PowerShell, shell, .NET, C/C++, JVM, JavaScript/TypeScript/React, Python, Rust, Go, Ruby, PHP, web;
+- data and documents: JSON, YAML, TOML/INI/ENV, XML, Markdown/text/logs, archives, media, office documents, databases, fonts, certificates, binaries.
 
-Точные имена и расширения перечислены в разделе [«Полный каталог встроенных селекторов»](glyph-sets.md#полный-каталог-встроенных-селекторов).
+Exact names and extensions are listed in [Complete Built-in Selector Catalog](glyph-sets.md#complete-built-in-selector-catalog).
 
-Каталог использует только уже доступные свойства файлового объекта: чтение содержимого, Git-команды и дополнительные filesystem lookups не выполняются.
+The catalog uses only properties already available on the file-system object; it does not read content, run Git commands, or perform additional file-system lookups.
 
-## Примеры
+## Examples
 
 ```powershell
 @{
@@ -65,4 +65,4 @@ Rules = @(
 }
 ```
 
-См. [темы](themes.md) и [наборы глифов](glyph-sets.md).
+See [Themes](themes.md) and [Glyph Sets](glyph-sets.md).

@@ -43,18 +43,18 @@ Rules are evaluated from top to bottom. The last matching rule wins.
 
 The resolver does not read file contents, does not run Git commands, and does not perform expensive file system lookups in the hot path.
 
-## Типизированные модели
+## Strongly Typed Models
 
-Состояние модуля использует PowerShell-классы из `src/GlyTypes.ps1`:
+Module state uses PowerShell classes declared in `src/GlyTypes.ps1`:
 
 - `GlyConfiguration`;
 - `GlyTheme`, `GlyThemeRule`, `GlyStyle`;
 - `GlyGlyphSet`, `GlyGlyphRule`;
 - `GlySelector`.
 
-Команды регистрации по-прежнему принимают hashtable и `pscustomobject`. Входные данные проверяются и преобразуются до записи в реестр. Getter- и copy-команды возвращают отдельные типизированные копии, поэтому вызывающий код не может изменить встроенную запись через полученный объект.
+Registration commands still accept hashtables and `pscustomobject` values. Input is validated and converted before it reaches a registry. Getter and copy commands return detached typed copies, so callers cannot mutate a built-in registry entry through a returned object.
 
-Встроенные темы и наборы глифов используют единый каталог селекторов, поэтому их покрытие и приоритет правил синхронизированы.
+Built-in themes and glyph sets share one selector catalog, keeping their coverage and rule precedence synchronized.
 
 ## Session State
 

@@ -1,51 +1,51 @@
-# Селекторы
+# Selectors
 
-Темы и наборы глифов используют тип `GlySelector`.
+Themes and glyph sets use the `GlySelector` type.
 
-## Поля
+## Fields
 
-| Поле | Поведение |
+| Field | Behavior |
 | --- | --- |
-| `Kind` | `File`, `Directory`, `Symlink`, `Junction`, `Other`; регистр учитывается при регистрации из hashtable. |
-| `Name` | Точное имя с учётом регистра. |
-| `Extension` | Строка или массив; точка необязательна, регистр не учитывается, compound extensions поддерживаются. |
-| `Glob` | PowerShell wildcard или массив; проверяется для `Name` и `FullName` без учёта регистра. |
-| `Attributes` | Один `System.IO.FileAttributes` или массив; должны присутствовать все значения. |
+| `Kind` | `File`, `Directory`, `Symlink`, `Junction`, `Other`; case is preserved when registering from a hashtable. |
+| `Name` | Exact name, matched case-sensitively. |
+| `Extension` | A string or array; the dot is optional, matching is case-insensitive, and compound extensions are supported. |
+| `Glob` | A PowerShell wildcard or array; matched against `Name` and `FullName` case-insensitively. |
+| `Attributes` | One `System.IO.FileAttributes` value or an array; all values must be present. |
 
-Побеждает последнее совпавшее правило.
+The last matching rule wins.
 
-## Встроенный каталог
+## Built-in Catalog
 
-Общий каталог встроенных тем и наборов глифов включает более 60 правил.
+The shared built-in catalog for themes and glyph sets contains more than 60 rules.
 
-### Каталоги
+### Directories
 
 - Git: `.git`, `.github`;
-- настройки: `.config`, `.vscode`, `.vscode-insiders`, `.idea`;
-- зависимости: `node_modules`, `vendor`, `packages`, `bower_components`;
-- исходники: `src`, `source`, `scripts`;
-- тесты: `test`, `tests`, `spec`, `specs`, `coverage`;
-- документация: `doc`, `docs`, `documentation`;
-- сборка: `build`, `dist`, `out`, `output`, `artifacts`, `target`, `bin`;
-- кеш, downloads, image/audio/video и infrastructure directories.
+- settings: `.config`, `.vscode`, `.vscode-insiders`, `.idea`;
+- dependencies: `node_modules`, `vendor`, `packages`, `bower_components`;
+- source: `src`, `source`, `scripts`;
+- tests: `test`, `tests`, `spec`, `specs`, `coverage`;
+- documentation: `doc`, `docs`, `documentation`;
+- build: `build`, `dist`, `out`, `output`, `artifacts`, `target`, `bin`;
+- cache, downloads, image/audio/video, and infrastructure directories.
 
-### Известные файлы
+### Well-known Files
 
 - Git metadata files;
-- `Dockerfile*`, `.dockerignore`, Docker Compose и Compose YAML;
-- `README*`, license/copying и changelog/history;
-- Node, Composer, Go, Rust и Python package files;
+- `Dockerfile*`, `.dockerignore`, Docker Compose, and Compose YAML;
+- `README*`, license/copying, and changelog/history;
+- Node, Composer, Go, Rust, and Python package files;
 - Visual Studio project files, `CMakeLists.txt`, `Makefile`;
 - EditorConfig, ESLint, Prettier, TypeScript/JavaScript config;
 - GitLab CI, Travis CI, Azure Pipelines, Bitbucket Pipelines, Jenkins.
 
-### Расширения
+### Extensions
 
 - PowerShell, shell, .NET, C/C++, JVM, JavaScript/TypeScript/React, Python, Rust, Go, Ruby, PHP, web;
 - JSON/JSONC, YAML, TOML/INI/CFG/CONF/ENV, XML/XSD/XSL/XAML/PLIST;
-- Markdown/text/logs, archives, media, office documents, databases, fonts, certificates и binaries.
+- Markdown/text/logs, archives, media, office documents, databases, fonts, certificates, and binaries.
 
-Правила также различают `Directory`, `Junction`, `Symlink`, `ReadOnly` и `Hidden`. Сопоставление не читает содержимое и не запускает Git.
+Rules also distinguish `Directory`, `Junction`, `Symlink`, `ReadOnly`, and `Hidden`. Matching does not read content or run Git.
 
 ```powershell
 @{
