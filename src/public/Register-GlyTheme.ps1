@@ -7,15 +7,15 @@ function Register-GlyTheme {
 
   process {
     Test-GlyTheme -Theme $Theme | Out-Null
-    $copy = Copy-GlyObject -InputObject $Theme
-    $name = [string] (Get-GlyValue -InputObject $copy -Name 'Name')
+    $copy = ConvertTo-GlyTheme -Theme $Theme
+    $name = $copy.Name
 
-    if ($script:GlyThemes.Contains($name) -and (Get-GlyValue -InputObject $script:GlyThemes[$name] -Name 'BuiltIn' -Default $false)) {
+    if ($script:GlyThemes.Contains($name) -and $script:GlyThemes[$name].BuiltIn) {
       throw "Built-in gly theme '$name' cannot be overwritten. Use Copy-GlyTheme with a new name."
     }
 
     $copy.BuiltIn = $false
     $script:GlyThemes[$name] = $copy
-    [pscustomobject] (Copy-GlyObject -InputObject $copy)
+    ConvertTo-GlyTheme -Theme $copy
   }
 }

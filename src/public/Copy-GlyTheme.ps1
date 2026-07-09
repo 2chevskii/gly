@@ -12,8 +12,8 @@ function Copy-GlyTheme {
     throw "Unknown gly theme '$Name'."
   }
 
-  $copy = Copy-GlyObject -InputObject $script:GlyThemes[$Name]
+  $copy = ConvertTo-GlyTheme -Theme $script:GlyThemes[$Name]
   $copy.Name = $NewName
   $copy.BuiltIn = $false
-  [pscustomobject] $copy
+  $copy
 }

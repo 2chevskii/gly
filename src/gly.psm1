@@ -2,6 +2,8 @@ $script:GlyModuleRoot = $PSScriptRoot
 $script:GlyFormatDataPath = Join-Path $PSScriptRoot 'formats/FileSystem.format.ps1xml'
 $script:GlyFormatDataLoaded = $false
 
+. (Join-Path $PSScriptRoot 'GlyTypes.ps1')
+
 Get-ChildItem -Path (Join-Path $PSScriptRoot 'private') -Filter '*.ps1' |
   Sort-Object Name |
   ForEach-Object { . $_.FullName }

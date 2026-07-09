@@ -1,13 +1,13 @@
 function Initialize-GlyConfiguration {
-  $script:GlyConfiguration = [ordered]@{
+  $script:GlyConfiguration = [GlyConfiguration]@{
     Enabled        = $true
     Theme          = 'DefaultDark'
     GlyphSet       = 'NerdFonts'
     ShowGlyphs     = $true
     ShowColors     = $true
-    SizeFormat     = 'Raw'
-    DateFormat     = 'Default'
-    StyleRenderer  = 'Auto'
+    SizeFormat     = [GlySizeFormat]::Raw
+    DateFormat     = [GlyDateFormat]::Default
+    StyleRenderer  = [GlyStyleRenderer]::Auto
     RespectNoColor = $true
     ResetAfterName = $true
   }

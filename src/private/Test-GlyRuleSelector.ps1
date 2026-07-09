@@ -1,7 +1,7 @@
 function Test-GlyRuleSelector {
   param(
     [Parameter(Mandatory)]
-    [object] $Selector,
+    [GlySelector] $Selector,
 
     [Parameter(Mandatory)]
     [System.IO.FileSystemInfo] $InputObject
@@ -9,21 +9,18 @@ function Test-GlyRuleSelector {
 
   $kind = Get-GlyFileSystemKind -InputObject $InputObject
 
-  $selectorKind = Get-GlyValue -InputObject $Selector -Name 'Kind'
-  if ($null -ne $selectorKind -and [string] $selectorKind -ne $kind) {
+  if ($null -ne $Selector.Kind -and $Selector.Kind.ToString() -cne $kind) {
     return $false
   }
 
-  $selectorName = Get-GlyValue -InputObject $Selector -Name 'Name'
-  if ($null -ne $selectorName -and [string] $selectorName -cne $InputObject.Name) {
+  if ($null -ne $Selector.Name -and $Selector.Name -cne $InputObject.Name) {
     return $false
   }
 
-  $selectorExtension = Get-GlyValue -InputObject $Selector -Name 'Extension'
-  if ($null -ne $selectorExtension) {
+  if ($Selector.Extension.Count -gt 0) {
     $name = $InputObject.Name
     $matched = $false
-    foreach ($extension in @($selectorExtension)) {
+    foreach ($extension in $Selector.Extension) {
       $extensionText = [string] $extension
       if (-not $extensionText.StartsWith('.')) {
         $extensionText = ".$extensionText"
@@ -40,10 +37,9 @@ function Test-GlyRuleSelector {
     }
   }
 
-  $selectorGlob = Get-GlyValue -InputObject $Selector -Name 'Glob'
-  if ($null -ne $selectorGlob) {
+  if ($Selector.Glob.Count -gt 0) {
     $globMatched = $false
-    foreach ($glob in @($selectorGlob)) {
+    foreach ($glob in $Selector.Glob) {
       $pattern = [System.Management.Automation.WildcardPattern]::new(
         [string] $glob,
         [System.Management.Automation.WildcardOptions]::IgnoreCase
@@ -60,11 +56,9 @@ function Test-GlyRuleSelector {
     }
   }
 
-  $selectorAttributes = Get-GlyValue -InputObject $Selector -Name 'Attributes'
-  if ($null -ne $selectorAttributes) {
-    foreach ($attribute in @($selectorAttributes)) {
-      $attributeValue = [System.IO.FileAttributes] [string] $attribute
-      if (($InputObject.Attributes -band $attributeValue) -eq 0) {
+  if ($Selector.Attributes.Count -gt 0) {
+    foreach ($attribute in $Selector.Attributes) {
+      if (($InputObject.Attributes -band $attribute) -eq 0) {
         return $false
       }
     }

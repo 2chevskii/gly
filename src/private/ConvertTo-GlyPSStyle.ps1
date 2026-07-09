@@ -1,6 +1,6 @@
 function ConvertTo-GlyPSStyle {
   param(
-    [object] $Style
+    [GlyStyle] $Style
   )
 
   return ConvertTo-GlyAnsiStyle -Style $Style

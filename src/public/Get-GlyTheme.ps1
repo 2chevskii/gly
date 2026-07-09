@@ -5,12 +5,12 @@ function Get-GlyTheme {
   )
 
   if ([string]::IsNullOrWhiteSpace($Name)) {
-    return $script:GlyThemes.Values | ForEach-Object { [pscustomobject] (Copy-GlyObject -InputObject $_) }
+    return $script:GlyThemes.Values | ForEach-Object { ConvertTo-GlyTheme -Theme $_ }
   }
 
   if (-not $script:GlyThemes.Contains($Name)) {
     throw "Unknown gly theme '$Name'."
   }
 
-  [pscustomobject] (Copy-GlyObject -InputObject $script:GlyThemes[$Name])
+  ConvertTo-GlyTheme -Theme $script:GlyThemes[$Name]
 }

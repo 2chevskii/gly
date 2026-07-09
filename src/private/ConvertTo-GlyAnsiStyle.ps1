@@ -1,6 +1,6 @@
 function ConvertTo-GlyAnsiStyle {
   param(
-    [object] $Style
+    [GlyStyle] $Style
   )
 
   if ($null -eq $Style) {
@@ -11,11 +11,11 @@ function ConvertTo-GlyAnsiStyle {
     $script:GlyAnsiStyleCache = @{}
   }
 
-  $bold = [bool] (Get-GlyValue -InputObject $Style -Name 'Bold' -Default $false)
-  $italic = [bool] (Get-GlyValue -InputObject $Style -Name 'Italic' -Default $false)
-  $underline = [bool] (Get-GlyValue -InputObject $Style -Name 'Underline' -Default $false)
-  $foreground = [string] (Get-GlyValue -InputObject $Style -Name 'Foreground')
-  $background = [string] (Get-GlyValue -InputObject $Style -Name 'Background')
+  $bold = $Style.Bold
+  $italic = $Style.Italic
+  $underline = $Style.Underline
+  $foreground = $Style.Foreground
+  $background = $Style.Background
   $cacheKey = "$bold|$italic|$underline|$foreground|$background"
 
   if ($script:GlyAnsiStyleCache.ContainsKey($cacheKey)) {

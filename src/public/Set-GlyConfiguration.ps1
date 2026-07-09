@@ -30,7 +30,7 @@ function Set-GlyConfiguration {
     }
 
     if ($PSCmdlet.ShouldProcess('gly session configuration', "Set $key")) {
-      $script:GlyConfiguration[$key] = $PSBoundParameters[$key]
+      $script:GlyConfiguration.$key = $PSBoundParameters[$key]
     }
   }
 
