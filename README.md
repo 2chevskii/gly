@@ -11,7 +11,7 @@ It improves interactive output for `Get-ChildItem`, `Get-Item`, and user command
 
 ## Status
 
-`gly` currently provides the MVP implementation described in the repository specifications.
+`gly` currently provides the MVP implementation described in the current user and developer documentation.
 
 The module:
 
@@ -90,15 +90,6 @@ Set-GlyGlyphSet Unicode
 - [API reference](docs/wiki/api-reference.md)
 - [Limitations](docs/wiki/limitations.md)
 - [Troubleshooting](docs/wiki/troubleshooting.md)
-
-Project and implementation source documents:
-
-- `docs/spec/full-spec.md` - complete current specification.
-- `docs/spec/branding.md` - naming, aliases, and visual artifacts.
-- `docs/spec/theme-candidates.md` - candidate list for built-in themes.
-- `docs/agent-implementation-plan.md` - implementation plan for agents.
-- `AGENTS.md` - repository-specific agent rules.
-- `.agents/` - additional agent-facing rules, checklists, and context.
 
 ## Development
 
