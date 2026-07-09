@@ -31,7 +31,7 @@ Windows PowerShell `5.1` is not supported by the MVP.
 Import the module from the repository:
 
 ```powershell
-Import-Module ./src/gly/gly.psd1 -Force
+Import-Module ./src/gly.psd1 -Force
 ```
 
 After import, standard PowerShell file system output uses the custom view:

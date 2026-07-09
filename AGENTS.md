@@ -27,7 +27,7 @@
 Примеры:
 
 ```powershell
-rtk pwsh -NoProfile -Command "Import-Module ./src/gly/gly.psd1 -Force"
+rtk pwsh -NoProfile -Command "Import-Module ./src/gly.psd1 -Force"
 rtk pwsh -NoProfile -Command "Invoke-Pester ./tests"
 rtk git status --short
 ```

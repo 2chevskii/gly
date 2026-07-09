@@ -17,13 +17,13 @@
 - Smoke import:
 
   ```powershell
-  rtk pwsh -NoProfile -Command "Import-Module ./src/gly/gly.psd1 -Force"
+  rtk pwsh -NoProfile -Command "Import-Module ./src/gly.psd1 -Force"
   ```
 
 - Проверка публичных команд:
 
   ```powershell
-  rtk pwsh -NoProfile -Command "Import-Module ./src/gly/gly.psd1 -Force; Get-Command -Module gly"
+  rtk pwsh -NoProfile -Command "Import-Module ./src/gly.psd1 -Force; Get-Command -Module gly"
   ```
 
 - Pester, если установлен:
@@ -37,19 +37,19 @@
 - Проверить `Get-ChildItem`:
 
   ```powershell
-  rtk pwsh -NoProfile -Command "Import-Module ./src/gly/gly.psd1 -Force; Get-ChildItem . | Format-Table"
+  rtk pwsh -NoProfile -Command "Import-Module ./src/gly.psd1 -Force; Get-ChildItem . | Format-Table"
   ```
 
 - Проверить `Get-Item`:
 
   ```powershell
-  rtk pwsh -NoProfile -Command "Import-Module ./src/gly/gly.psd1 -Force; Get-Item . | Format-Table"
+  rtk pwsh -NoProfile -Command "Import-Module ./src/gly.psd1 -Force; Get-Item . | Format-Table"
   ```
 
 - Проверить, что `Select-Object` продолжает работать с исходными объектами:
 
   ```powershell
-  rtk pwsh -NoProfile -Command "Import-Module ./src/gly/gly.psd1 -Force; Get-Item . | Select-Object -First 1 -Property Name,FullName,Attributes"
+  rtk pwsh -NoProfile -Command "Import-Module ./src/gly.psd1 -Force; Get-Item . | Select-Object -First 1 -Property Name,FullName,Attributes"
   ```
 
 ## Если проверка невозможна

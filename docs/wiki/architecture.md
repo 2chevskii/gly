@@ -7,7 +7,7 @@
 The standard `FileInfo` and `DirectoryInfo` table view is implemented in:
 
 ```text
-src/gly/formats/FileSystem.format.ps1xml
+src/formats/FileSystem.format.ps1xml
 ```
 
 The format data is loaded with:
@@ -20,7 +20,7 @@ PowerShell format data is session-wide. It can remain active after `Remove-Modul
 
 ## Module Initialization
 
-`src/gly/gly.psm1`:
+`src/gly.psm1`:
 
 - dot-sources private functions;
 - dot-sources public functions;

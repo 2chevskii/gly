@@ -9,7 +9,7 @@ Windows PowerShell `5.1` is not supported by the MVP.
 ## Import from Repository
 
 ```powershell
-Import-Module ./src/gly/gly.psd1 -Force
+Import-Module ./src/gly.psd1 -Force
 ```
 
 The module initializes itself during import by calling `Enable-Gly`.
@@ -17,7 +17,7 @@ The module initializes itself during import by calling `Enable-Gly`.
 ## Profile Example
 
 ```powershell
-Import-Module 'C:\path\to\gly\src\gly\gly.psd1'
+Import-Module 'C:\path\to\gly\src\gly.psd1'
 Set-GlyGlyphSet Unicode
 Set-GlyTheme DefaultDark
 ```

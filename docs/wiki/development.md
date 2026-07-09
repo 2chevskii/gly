@@ -3,7 +3,7 @@
 ## Repository Layout
 
 ```text
-src/gly/
+src/
   gly.psd1
   gly.psm1
   formats/
@@ -17,13 +17,13 @@ assets/branding/
 ## Import Smoke Test
 
 ```powershell
-pwsh -NoProfile -Command "Import-Module ./src/gly/gly.psd1 -Force"
+pwsh -NoProfile -Command "Import-Module ./src/gly.psd1 -Force"
 ```
 
 ## Public Command Check
 
 ```powershell
-pwsh -NoProfile -Command "Import-Module ./src/gly/gly.psd1 -Force; Get-Command -Module gly"
+pwsh -NoProfile -Command "Import-Module ./src/gly.psd1 -Force; Get-Command -Module gly"
 ```
 
 ## Pester Tests

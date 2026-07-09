@@ -41,51 +41,50 @@ target_powershell: "7.0+"
 
 ## 3. Целевая структура репозитория
 
-Создать модуль в `src/gly`:
+Создать модуль в `src`:
 
 ```text
 src/
-  gly/
-    gly.psd1
-    gly.psm1
-    formats/
-      FileSystem.format.ps1xml
-    public/
-      Enable-Gly.ps1
-      Disable-Gly.ps1
-      Get-GlyConfiguration.ps1
-      Set-GlyConfiguration.ps1
-      Get-GlyTheme.ps1
-      Set-GlyTheme.ps1
-      Register-GlyTheme.ps1
-      Copy-GlyTheme.ps1
-      Get-GlyGlyphSet.ps1
-      Set-GlyGlyphSet.ps1
-      Register-GlyGlyphSet.ps1
-      Copy-GlyGlyphSet.ps1
-      Show-Gly.ps1
-      Show-GlyTree.ps1
-      Show-GlyGrid.ps1
-    private/
-      ConvertTo-GlyAnsiStyle.ps1
-      ConvertTo-GlyPSStyle.ps1
-      Format-GlyFileDate.ps1
-      Format-GlyFileSize.ps1
-      Get-GlyFileSystemDisplayName.ps1
-      Get-GlyFileSystemGlyph.ps1
-      Get-GlyFileSystemKind.ps1
-      Get-GlyFileSystemStyle.ps1
-      Initialize-GlyConfiguration.ps1
-      Initialize-GlyGlyphSets.ps1
-      Initialize-GlyThemes.ps1
-      Resolve-GlyFileSystemRule.ps1
-      Resolve-GlyStyleRenderer.ps1
-      Test-GlyAnsiOutputSupported.ps1
-      Test-GlyTheme.ps1
-      Test-GlyGlyphSet.ps1
-    data/
-      glyphsets/
-      themes/
+  gly.psd1
+  gly.psm1
+  formats/
+    FileSystem.format.ps1xml
+  public/
+    Enable-Gly.ps1
+    Disable-Gly.ps1
+    Get-GlyConfiguration.ps1
+    Set-GlyConfiguration.ps1
+    Get-GlyTheme.ps1
+    Set-GlyTheme.ps1
+    Register-GlyTheme.ps1
+    Copy-GlyTheme.ps1
+    Get-GlyGlyphSet.ps1
+    Set-GlyGlyphSet.ps1
+    Register-GlyGlyphSet.ps1
+    Copy-GlyGlyphSet.ps1
+    Show-Gly.ps1
+    Show-GlyTree.ps1
+    Show-GlyGrid.ps1
+  private/
+    ConvertTo-GlyAnsiStyle.ps1
+    ConvertTo-GlyPSStyle.ps1
+    Format-GlyFileDate.ps1
+    Format-GlyFileSize.ps1
+    Get-GlyFileSystemDisplayName.ps1
+    Get-GlyFileSystemGlyph.ps1
+    Get-GlyFileSystemKind.ps1
+    Get-GlyFileSystemStyle.ps1
+    Initialize-GlyConfiguration.ps1
+    Initialize-GlyGlyphSets.ps1
+    Initialize-GlyThemes.ps1
+    Resolve-GlyFileSystemRule.ps1
+    Resolve-GlyStyleRenderer.ps1
+    Test-GlyAnsiOutputSupported.ps1
+    Test-GlyTheme.ps1
+    Test-GlyGlyphSet.ps1
+  data/
+    glyphsets/
+    themes/
 tests/
   Gly.Tests.ps1
   RuleResolution.Tests.ps1
@@ -121,7 +120,7 @@ tests/
 
 ## 5. Фаза 1 - каркас модуля
 
-1. Создать `src/gly/gly.psd1`.
+1. Создать `src/gly.psd1`.
 2. Указать в manifest:
 
    - `RootModule = 'gly.psm1'`
@@ -132,7 +131,7 @@ tests/
    - `AliasesToExport = @('gly', 'glytr', 'glygr')`
 
 3. Не полагаться только на `FormatsToProcess` в manifest для override стандартного view. Для MVP загрузку format data должен делать `Enable-Gly` через `Update-FormatData -PrependPath`.
-4. Создать `src/gly/gly.psm1`.
+4. Создать `src/gly.psm1`.
 5. В `gly.psm1`:
 
    - dot-source private-функции;
@@ -142,7 +141,7 @@ tests/
    - инициализировать `$script:GlyGlyphSets`;
    - вызвать `Enable-Gly` при импорте.
 
-6. Добавить smoke test: `Import-Module ./src/gly/gly.psd1 -Force` не падает.
+6. Добавить smoke test: `Import-Module ./src/gly.psd1 -Force` не падает.
 
 ## 6. Фаза 2 - конфигурация сессии
 
@@ -329,7 +328,7 @@ Selector-поля MVP:
 
 ## 11. Фаза 7 - стандартный format view
 
-Создать `src/gly/formats/FileSystem.format.ps1xml`.
+Создать `src/formats/FileSystem.format.ps1xml`.
 
 Требования к default table view:
 
@@ -476,7 +475,7 @@ MVP:
 Рекомендуемые команды:
 
 ```powershell
-rtk pwsh -NoProfile -Command "Import-Module ./src/gly/gly.psd1 -Force"
+rtk pwsh -NoProfile -Command "Import-Module ./src/gly.psd1 -Force"
 rtk pwsh -NoProfile -Command "Invoke-Pester ./tests"
 ```
 
@@ -525,4 +524,3 @@ MVP можно считать реализованным, если:
 - symlink target нельзя потерять при замене стандартной колонки `Name`.
 
 Каждый риск должен иметь либо тест, либо явное документированное ограничение.
-

@@ -3,7 +3,7 @@
 ## PowerShell Checks
 
 ```powershell
-pwsh -NoProfile -Command "Import-Module ./src/gly/gly.psd1 -Force"
+pwsh -NoProfile -Command "Import-Module ./src/gly.psd1 -Force"
 pwsh -NoProfile -Command "Invoke-Pester ./tests"
 ```
 

@@ -1,6 +1,6 @@
 Describe 'gly rendering' {
   BeforeAll {
-    $modulePath = Join-Path $PSScriptRoot '../src/gly/gly.psd1'
+    $modulePath = Join-Path $PSScriptRoot '../src/gly.psd1'
 
     $root = Join-Path $TestDrive 'rendering'
     New-Item -ItemType Directory -Path $root | Out-Null

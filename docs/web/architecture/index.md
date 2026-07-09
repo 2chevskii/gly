@@ -7,7 +7,7 @@
 The standard table view is defined in:
 
 ```text
-src/gly/formats/FileSystem.format.ps1xml
+src/formats/FileSystem.format.ps1xml
 ```
 
 It is loaded with `Update-FormatData -PrependPath`.

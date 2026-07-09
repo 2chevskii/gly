@@ -1,6 +1,6 @@
 Describe 'gly module' {
   BeforeAll {
-    $modulePath = Join-Path $PSScriptRoot '../src/gly/gly.psd1'
+    $modulePath = Join-Path $PSScriptRoot '../src/gly.psd1'
   }
 
   It 'imports without errors and exports expected commands' {

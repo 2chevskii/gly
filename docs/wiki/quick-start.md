@@ -3,7 +3,7 @@
 Import the module:
 
 ```powershell
-Import-Module ./src/gly/gly.psd1 -Force
+Import-Module ./src/gly.psd1 -Force
 ```
 
 Run standard PowerShell commands:

@@ -10,7 +10,7 @@
 ## Импорт
 
 ```powershell
-Import-Module ./src/gly/gly.psd1 -Force
+Import-Module ./src/gly.psd1 -Force
 ```
 
 При импорте модуль автоматически вызывает `Enable-Gly` и загружает format data для стандартного табличного вывода `FileInfo` / `DirectoryInfo`.

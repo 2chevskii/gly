@@ -1,6 +1,6 @@
 Describe 'gly theme registry' {
   BeforeAll {
-    $modulePath = Join-Path $PSScriptRoot '../src/gly/gly.psd1'
+    $modulePath = Join-Path $PSScriptRoot '../src/gly.psd1'
     Import-Module $modulePath -Force
   }
 

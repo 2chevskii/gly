@@ -483,7 +483,7 @@ Alias: `glygr`.
 ### Предварительная структура модуля
 
 ```text
-gly/
+src/
   gly.psd1
   gly.psm1
   formats/
@@ -517,7 +517,7 @@ gly/
   data/
     themes/
     glyphsets/
-  tests/
+tests/
 ```
 
 ### Основные внутренние функции
