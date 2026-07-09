@@ -7,16 +7,31 @@ function ConvertTo-GlyAnsiStyle {
     return ''
   }
 
+  if ($null -eq $script:GlyAnsiStyleCache) {
+    $script:GlyAnsiStyleCache = @{}
+  }
+
+  $bold = [bool] (Get-GlyValue -InputObject $Style -Name 'Bold' -Default $false)
+  $italic = [bool] (Get-GlyValue -InputObject $Style -Name 'Italic' -Default $false)
+  $underline = [bool] (Get-GlyValue -InputObject $Style -Name 'Underline' -Default $false)
+  $foreground = [string] (Get-GlyValue -InputObject $Style -Name 'Foreground')
+  $background = [string] (Get-GlyValue -InputObject $Style -Name 'Background')
+  $cacheKey = "$bold|$italic|$underline|$foreground|$background"
+
+  if ($script:GlyAnsiStyleCache.ContainsKey($cacheKey)) {
+    return $script:GlyAnsiStyleCache[$cacheKey]
+  }
+
   $codes = @()
-  if (Get-GlyValue -InputObject $Style -Name 'Bold' -Default $false) { $codes += '1' }
-  if (Get-GlyValue -InputObject $Style -Name 'Italic' -Default $false) { $codes += '3' }
-  if (Get-GlyValue -InputObject $Style -Name 'Underline' -Default $false) { $codes += '4' }
+  if ($bold) { $codes += '1' }
+  if ($italic) { $codes += '3' }
+  if ($underline) { $codes += '4' }
 
   foreach ($entry in @(
-      @{ Name = 'Foreground'; Prefix = '38' },
-      @{ Name = 'Background'; Prefix = '48' }
+      @{ Color = $foreground; Prefix = '38' },
+      @{ Color = $background; Prefix = '48' }
     )) {
-    $color = [string] (Get-GlyValue -InputObject $Style -Name $entry.Name)
+    $color = $entry.Color
     if ($color -match '^#(?<r>[0-9a-fA-F]{2})(?<g>[0-9a-fA-F]{2})(?<b>[0-9a-fA-F]{2})$') {
       $r = [Convert]::ToInt32($Matches.r, 16)
       $g = [Convert]::ToInt32($Matches.g, 16)
@@ -26,8 +41,11 @@ function ConvertTo-GlyAnsiStyle {
   }
 
   if ($codes.Count -eq 0) {
+    $script:GlyAnsiStyleCache[$cacheKey] = ''
     return ''
   }
 
-  return "$([char]27)[$($codes -join ';')m"
+  $ansiStyle = "$([char]27)[$($codes -join ';')m"
+  $script:GlyAnsiStyleCache[$cacheKey] = $ansiStyle
+  return $ansiStyle
 }

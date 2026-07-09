@@ -11,4 +11,7 @@ function Initialize-GlyConfiguration {
     RespectNoColor = $true
     ResetAfterName = $true
   }
+  $script:GlyAnsiStyleCache = @{}
+  $script:GlyStyleRendererCacheKey = $null
+  $script:GlyStyleRendererCacheValue = $null
 }
