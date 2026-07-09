@@ -33,11 +33,11 @@ jobs:
 
       - name: Validate module manifest
         shell: pwsh
-        run: Test-ModuleManifest ./src/gly/gly.psd1
+        run: Test-ModuleManifest ./src/gly.psd1
 
       - name: Import module
         shell: pwsh
-        run: Import-Module ./src/gly/gly.psd1 -Force
+        run: Import-Module ./src/gly.psd1 -Force
 
       - name: Run Pester
         shell: pwsh

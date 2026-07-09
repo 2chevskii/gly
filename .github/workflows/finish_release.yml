@@ -1,0 +1,129 @@
+name: Finish release
+
+on:
+  release:
+    types:
+      - published
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  publish-module:
+    name: Publish module to PowerShell Gallery
+    runs-on: windows-latest
+    steps:
+      - name: Checkout release tag
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.release.tag_name }}
+
+      - name: Validate release tag
+        id: version
+        shell: pwsh
+        run: |
+          $tag = '${{ github.event.release.tag_name }}'
+          $semverPattern = '^v(?<version>(?<moduleVersion>(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*))(?:-(?<prerelease>(?:0|[1-9]\d*|\d*[A-Za-z-][0-9A-Za-z-]*)(?:\.(?:0|[1-9]\d*|\d*[A-Za-z-][0-9A-Za-z-]*))*))?(?:\+(?<build>[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?)$'
+
+          if ($tag -notmatch $semverPattern) {
+            throw "Release tag '$tag' must start with 'v' and follow SemVer 2.0.0."
+          }
+
+          "version=$($Matches.version)" >> $env:GITHUB_OUTPUT
+          "moduleVersion=$($Matches.moduleVersion)" >> $env:GITHUB_OUTPUT
+          "prerelease=$($Matches.prerelease)" >> $env:GITHUB_OUTPUT
+          "build=$($Matches.build)" >> $env:GITHUB_OUTPUT
+
+      - name: Install Pester
+        shell: pwsh
+        run: |
+          Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
+          Install-Module Pester -RequiredVersion 5.7.1 -Scope CurrentUser -Force -SkipPublisherCheck
+
+      - name: Validate module version
+        shell: pwsh
+        run: |
+          $manifest = Test-ModuleManifest ./src/gly.psd1
+          $releaseVersion = '${{ steps.version.outputs.moduleVersion }}'
+
+          if ($manifest.Version.ToString() -ne $releaseVersion) {
+            throw "ModuleVersion '$($manifest.Version)' must match release tag version '$releaseVersion'."
+          }
+
+          if ('${{ steps.version.outputs.prerelease }}' -or '${{ steps.version.outputs.build }}') {
+            throw 'Prerelease or build metadata tags are valid for draft release notes, but PowerShell Gallery publishing currently expects a stable vX.Y.Z tag for this module.'
+          }
+
+      - name: Run Pester
+        shell: pwsh
+        run: |
+          Import-Module Pester -RequiredVersion 5.7.1
+          Invoke-Pester -Path ./tests -CI
+
+      - name: Build PowerShell Gallery package layout
+        shell: pwsh
+        run: ./scripts/New-GlyGalleryPackage.ps1 -Clean
+
+      - name: Publish module
+        shell: pwsh
+        env:
+          PSGALLERY_API_KEY: ${{ secrets.PSGALLERY_API_KEY }}
+        run: |
+          if ([string]::IsNullOrWhiteSpace($env:PSGALLERY_API_KEY)) {
+            throw 'Repository secret PSGALLERY_API_KEY is required to publish to PowerShell Gallery.'
+          }
+
+          Publish-Module -Path ./artifacts/psgallery/gly -Repository PSGallery -NuGetApiKey $env:PSGALLERY_API_KEY -Verbose
+
+  publish-docs:
+    name: Publish documentation to GitHub Pages
+    needs: publish-module
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout release tag
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.release.tag_name }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Cache VitePress
+        uses: actions/cache@v4
+        with:
+          path: docs/web/.vitepress/cache
+          key: ${{ runner.os }}-vitepress-${{ hashFiles('docs/web/**', 'package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-vitepress-
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build site
+        env:
+          VITEPRESS_BASE: /${{ github.event.repository.name }}/
+        run: npm run docs:build
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/web/.vitepress/dist
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
