@@ -28,6 +28,9 @@
 - `docs/spec/branding.md` - naming, aliases и визуальные артефакты.
 - `docs/spec/theme-candidates.md` - список кандидатов для built-in тем.
 - `docs/agent-implementation-plan.md` - пошаговый план реализации для агента.
+- `docs/usage.md` - базовое пользовательское использование.
+- `docs/themes.md` - работа с темами.
+- `docs/glyphsets.md` - работа с наборами глифов.
+- `docs/limitations.md` - ограничения MVP.
 - `AGENTS.md` - правила работы агентов в этом репозитории.
 - `.agents/` - дополнительные agent-facing правила, чеклисты и контекст.
-

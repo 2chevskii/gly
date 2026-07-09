@@ -21,10 +21,11 @@ function Show-GlyTree {
                 [System.IO.FileSystemInfo] $Item,
                 [string] $Prefix,
                 [int] $RemainingDepth,
-                [bool] $IsLast
+                [bool] $IsLast,
+                [bool] $IsRoot
             )
 
-            $branch = if ($Prefix -eq '') { '' } elseif ($IsLast) { '+-- ' } else { '|-- ' }
+            $branch = if ($IsRoot) { '' } elseif ($IsLast) { '+-- ' } else { '|-- ' }
             "$Prefix$branch$(Get-GlyFileSystemDisplayName -InputObject $Item)"
 
             if ($RemainingDepth -le 0 -or $Item -isnot [System.IO.DirectoryInfo]) {
@@ -33,14 +34,14 @@ function Show-GlyTree {
 
             $children = @(Get-ChildItem -LiteralPath $Item.FullName)
             for ($i = 0; $i -lt $children.Count; $i++) {
-                $nextPrefix = if ($Prefix -eq '') {
+                $nextPrefix = if ($IsRoot) {
                     ''
                 } elseif ($IsLast) {
                     "$Prefix    "
                 } else {
                     "$Prefix|   "
                 }
-                Write-GlyTreeItem -Item $children[$i] -Prefix $nextPrefix -RemainingDepth ($RemainingDepth - 1) -IsLast ($i -eq ($children.Count - 1))
+                Write-GlyTreeItem -Item $children[$i] -Prefix $nextPrefix -RemainingDepth ($RemainingDepth - 1) -IsLast ($i -eq ($children.Count - 1)) -IsRoot $false
             }
         }
     }
@@ -54,7 +55,7 @@ function Show-GlyTree {
     end {
         $items = Get-GlyFileSystemItems -Path $Path -LiteralPath $LiteralPath -InputObject $pipelineItems
         for ($i = 0; $i -lt $items.Count; $i++) {
-            Write-GlyTreeItem -Item $items[$i] -Prefix '' -RemainingDepth $Depth -IsLast ($i -eq ($items.Count - 1))
+            Write-GlyTreeItem -Item $items[$i] -Prefix '' -RemainingDepth $Depth -IsLast ($i -eq ($items.Count - 1)) -IsRoot $true
         }
     }
 }
