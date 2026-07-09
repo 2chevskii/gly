@@ -1,0 +1,21 @@
+# PowerShell build/test output
+/output/
+/out/
+/artifacts/
+/TestResults/
+/coverage/
+
+# PowerShell package artifacts
+*.nupkg
+*.snupkg
+
+# Local/editor state
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS noise
+Thumbs.db
+.DS_Store
+
