@@ -1,6 +1,8 @@
 {
-  "name": "gly",
-  "version": "0.1.0",
+  "name": "@gly/docs",
+  "version": "1.0.0",
+  "author": "2CHEVSKII",
+  "license": "MIT",
   "private": true,
   "description": "Custom visual formatting for PowerShell file system objects.",
   "type": "module",
