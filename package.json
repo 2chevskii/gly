@@ -1,0 +1,15 @@
+{
+  "name": "gly",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Custom visual formatting for PowerShell file system objects.",
+  "type": "module",
+  "scripts": {
+    "docs:dev": "vitepress dev docs/web",
+    "docs:build": "vitepress build docs/web",
+    "docs:preview": "vitepress preview docs/web"
+  },
+  "devDependencies": {
+    "vitepress": "^1.6.4"
+  }
+}
