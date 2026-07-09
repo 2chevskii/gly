@@ -21,6 +21,7 @@ Only `Name` is visually enhanced by the MVP. Renderer commands provide additiona
 - [Installation](installation.md)
 - [Quick start](quick-start.md)
 - [Configuration](configuration.md)
+- [Selectors](selectors.md)
 - [Themes](themes.md)
 - [Glyph sets](glyph-sets.md)
 - [Renderer commands](renderers.md)
@@ -40,4 +41,3 @@ Only `Name` is visually enhanced by the MVP. Renderer commands provide additiona
 - store MVP configuration only in memory;
 - make terminal-dependent behavior explicit and configurable;
 - avoid Git-aware or executable-aware formatting in the MVP.
-

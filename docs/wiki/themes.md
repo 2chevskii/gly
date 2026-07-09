@@ -196,15 +196,7 @@ Supported color values in the MVP:
 
 ## Rule Selectors
 
-Supported selector fields:
-
-- `Kind`
-- `Name`
-- `Extension`
-- `Glob`
-- `Attributes`
-
-Rules are applied in order. Later matching rules win over earlier matching rules.
+Themes use the shared [selector model](selectors.md). It defines supported fields, matching behavior, rule precedence, and examples.
 
 ## Custom Theme
 

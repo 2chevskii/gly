@@ -50,6 +50,10 @@ Glyph sets are PowerShell `hashtable` or `pscustomobject` values:
 
 If `Default` is not set and no rule matches, no glyph is added.
 
+## Rule Selectors
+
+Glyph sets use the shared [selector model](selectors.md). It defines supported fields, matching behavior, rule precedence, and examples.
+
 ## Custom Glyph Set
 
 Built-in glyph sets are immutable. Copy a built-in set, edit the copy, and register it under a new name:
@@ -64,4 +68,3 @@ $glyphs.Rules += @{
 Register-GlyGlyphSet $glyphs
 Set-GlyGlyphSet MyGlyphs
 ```
-
