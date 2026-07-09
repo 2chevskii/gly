@@ -5,12 +5,12 @@ function Get-GlyGlyphSet {
   )
 
   if ([string]::IsNullOrWhiteSpace($Name)) {
-    return $script:GlyGlyphSets.Values | ForEach-Object { [pscustomobject] (Copy-GlyObject -InputObject $_) }
+    return $script:GlyGlyphSets.Values | ForEach-Object { ConvertTo-GlyGlyphSet -GlyphSet $_ }
   }
 
   if (-not $script:GlyGlyphSets.Contains($Name)) {
     throw "Unknown gly glyph set '$Name'."
   }
 
-  [pscustomobject] (Copy-GlyObject -InputObject $script:GlyGlyphSets[$Name])
+  ConvertTo-GlyGlyphSet -GlyphSet $script:GlyGlyphSets[$Name]
 }

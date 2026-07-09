@@ -22,7 +22,7 @@ PowerShell format data remains loaded in the current session.
 
 ### Get-GlyConfiguration
 
-Returns a copy of the current session configuration.
+Returns a detached `GlyConfiguration` copy of the current session configuration.
 
 ```powershell
 Get-GlyConfiguration
@@ -48,6 +48,8 @@ Register-GlyTheme $theme
 
 Built-in themes cannot be overwritten.
 
+`Get-GlyTheme` and `Copy-GlyTheme` return `GlyTheme` values with typed styles, rules, and selectors. `Register-GlyTheme` accepts that type or a compatible hashtable/`pscustomobject`.
+
 ### Glyph Set Commands
 
 ```powershell
@@ -59,6 +61,8 @@ Register-GlyGlyphSet $glyphs
 ```
 
 Built-in glyph sets cannot be overwritten.
+
+`Get-GlyGlyphSet` and `Copy-GlyGlyphSet` return `GlyGlyphSet` values with typed rules and selectors. `Register-GlyGlyphSet` accepts that type or a compatible hashtable/`pscustomobject`.
 
 ### Renderer Commands
 
@@ -79,4 +83,3 @@ glygr
 ## Implementation Detail
 
 `Get-GlyFileSystemDisplayName` is exported so PowerShell format data can call it reliably. It is not the primary user-facing API.
-

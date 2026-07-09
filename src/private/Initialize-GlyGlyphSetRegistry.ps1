@@ -1,70 +1,98 @@
-﻿function Initialize-GlyGlyphSetRegistry {
+function Initialize-GlyGlyphSetRegistry {
   $script:GlyGlyphSets = [ordered]@{}
 
-  $commonRules = @(
-    [ordered]@{ Selector = [ordered]@{ Kind = 'Directory' }; Glyph = 'dir' },
-    [ordered]@{ Selector = [ordered]@{ Kind = 'Symlink' }; Glyph = 'lnk' },
-    [ordered]@{ Selector = [ordered]@{ Name = '.gitignore' }; Glyph = 'git' },
-    [ordered]@{ Selector = [ordered]@{ Name = 'Dockerfile' }; Glyph = 'dock' },
-    [ordered]@{ Selector = [ordered]@{ Extension = '.ps1' }; Glyph = 'ps' },
-    [ordered]@{ Selector = [ordered]@{ Extension = '.psm1' }; Glyph = 'ps' },
-    [ordered]@{ Selector = [ordered]@{ Extension = '.psd1' }; Glyph = 'ps' },
-    [ordered]@{ Selector = [ordered]@{ Extension = '.cs' }; Glyph = 'cs' },
-    [ordered]@{ Selector = [ordered]@{ Extension = '.js' }; Glyph = 'js' },
-    [ordered]@{ Selector = [ordered]@{ Extension = '.ts' }; Glyph = 'ts' },
-    [ordered]@{ Selector = [ordered]@{ Extension = '.d.ts' }; Glyph = 'tsd' },
-    [ordered]@{ Selector = [ordered]@{ Extension = '.json' }; Glyph = 'json' },
-    [ordered]@{ Selector = [ordered]@{ Extension = '.md' }; Glyph = 'md' },
-    [ordered]@{ Selector = [ordered]@{ Extension = '.tar.gz' }; Glyph = 'arc' },
-    [ordered]@{ Selector = [ordered]@{ Attributes = @('Hidden') }; Glyph = 'hid' }
-  )
-
   $maps = @{
-    NerdFonts   = @{
-      Default = [char]0xf15b
-      dir = [char]0xf07b; lnk = [char]0xf0c1; git = [char]0xf1d3; dock = [char]0xf308
-      ps = [char]0xf489; cs = [char]0xf81a; js = [char]0xe74e; ts = [char]0xe628; tsd = [char]0xe628
-      json = [char]0xe60b; md = [char]0xf48a; arc = [char]0xf410; hid = [char]0xf070
+    NerdFonts = @{
+      Default = ''
+      dir = ''; junction = ''; lnk = ''; readonly = ''; hidden = ''
+      ps = '󰞷'; shell = ''; cs = '󰌛'; cpp = '󰙲'; java = ''; js = ''; ts = ''; tsd = ''; react = ''
+      python = ''; rust = ''; go = ''; ruby = ''; php = ''; web = ''
+      json = ''; yaml = ''; config = ''; xml = '󰗀'; md = ''; text = '󰈙'; log = ''
+      archive = ''; image = ''; audio = ''; video = ''; pdf = ''; word = '󰈬'; excel = '󰈛'
+      powerpoint = '󰈧'; database = ''; font = ''; certificate = ''; binary = ''
+      dirGit = ''; dirGitHub = ''; dirConfig = ''; dirDependencies = ''; dirSource = ''; dirTests = '󰙨'
+      dirDocs = ''; dirBuild = ''; dirCache = '󰃨'; dirDownload = '󰉍'; dirImage = '󰉏'; dirAudio = '󰌳'
+      dirVideo = '󰎁'; dirInfra = ''
+      git = ''; docker = ''; readme = '󰪷'; license = '󰄤'; changelog = ''; package = ''
+      project = ''; settings = ''; ci = ''
     }
-    ANSI        = @{
+    ANSI = @{
       Default = '[file]'
-      dir = '[dir]'; lnk = '[link]'; git = '[git]'; dock = '[docker]'
-      ps = '[ps]'; cs = '[cs]'; js = '[js]'; ts = '[ts]'; tsd = '[d.ts]'
-      json = '[json]'; md = '[md]'; arc = '[archive]'; hid = '[hidden]'
+      dir = '[dir]'; junction = '[junction]'; lnk = '[link]'; readonly = '[readonly]'; hidden = '[hidden]'
+      ps = '[ps]'; shell = '[shell]'; cs = '[dotnet]'; cpp = '[cpp]'; java = '[java]'; js = '[js]'; ts = '[ts]'; tsd = '[d.ts]'; react = '[react]'
+      python = '[py]'; rust = '[rust]'; go = '[go]'; ruby = '[ruby]'; php = '[php]'; web = '[web]'
+      json = '[json]'; yaml = '[yaml]'; config = '[config]'; xml = '[xml]'; md = '[md]'; text = '[text]'; log = '[log]'
+      archive = '[archive]'; image = '[image]'; audio = '[audio]'; video = '[video]'; pdf = '[pdf]'; word = '[word]'; excel = '[excel]'
+      powerpoint = '[slides]'; database = '[db]'; font = '[font]'; certificate = '[cert]'; binary = '[binary]'
+      dirGit = '[git-dir]'; dirGitHub = '[github]'; dirConfig = '[config-dir]'; dirDependencies = '[deps]'; dirSource = '[src]'; dirTests = '[tests]'
+      dirDocs = '[docs]'; dirBuild = '[build]'; dirCache = '[cache]'; dirDownload = '[downloads]'; dirImage = '[images]'; dirAudio = '[music]'
+      dirVideo = '[videos]'; dirInfra = '[infra]'
+      git = '[git]'; docker = '[docker]'; readme = '[readme]'; license = '[license]'; changelog = '[changes]'; package = '[package]'
+      project = '[project]'; settings = '[settings]'; ci = '[ci]'
     }
     ANSICompact = @{
       Default = 'f'
-      dir = 'd'; lnk = 'l'; git = 'g'; dock = 'D'
-      ps = 'p'; cs = 'c'; js = 'j'; ts = 't'; tsd = 'T'
-      json = 'J'; md = 'm'; arc = 'z'; hid = 'h'
+      dir = 'd'; junction = 'J'; lnk = 'l'; readonly = 'r'; hidden = 'h'
+      ps = 'P'; shell = '$'; cs = 'C#'; cpp = 'C++'; java = 'Jv'; js = 'JS'; ts = 'TS'; tsd = 'DTS'; react = 'Rx'
+      python = 'Py'; rust = 'Rs'; go = 'Go'; ruby = 'Rb'; php = 'Php'; web = 'W'
+      json = '{}'; yaml = 'Y'; config = 'c'; xml = '<>'; md = 'M'; text = 't'; log = 'L'
+      archive = 'z'; image = 'i'; audio = 'a'; video = 'v'; pdf = 'PDF'; word = 'W'; excel = 'X'
+      powerpoint = 'S'; database = 'DB'; font = 'F'; certificate = 'K'; binary = 'B'
+      dirGit = 'G'; dirGitHub = 'GH'; dirConfig = 'Cd'; dirDependencies = 'N'; dirSource = 'S'; dirTests = 'T'
+      dirDocs = 'D'; dirBuild = 'B'; dirCache = 'C'; dirDownload = '↓'; dirImage = 'I'; dirAudio = 'A'
+      dirVideo = 'V'; dirInfra = 'K'
+      git = 'g'; docker = 'D'; readme = 'R'; license = 'L'; changelog = 'Ch'; package = 'p'
+      project = 'Pr'; settings = 's'; ci = 'CI'
     }
-    Unicode     = @{
+    Unicode = @{
       Default = '□'
-      dir = '▣'; lnk = '↗'; git = '⑂'; dock = '⬢'
-      ps = '▸'; cs = '◇'; js = 'JS'; ts = 'TS'; tsd = 'DTS'
-      json = '{}'; md = 'M'; arc = '▤'; hid = '·'
+      dir = '▣'; junction = '⇄'; lnk = '↗'; readonly = '◆'; hidden = '·'
+      ps = '▸'; shell = '⌘'; cs = 'C#'; cpp = 'C++'; java = 'J'; js = 'JS'; ts = 'TS'; tsd = 'DTS'; react = '⚛'
+      python = 'Py'; rust = 'Rs'; go = 'Go'; ruby = '◇'; php = 'PHP'; web = '⌘'
+      json = '{}'; yaml = '≡'; config = '⚙'; xml = '<>'; md = 'M'; text = '¶'; log = '☷'
+      archive = '▤'; image = '▧'; audio = '♫'; video = '▶'; pdf = 'PDF'; word = 'W'; excel = 'X'
+      powerpoint = '▰'; database = '▱'; font = 'Aa'; certificate = '✓'; binary = '◈'
+      dirGit = '⑂'; dirGitHub = '◆'; dirConfig = '⚙'; dirDependencies = '⬡'; dirSource = '⌘'; dirTests = '⚗'
+      dirDocs = '▤'; dirBuild = '⬢'; dirCache = '↻'; dirDownload = '↓'; dirImage = '▧'; dirAudio = '♫'
+      dirVideo = '▶'; dirInfra = '⬡'
+      git = '⑂'; docker = '⬢'; readme = 'ℹ'; license = '§'; changelog = '✓'; package = '⬡'
+      project = '◇'; settings = '⚙'; ci = '⇢'
     }
-    Emoji       = @{
+    Emoji = @{
       Default = '📄'
-      dir = '📁'; lnk = '🔗'; git = '⑂'; dock = '🐳'
-      ps = '💻'; cs = '#'; js = 'JS'; ts = 'TS'; tsd = 'DTS'
-      json = '{}'; md = '📝'; arc = '🗜'; hid = '·'
+      dir = '📁'; junction = '🔀'; lnk = '🔗'; readonly = '🔒'; hidden = '🙈'
+      ps = '💻'; shell = '⌨️'; cs = '#️⃣'; cpp = '➕'; java = '☕'; js = '🟨'; ts = '🟦'; tsd = 'DTS'; react = '⚛️'
+      python = '🐍'; rust = '🦀'; go = '🐹'; ruby = '💎'; php = '🐘'; web = '🌐'
+      json = '{}'; yaml = '📋'; config = '⚙️'; xml = '<>'; md = '📝'; text = '📃'; log = '📜'
+      archive = '🗜️'; image = '🖼️'; audio = '🎵'; video = '🎬'; pdf = '📕'; word = '📘'; excel = '📗'
+      powerpoint = '📙'; database = '🗄️'; font = '🔤'; certificate = '📜'; binary = '⚙️'
+      dirGit = '⑂'; dirGitHub = '🐙'; dirConfig = '⚙️'; dirDependencies = '📦'; dirSource = '💻'; dirTests = '🧪'
+      dirDocs = '📚'; dirBuild = '🏗️'; dirCache = '♻️'; dirDownload = '📥'; dirImage = '🖼️'; dirAudio = '🎵'
+      dirVideo = '🎬'; dirInfra = '☁️'
+      git = '⑂'; docker = '🐳'; readme = 'ℹ️'; license = '📜'; changelog = '✅'; package = '📦'
+      project = '🧩'; settings = '⚙️'; ci = '🚦'
     }
   }
 
+  $definitions = @(Get-GlyBuiltInSelectorCatalog)
   foreach ($name in @('NerdFonts', 'ANSI', 'ANSICompact', 'Unicode', 'Emoji')) {
     $map = $maps[$name]
-    $rules = foreach ($rule in $commonRules) {
-      $copy = Copy-GlyObject -InputObject $rule
-      $copy.Glyph = $map[$copy.Glyph]
-      $copy
+    $rules = foreach ($definition in $definitions) {
+      if (-not $map.ContainsKey($definition.Token)) {
+        throw "Glyph map '$name' does not define token '$($definition.Token)'."
+      }
+
+      [GlyGlyphRule]@{
+        Selector = ConvertTo-GlySelector -Selector $definition.Selector
+        Glyph = [string] $map[$definition.Token]
+      }
     }
 
-    $script:GlyGlyphSets[$name] = [ordered]@{
-      Name    = $name
+    $script:GlyGlyphSets[$name] = [GlyGlyphSet]@{
+      Name = $name
       BuiltIn = $true
-      Default = $map.Default
-      Rules   = @($rules)
+      Default = [string] $map.Default
+      Rules = [GlyGlyphRule[]] @($rules)
     }
   }
 }

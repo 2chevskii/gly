@@ -7,6 +7,8 @@ Describe 'gly rule resolution through glyph sets' {
     $psFile = New-Item -ItemType File -Path (Join-Path $root 'build.ps1')
     $compoundFile = New-Item -ItemType File -Path (Join-Path $root 'types.d.ts')
     $plainFile = New-Item -ItemType File -Path (Join-Path $root 'plain.unknown')
+    $packageFile = New-Item -ItemType File -Path (Join-Path $root 'package.json')
+    $imageFile = New-Item -ItemType File -Path (Join-Path $root 'logo.png')
     $directory = New-Item -ItemType Directory -Path (Join-Path $root 'src')
 
     Import-Module $modulePath -Force
@@ -26,8 +28,16 @@ Describe 'gly rule resolution through glyph sets' {
     Get-GlyFileSystemDisplayName -InputObject $plainFile | Should -Match '^\[file\] plain\.unknown$'
   }
 
-  It 'uses a separate directory glyph' {
-    Get-GlyFileSystemDisplayName -InputObject $directory | Should -Match '^\[dir\] src$'
+  It 'uses a well-known source directory glyph' {
+    Get-GlyFileSystemDisplayName -InputObject $directory | Should -Match '^\[src\] src$'
+  }
+
+  It 'selects glyph for a well-known package file before its extension' {
+    Get-GlyFileSystemDisplayName -InputObject $packageFile | Should -Match '^\[package\] package\.json$'
+  }
+
+  It 'selects glyph for an expanded media extension' {
+    Get-GlyFileSystemDisplayName -InputObject $imageFile | Should -Match '^\[image\] logo\.png$'
   }
 
   It 'later matching rule wins over earlier matching rule' {

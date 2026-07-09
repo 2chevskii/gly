@@ -22,6 +22,8 @@ The module:
 - provides session-only configuration;
 - supports built-in and user-registered themes;
 - supports built-in and user-registered glyph sets;
+- stores configuration, themes, glyph sets, rules, selectors, and styles in strongly typed models;
+- recognizes well-known project files and directories plus common development, document, archive, and media extensions;
 - includes `Show-Gly`, `Show-GlyTree`, and `Show-GlyGrid` renderer commands.
 
 Windows PowerShell `5.1` is not supported by the MVP.

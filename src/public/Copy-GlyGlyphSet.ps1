@@ -12,8 +12,8 @@ function Copy-GlyGlyphSet {
     throw "Unknown gly glyph set '$Name'."
   }
 
-  $copy = Copy-GlyObject -InputObject $script:GlyGlyphSets[$Name]
+  $copy = ConvertTo-GlyGlyphSet -GlyphSet $script:GlyGlyphSets[$Name]
   $copy.Name = $NewName
   $copy.BuiltIn = $false
-  [pscustomobject] $copy
+  $copy
 }

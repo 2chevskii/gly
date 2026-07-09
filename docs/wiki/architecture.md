@@ -43,6 +43,19 @@ Rules are evaluated from top to bottom. The last matching rule wins.
 
 The resolver does not read file contents, does not run Git commands, and does not perform expensive file system lookups in the hot path.
 
+## Strongly Typed Models
+
+Module state uses PowerShell classes declared in `src/GlyTypes.ps1`:
+
+- `GlyConfiguration`;
+- `GlyTheme`, `GlyThemeRule`, `GlyStyle`;
+- `GlyGlyphSet`, `GlyGlyphRule`;
+- `GlySelector`.
+
+Registration commands still accept hashtables and `pscustomobject` values. Input is validated and converted before it reaches a registry. Getter and copy commands return detached typed copies, so callers cannot mutate a built-in registry entry through a returned object.
+
+Built-in themes and glyph sets share one selector catalog, keeping their coverage and rule precedence synchronized.
+
 ## Session State
 
 The MVP stores state in memory only:
@@ -53,4 +66,3 @@ The MVP stores state in memory only:
 - format data load flag.
 
 Persistent user configuration is intentionally out of scope for the MVP.
-

@@ -13,10 +13,10 @@ function Get-GlyFileSystemGlyph {
     return ''
   }
 
-  $rule = Resolve-GlyFileSystemRule -InputObject $InputObject -Rules (Get-GlyValue -InputObject $glyphSet -Name 'Rules' -Default @())
+  $rule = Resolve-GlyFileSystemRule -InputObject $InputObject -Rules $glyphSet.Rules
   if ($null -ne $rule) {
-    return [string] (Get-GlyValue -InputObject $rule -Name 'Glyph' -Default '')
+    return $rule.Glyph
   }
 
-  return [string] (Get-GlyValue -InputObject $glyphSet -Name 'Default' -Default '')
+  return $glyphSet.Default
 }

@@ -19,5 +19,7 @@ function Test-GlyGlyphSet {
     }
   }
 
+  ConvertTo-GlyGlyphSet -GlyphSet $GlyphSet | Out-Null
+
   return $true
 }

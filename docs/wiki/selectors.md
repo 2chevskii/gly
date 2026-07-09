@@ -1,22 +1,22 @@
 # Selectors
 
-Themes and glyph sets use selectors to choose a rule for a `FileInfo` or `DirectoryInfo` object. A selector is the `Selector` property of a rule.
+Themes and glyph sets use `GlySelector` to select a rule for a `FileInfo` or `DirectoryInfo` object.
 
-## Selector Fields
+## Fields
 
 | Field | Value and matching behavior |
 | --- | --- |
-| `Kind` | One of `File`, `Directory`, `Symlink`, `Junction`, or `Other`. Matching is case-sensitive. |
-| `Name` | Exact file or directory name. Matching is case-sensitive. |
-| `Extension` | One extension or an array of extensions. A leading dot is optional; matching is case-insensitive and checks the end of the name, so compound extensions such as `.tar.gz` are supported. |
-| `Glob` | One PowerShell wildcard pattern or an array of patterns. Matching is case-insensitive against `Name` and `FullName`. |
-| `Attributes` | One `System.IO.FileAttributes` value or an array of values, for example `Hidden` or `ReadOnly`. |
+| `Kind` | `File`, `Directory`, `Symlink`, `Junction`, or `Other`. Case is preserved when registering from a hashtable. |
+| `Name` | Exact file or directory name; matching is case-sensitive. |
+| `Extension` | One extension or an array. The leading dot is optional, matching is case-insensitive, and the end of the name is checked; compound extensions are supported. |
+| `Glob` | One PowerShell wildcard or an array. Matching is case-insensitive against `Name` and `FullName`. |
+| `Attributes` | One `System.IO.FileAttributes` value or an array, such as `Hidden` and `ReadOnly`. |
 
-All specified selector fields must match. For `Extension` and `Glob` arrays, a match with any value is sufficient. For `Attributes`, the object must have every specified attribute.
+All specified fields must match. For `Extension` and `Glob` arrays, any value may match; for `Attributes`, the object must have every specified attribute.
 
 ## Rule Order
 
-Rules are evaluated in declaration order. When several rules match, the last matching rule wins. Place general rules first and more specific rules later.
+Rules are evaluated from the end of the list: the last matching rule wins. Put general rules first and specific rules later.
 
 ```powershell
 Rules = @(
@@ -31,11 +31,21 @@ Rules = @(
 )
 ```
 
-For a `.log` file, the second rule applies because it is the last matching rule.
+## Built-in Catalog
 
-## Theme Examples
+Built-in themes and glyph sets share a catalog of more than 60 rules. It covers:
 
-Style every directory in bold green:
+- core kinds and attributes: `Directory`, `Junction`, `Symlink`, `ReadOnly`, `Hidden`;
+- well-known directories: Git, editor settings, dependencies, source, tests, documentation, build, cache, downloads, media, infrastructure;
+- well-known files: Git, Docker/Compose, README, licenses, changelogs, package manifests/lockfiles, project files, formatter/linter settings, CI;
+- languages and platforms: PowerShell, shell, .NET, C/C++, JVM, JavaScript/TypeScript/React, Python, Rust, Go, Ruby, PHP, web;
+- data and documents: JSON, YAML, TOML/INI/ENV, XML, Markdown/text/logs, archives, media, office documents, databases, fonts, certificates, binaries.
+
+Exact names and extensions are listed in [Complete Built-in Selector Catalog](glyph-sets.md#complete-built-in-selector-catalog).
+
+The catalog uses only properties already available on the file-system object; it does not read content, run Git commands, or perform additional file-system lookups.
+
+## Examples
 
 ```powershell
 @{
@@ -44,55 +54,15 @@ Style every directory in bold green:
 }
 ```
 
-Style an exact filename:
-
-```powershell
-@{
-    Selector = @{ Name = 'Dockerfile' }
-    Style = @{ Foreground = '#458588' }
-}
-```
-
-Style hidden, read-only files in a particular path:
-
 ```powershell
 @{
     Selector = @{
         Kind = 'File'
-        Glob = '*\\archive\\*'
+        Glob = '*\archive\*'
         Attributes = @('Hidden', 'ReadOnly')
     }
-    Style = @{ Foreground = '#928374'; Italic = $true }
+    Glyph = '[archived]'
 }
 ```
 
-## Glyph Set Examples
-
-Assign a glyph to PowerShell files:
-
-```powershell
-@{
-    Selector = @{ Extension = @('ps1', 'psm1', 'psd1') }
-    Glyph = '[ps]'
-}
-```
-
-Assign a glyph to a filename or path matched by a wildcard:
-
-```powershell
-@{
-    Selector = @{ Glob = @('Dockerfile*', '*\\containers\\*') }
-    Glyph = '[docker]'
-}
-```
-
-Assign a glyph to hidden items:
-
-```powershell
-@{
-    Selector = @{ Attributes = 'Hidden' }
-    Glyph = '[hidden]'
-}
-```
-
-See [Themes](themes.md) and [Glyph sets](glyph-sets.md) for the complete structures and registration commands.
+See [Themes](themes.md) and [Glyph Sets](glyph-sets.md).

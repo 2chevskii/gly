@@ -13,7 +13,7 @@ function Initialize-GlyThemeRegistry {
       [bool] $Underline = $false
     )
 
-    [ordered]@{
+    [GlyStyle]@{
       Foreground = $Foreground
       Background = $null
       Bold       = $Bold
@@ -25,14 +25,14 @@ function Initialize-GlyThemeRegistry {
   function New-GlyThemeRule {
     param(
       [Parameter(Mandatory)]
-      [hashtable] $Selector,
+      [object] $Selector,
 
       [Parameter(Mandatory)]
-      [hashtable] $Style
+      [GlyStyle] $Style
     )
 
-    [ordered]@{
-      Selector = [ordered]@{} + $Selector
+    [GlyThemeRule]@{
+      Selector = $Selector
       Style    = $Style
     }
   }
@@ -67,20 +67,36 @@ function Initialize-GlyThemeRegistry {
       [string] $Markdown
     )
 
-    [ordered]@{
+    $palette = @{
+      File       = $File
+      Directory  = $Directory
+      Symlink    = $Symlink
+      Hidden     = $Hidden
+      ReadOnly   = $ReadOnly
+      PowerShell = $PowerShell
+      Json       = $Json
+      Markdown   = $Markdown
+    }
+
+    $styles = @{}
+    $boldStyles = @{}
+    foreach ($paletteName in $palette.Keys) {
+      $styles[$paletteName] = New-GlyThemeStyle -Foreground $palette[$paletteName]
+      $boldStyles[$paletteName] = New-GlyThemeStyle -Foreground $palette[$paletteName] -Bold $true
+    }
+
+    $rules = foreach ($definition in Get-GlyBuiltInSelectorCatalog) {
+      $style = if ($definition.Bold) { $boldStyles[$definition.Palette] } else { $styles[$definition.Palette] }
+      New-GlyThemeRule `
+        -Selector $definition.Selector `
+        -Style $style
+    }
+
+    [GlyTheme]@{
       Name    = $Name
       BuiltIn = $true
-      Default = New-GlyThemeStyle -Foreground $File
-      Rules   = @(
-        New-GlyThemeRule -Selector @{ Kind = 'File' } -Style (New-GlyThemeStyle -Foreground $File)
-        New-GlyThemeRule -Selector @{ Kind = 'Directory' } -Style (New-GlyThemeStyle -Foreground $Directory -Bold $true)
-        New-GlyThemeRule -Selector @{ Kind = 'Symlink' } -Style (New-GlyThemeStyle -Foreground $Symlink)
-        New-GlyThemeRule -Selector @{ Attributes = @('Hidden') } -Style (New-GlyThemeStyle -Foreground $Hidden)
-        New-GlyThemeRule -Selector @{ Attributes = @('ReadOnly') } -Style (New-GlyThemeStyle -Foreground $ReadOnly)
-        New-GlyThemeRule -Selector @{ Extension = '.ps1' } -Style (New-GlyThemeStyle -Foreground $PowerShell)
-        New-GlyThemeRule -Selector @{ Extension = '.json' } -Style (New-GlyThemeStyle -Foreground $Json)
-        New-GlyThemeRule -Selector @{ Extension = '.md' } -Style (New-GlyThemeStyle -Foreground $Markdown)
-      )
+      Default = $styles.File
+      Rules   = [GlyThemeRule[]] @($rules)
     }
   }
 
@@ -106,7 +122,7 @@ function Initialize-GlyThemeRegistry {
     -Json '#953800' `
     -Markdown '#116329'
 
-  $noColor = [ordered]@{
+  $noColor = [GlyTheme]@{
     Name    = 'NoColor'
     BuiltIn = $true
     Default = New-GlyThemeStyle -Foreground $null
@@ -318,6 +334,7 @@ function Initialize-GlyThemeRegistry {
       $solarizedDark,
       $solarizedLight
     ) + $additionalThemes) {
-    $script:GlyThemes[$theme.Name] = $theme
+    $typedTheme = if ($theme -is [GlyTheme]) { $theme } else { ConvertTo-GlyTheme -Theme $theme }
+    $script:GlyThemes[$typedTheme.Name] = $typedTheme
   }
 }

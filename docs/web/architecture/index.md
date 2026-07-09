@@ -37,3 +37,8 @@ Theme and glyph rules share the same selector model:
 
 Rules are applied in order. The last matching rule wins.
 
+## Strongly Typed Models
+
+Session state uses `GlyConfiguration`, `GlyTheme`, `GlyThemeRule`, `GlyStyle`, `GlyGlyphSet`, `GlyGlyphRule`, and `GlySelector`.
+
+Registration commands accept hashtables and `pscustomobject` values, validate them, and convert them before storage. Getter and copy commands return detached typed copies. Built-in themes and glyph sets share one selector catalog.

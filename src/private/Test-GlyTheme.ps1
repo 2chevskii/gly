@@ -9,6 +9,10 @@ function Test-GlyTheme {
     throw 'Theme must define a non-empty Name.'
   }
 
+  if ($null -eq (Get-GlyValue -InputObject $Theme -Name 'Default')) {
+    throw "Theme '$name' must define Default style."
+  }
+
   $rules = Get-GlyValue -InputObject $Theme -Name 'Rules' -Default @()
   foreach ($rule in @($rules)) {
     if ($null -eq (Get-GlyValue -InputObject $rule -Name 'Selector')) {
@@ -18,6 +22,8 @@ function Test-GlyTheme {
       throw "Theme '$name' contains a rule without Style."
     }
   }
+
+  ConvertTo-GlyTheme -Theme $Theme | Out-Null
 
   return $true
 }

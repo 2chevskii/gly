@@ -10,7 +10,7 @@ function Resolve-GlyFileSystemRule {
   $ruleList = @($Rules)
   for ($i = $ruleList.Count - 1; $i -ge 0; $i--) {
     $rule = $ruleList[$i]
-    $selector = Get-GlyValue -InputObject $rule -Name 'Selector'
+    $selector = $rule.Selector
     if ($null -eq $selector) {
       continue
     }

@@ -13,10 +13,10 @@ function Get-GlyFileSystemStyle {
     return $null
   }
 
-  $rule = Resolve-GlyFileSystemRule -InputObject $InputObject -Rules (Get-GlyValue -InputObject $theme -Name 'Rules' -Default @())
+  $rule = Resolve-GlyFileSystemRule -InputObject $InputObject -Rules $theme.Rules
   if ($null -ne $rule) {
-    return Get-GlyValue -InputObject $rule -Name 'Style'
+    return $rule.Style
   }
 
-  return Get-GlyValue -InputObject $theme -Name 'Default'
+  return $theme.Default
 }

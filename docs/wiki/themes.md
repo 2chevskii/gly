@@ -1,8 +1,10 @@
 # Themes
 
-Themes define colors and text style. They do not define glyphs.
+Themes define colors and text style, but not glyphs.
 
-Built-in themes:
+## Complete Built-in Theme Catalog
+
+The module includes 90 themes:
 
 - `DefaultDark`
 - `DefaultLight`
@@ -95,11 +97,11 @@ Built-in themes:
 - `ParaisoDark`
 - `ParaisoLight`
 
-The built-in palettes are `gly` adaptations for file-system output. Source projects keep their own names, licenses, and distribution terms.
+The built-in palettes are adapted for file-system output. Source projects retain their own names, licenses, and distribution terms.
 
-## Built-in Theme Sources
+## Palette Sources
 
-| `gly` theme(s) | Source |
+| `gly` themes | Source |
 | --- | --- |
 | `DefaultDark`, `DefaultLight`, `NoColor` | `gly` project palette |
 | `SolarizedDark`, `SolarizedLight` | [altercation/solarized](https://github.com/altercation/solarized) |
@@ -165,9 +167,26 @@ Select a theme:
 Set-GlyTheme DefaultLight
 ```
 
-## Theme Structure
+## Shared Rule Catalog
 
-Themes are PowerShell `hashtable` or `pscustomobject` values:
+All color themes use the same catalog of more than 60 selectors as the built-in glyph sets. Each palette maps selectors to eight stable groups:
+
+| Palette group | Selectors |
+| --- | --- |
+| File | Unknown files and fallback. |
+| Directory | Ordinary directories and downloads. |
+| Symlink | Links/junctions, Git, Docker, CI, infrastructure, and databases. |
+| Hidden | The `Hidden` attribute, logs, and cache directories. |
+| ReadOnly | The `ReadOnly` attribute, settings/configs, archives, fonts, certificates, binaries, and licenses. |
+| PowerShell | Programming languages, shell/web, source/build directories, and project files. |
+| Json | JSON/YAML/XML, package files, test/dependency directories, and office documents. |
+| Markdown | Documentation, README/changelog, text, and media. |
+
+`NoColor` is the exception: it has no rules, and its default style does not set a foreground or background. See the complete names, patterns, and extensions in the [glyph set catalog](glyph-sets.md#complete-built-in-selector-catalog).
+
+## Strongly Typed Structure
+
+`Get-GlyTheme` and `Copy-GlyTheme` return `GlyTheme`. Nested objects use `GlyStyle`, `GlyThemeRule`, and `GlySelector`. `Register-GlyTheme` also accepts a hashtable or `pscustomobject` and converts it to the typed model after validation:
 
 ```powershell
 @{
@@ -189,18 +208,18 @@ Themes are PowerShell `hashtable` or `pscustomobject` values:
 }
 ```
 
-Supported color values in the MVP:
+Supported color values:
 
 - `#RRGGBB`
 - `$null`
 
 ## Rule Selectors
 
-Themes use the shared [selector model](selectors.md). It defines supported fields, matching behavior, rule precedence, and examples.
+Themes use the shared [selector model](selectors.md), which documents fields, matching behavior, and rule precedence.
 
 ## Custom Theme
 
-Built-in themes are immutable. Copy a built-in theme, edit the copy, and register it under a new name:
+Built-in themes are immutable. Copy a theme, edit the copy, and register it under a new name:
 
 ```powershell
 $theme = Copy-GlyTheme DefaultDark MyDark
@@ -219,4 +238,4 @@ Register-GlyTheme $theme
 Set-GlyTheme MyDark
 ```
 
-The MVP does not import themes from `.json`, `.yaml`, `.psd1`, or `.ps1` files.
+Built-in themes cannot be overwritten. Theme imports from `.json`, `.yaml`, `.psd1`, and `.ps1` files are outside the MVP.

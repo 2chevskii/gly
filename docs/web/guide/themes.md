@@ -1,8 +1,10 @@
 # Themes
 
-Themes define color and text style.
+Themes define colors and text style. Glyphs are selected separately.
 
-Built-in themes:
+## Complete Built-in Theme Catalog
+
+The module includes 90 themes:
 
 - `DefaultDark`
 - `DefaultLight`
@@ -95,11 +97,11 @@ Built-in themes:
 - `ParaisoDark`
 - `ParaisoLight`
 
-The built-in palettes are `gly` adaptations for file-system output. Source projects keep their own names, licenses, and distribution terms.
+The palettes are adapted for file-system output. Source projects retain their own names, licenses, and distribution terms.
 
-## Built-in Theme Sources
+## Palette Sources
 
-| `gly` theme(s) | Source |
+| `gly` themes | Source |
 | --- | --- |
 | `DefaultDark`, `DefaultLight`, `NoColor` | `gly` project palette |
 | `SolarizedDark`, `SolarizedLight` | [altercation/solarized](https://github.com/altercation/solarized) |
@@ -158,6 +160,26 @@ Get-GlyTheme
 Set-GlyTheme DefaultLight
 ```
 
+## Shared Rule Catalog
+
+All color themes use a shared catalog of more than 60 selectors. It is divided into `File`, `Directory`, `Symlink`, `Hidden`, `ReadOnly`, `PowerShell`, `Json`, and `Markdown` groups.
+
+| Group | Main coverage |
+| --- | --- |
+| `Directory` | Ordinary directories and downloads. |
+| `Symlink` | Links, Git, Docker, CI, infrastructure, and databases. |
+| `Hidden` | Hidden items, logs, and caches. |
+| `ReadOnly` | Settings, archives, fonts, certificates, binaries, and licenses. |
+| `PowerShell` | Programming languages, shell/web, source/build, and projects. |
+| `Json` | Structured data, packages, tests/dependencies, and office documents. |
+| `Markdown` | Documentation, text, README/changelog, and media. |
+
+`NoColor` has no rules and no foreground/background color. Exact selectors are listed in the [selector catalog](./selectors.md#built-in-catalog).
+
+## Strongly Typed Structure
+
+`Get-GlyTheme` and `Copy-GlyTheme` return `GlyTheme` with nested `GlyStyle`, `GlyThemeRule`, and `GlySelector` values. Hashtables and `pscustomobject` values passed to `Register-GlyTheme` are validated and converted to these types.
+
 ## Custom Theme
 
 ```powershell
@@ -177,4 +199,4 @@ Register-GlyTheme $theme
 Set-GlyTheme MyDark
 ```
 
-Built-in themes cannot be overwritten. Theme file imports are not part of the MVP.
+Built-in themes cannot be overwritten. Theme file imports are outside the MVP.
