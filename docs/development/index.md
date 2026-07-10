@@ -32,7 +32,7 @@ npm run bench:startup
 npm run bench:rendering
 ```
 
-The startup benchmark uses isolated PowerShell processes. The rendering benchmark covers display-name, standard-table, and renderer paths against generated file-system data.
+The startup benchmark uses isolated PowerShell processes. The rendering benchmark covers display-name, standard-table, and renderer paths against generated file-system data. Each rendering scenario runs with the `PSStyle`, `Ansi`, and `PlainText` style backends, and reports the backend in the `StyleRenderer` column for direct comparison.
 
 ## Documentation Site
 
