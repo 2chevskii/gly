@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Ask a question or get help
+    url: https://github.com/2CHEVSKII/gly/discussions
+    about: Please use GitHub Discussions for support and open-ended ideas.
+  - name: Report a security vulnerability
+    url: https://github.com/2CHEVSKII/gly/security/advisories/new
+    about: Please report vulnerabilities privately. Do not disclose them in a public issue.
