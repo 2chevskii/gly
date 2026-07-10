@@ -42,6 +42,7 @@ export default defineConfig({
         items: [
           { text: "API Reference", link: "/api/" },
           { text: "Architecture", link: "/architecture/" },
+          { text: "Performance", link: "/performance/" },
           { text: "Troubleshooting", link: "/troubleshooting/" },
           { text: "Limitations", link: "/limitations/" },
           { text: "Development", link: "/development/" },
