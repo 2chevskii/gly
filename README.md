@@ -113,8 +113,10 @@ Set-GlyGlyphSet Unicode
 Run the PowerShell test suite:
 
 ```powershell
-pwsh -NoProfile -Command "Invoke-Pester ./tests"
+npm test
 ```
+
+This produces JUnit XML, CTRF JSON, and HTML test reports under `artifacts/tests/local`. Run `npm run test:coverage` to also produce Cobertura coverage data.
 
 Build the VitePress documentation site:
 

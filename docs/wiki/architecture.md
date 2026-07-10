@@ -27,6 +27,8 @@ PowerShell format data is session-wide. It can remain active after `Remove-Modul
 - registers compact built-in theme and glyph-set definitions;
 - calls `Enable-Gly`.
 
+The test runner temporarily sets `GLY_PESTER_COVERAGE=1` during coverage analysis so the module dot-sources the same implementation files and Pester can attribute executed commands to their original paths. Normal imports continue to use the combined script block.
+
 Built-in theme and glyph-set rules are expanded into detached strongly typed objects only when a registry command returns them. Formatting uses compact immutable definitions directly. Themes and fallback glyph sets use only essential structural rules; Nerd Fonts and Emoji use the complete selector catalog.
 
 ## Rule Resolution

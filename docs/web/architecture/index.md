@@ -23,6 +23,8 @@ The module:
 - registers compact built-in theme and glyph-set definitions;
 - calls `Enable-Gly`.
 
+The test runner temporarily sets `GLY_PESTER_COVERAGE=1` during coverage analysis so the module dot-sources the same implementation files and Pester can attribute executed commands to their original paths. Normal imports continue to use the combined script block.
+
 Built-in rules are expanded into detached strongly typed objects only when a registry command returns them. Formatting reads the compact immutable definitions directly.
 
 ## Rule Resolution
