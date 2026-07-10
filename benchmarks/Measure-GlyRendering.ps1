@@ -69,6 +69,9 @@ function Get-GlyBenchmarkSummary {
     [string] $Scenario,
 
     [Parameter(Mandatory)]
+    [string] $StyleRenderer,
+
+    [Parameter(Mandatory)]
     [double[]] $Measurements
   )
 
@@ -93,15 +96,16 @@ function Get-GlyBenchmarkSummary {
   }
 
   [pscustomobject]@{
-    Branch     = $branch
-    Commit     = $commit
-    Scenario   = $Scenario
-    ItemCount  = $script:BenchmarkItemCount
-    Iterations = $Measurements.Count
-    MinMs      = [Math]::Round(($ordered | Select-Object -First 1), 2)
-    MedianMs   = [Math]::Round($median, 2)
-    MeanMs     = [Math]::Round((($Measurements | Measure-Object -Average).Average), 2)
-    MaxMs      = [Math]::Round(($ordered | Select-Object -Last 1), 2)
+    Scenario      = $Scenario
+    StyleRenderer = $StyleRenderer
+    Branch        = $branch
+    Commit        = $commit
+    ItemCount     = $script:BenchmarkItemCount
+    Iterations    = $Measurements.Count
+    MinMs         = [Math]::Round(($ordered | Select-Object -First 1), 2)
+    MedianMs      = [Math]::Round($median, 2)
+    MeanMs        = [Math]::Round((($Measurements | Measure-Object -Average).Average), 2)
+    MaxMs         = [Math]::Round(($ordered | Select-Object -Last 1), 2)
   }
 }
 
@@ -109,6 +113,9 @@ function Measure-GlyScenario {
   param(
     [Parameter(Mandatory)]
     [string] $Name,
+
+    [Parameter(Mandatory)]
+    [string] $StyleRenderer,
 
     [Parameter(Mandatory)]
     [scriptblock] $ScriptBlock
@@ -129,7 +136,10 @@ function Measure-GlyScenario {
     $stopwatch.Elapsed.TotalMilliseconds
   }
 
-  Get-GlyBenchmarkSummary -Scenario $Name -Measurements $measurements
+  Get-GlyBenchmarkSummary `
+    -Scenario $Name `
+    -StyleRenderer $StyleRenderer `
+    -Measurements $measurements
 }
 
 $createdData = $false
@@ -148,22 +158,34 @@ try {
 
   Remove-Module gly -Force -ErrorAction SilentlyContinue
   Import-Module $resolvedModulePath -Force
-  Set-GlyConfiguration -ShowGlyphs $true -ShowColors $true -StyleRenderer Ansi | Out-Null
+  Set-GlyConfiguration -ShowGlyphs $true -ShowColors $true -RespectNoColor $false | Out-Null
 
   $items = @(Get-ChildItem -LiteralPath $resolvedDataPath -Force)
   $script:BenchmarkItemCount = $items.Count
 
-  $results = @(
-    Measure-GlyScenario -Name 'DisplayName' -ScriptBlock {
+  $scenarios = [ordered]@{
+    DisplayName = {
       foreach ($item in $items) {
         [void] (Get-GlyFileSystemDisplayName -InputObject $item)
       }
     }
-    Measure-GlyScenario -Name 'FormatTable' -ScriptBlock {
+    FormatTable = {
       $items | Format-Table | Out-String -Width 4096 | Out-Null
     }
-    Measure-GlyScenario -Name 'ShowGly' -ScriptBlock {
+    ShowGly = {
       $items | Show-Gly | Out-Null
+    }
+  }
+
+  $results = @(
+    foreach ($scenario in $scenarios.GetEnumerator()) {
+      foreach ($styleRenderer in @('PSStyle', 'Ansi', 'PlainText')) {
+        Set-GlyConfiguration -StyleRenderer $styleRenderer | Out-Null
+        Measure-GlyScenario `
+          -Name $scenario.Key `
+          -StyleRenderer $styleRenderer `
+          -ScriptBlock $scenario.Value
+      }
     }
   )
 
