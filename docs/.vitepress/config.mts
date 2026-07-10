@@ -1,3 +1,4 @@
+import { resolve } from "node:path";
 import { defineConfig } from "vitepress";
 
 const base = process.env.VITEPRESS_BASE ?? "/";
@@ -7,6 +8,9 @@ export default defineConfig({
   title: "gly",
   description: "Custom visual formatting for PowerShell file system objects.",
   base,
+  vite: {
+    publicDir: resolve(import.meta.dirname, "../../assets"),
+  },
   cleanUrls: true,
   lastUpdated: true,
   head: [["link", { rel: "icon", href: `${base}branding/gly-logo-64.png` }]],
