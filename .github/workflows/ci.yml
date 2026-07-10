@@ -9,13 +9,15 @@ on:
   workflow_dispatch:
 
 permissions:
+  actions: read
   contents: read
 
 env:
+  PESTER_VERSION: 5.7.1
   PSRESOURCEGET_VERSION: 1.2.0
 
 jobs:
-  powershell:
+  tests:
     name: PowerShell tests (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     strategy:
@@ -26,13 +28,153 @@ jobs:
           - windows-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install report tooling
+        run: npm ci
 
       - name: Install Pester
         shell: pwsh
         run: |
           Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
-          Install-Module Pester -RequiredVersion 5.7.1 -Scope CurrentUser -Force -SkipPublisherCheck
+          Install-Module Pester -RequiredVersion $env:PESTER_VERSION -Scope CurrentUser -Force -SkipPublisherCheck
+
+      - name: Import module
+        shell: pwsh
+        run: Import-Module ./src/gly.psd1 -Force
+
+      - name: Run Pester and generate reports
+        run: npm test -- --OutputPath './artifacts/tests/${{ matrix.os }}'
+
+      - name: Upload JUnit test results
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: test-junit-${{ matrix.os }}
+          path: artifacts/tests/${{ matrix.os }}/pester.junit.xml
+          if-no-files-found: error
+
+      - name: Upload CTRF test results
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: test-ctrf-${{ matrix.os }}
+          path: artifacts/tests/${{ matrix.os }}/pester.ctrf.json
+          if-no-files-found: error
+
+      - name: Upload HTML test report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: test-html-${{ matrix.os }}
+          path: artifacts/tests/${{ matrix.os }}/html
+          if-no-files-found: error
+
+  coverage:
+    name: Coverage analysis
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 8.x
+
+      - name: Install report tooling
+        run: npm ci
+
+      - name: Install Pester
+        shell: pwsh
+        run: |
+          Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
+          Install-Module Pester -RequiredVersion $env:PESTER_VERSION -Scope CurrentUser -Force -SkipPublisherCheck
+
+      - name: Run coverage analysis
+        run: >-
+          npm run test:coverage --
+          --OutputPath './artifacts/coverage/test-run'
+          --CoverageOutputPath './artifacts/coverage/coverage.cobertura.xml'
+
+      - name: Generate coverage HTML and Markdown
+        if: ${{ !cancelled() }}
+        uses: danielpalme/ReportGenerator-GitHub-Action@5.5.10
+        with:
+          reports: artifacts/coverage/coverage.cobertura.xml
+          targetdir: artifacts/coverage/html
+          reporttypes: Html;MarkdownSummaryGithub
+          title: gly coverage
+
+      - name: Download default-branch coverage baseline
+        if: ${{ !cancelled() }}
+        continue-on-error: true
+        uses: Legit-Labs/action-download-artifact@v2
+        with:
+          github_token: ${{ github.token }}
+          workflow: ci.yml
+          workflow_conclusion: success
+          branch: master
+          event: push
+          name: coverage-cobertura
+          path: artifacts/baseline
+          check_artifacts: true
+          search_artifacts: true
+
+      - name: Validate coverage regression
+        if: ${{ !cancelled() }}
+        shell: pwsh
+        run: |
+          ./scripts/Compare-Coverage.ps1 `
+            -CurrentPath ./artifacts/coverage/coverage.cobertura.xml `
+            -BaselinePath ./artifacts/baseline/coverage.cobertura.xml `
+            -MaximumRegression 1.0 `
+            -SummaryPath ./artifacts/coverage/CoverageRegression.md
+
+      - name: Upload Cobertura coverage result
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: coverage-cobertura
+          path: artifacts/coverage/coverage.cobertura.xml
+          if-no-files-found: error
+
+      - name: Upload HTML coverage report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: coverage-html
+          path: artifacts/coverage/html
+          if-no-files-found: error
+
+      - name: Upload Markdown coverage summaries
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: coverage-markdown
+          path: |
+            artifacts/coverage/html/SummaryGithub.md
+            artifacts/coverage/CoverageRegression.md
+          if-no-files-found: error
+
+  package:
+    name: Build module artifacts
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
 
       - name: Validate module manifest
         shell: pwsh
@@ -45,28 +187,33 @@ jobs:
             Install-PSResource Microsoft.PowerShell.PSResourceGet -Version $env:PSRESOURCEGET_VERSION -Scope CurrentUser -TrustRepository
           }
 
-      - name: Build module package
+      - name: Build module packages
         shell: pwsh
         run: |
-          New-Item -Path ./artifacts/release -ItemType Directory -Force | Out-Null
-          Compress-PSResource -Path ./src -DestinationPath ./artifacts/release
+          New-Item -Path ./artifacts/module -ItemType Directory -Force | Out-Null
+          Compress-PSResource -Path ./src -DestinationPath ./artifacts/module
+          Compress-Archive -Path ./src/* -DestinationPath ./artifacts/module/gly.zip -CompressionLevel Optimal -Force
 
-      - name: Import module
-        shell: pwsh
-        run: Import-Module ./src/gly.psd1 -Force
+      - name: Upload module ZIP
+        uses: actions/upload-artifact@v7
+        with:
+          name: module-zip
+          path: artifacts/module/gly.zip
+          if-no-files-found: error
 
-      - name: Run Pester
-        shell: pwsh
-        run: |
-          Import-Module Pester -RequiredVersion 5.7.1
-          Invoke-Pester -Path ./tests -CI
+      - name: Upload module NuGet package
+        uses: actions/upload-artifact@v7
+        with:
+          name: module-nupkg
+          path: artifacts/module/gly.*.nupkg
+          if-no-files-found: error
 
   docs:
     name: VitePress build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Setup Node
         uses: actions/setup-node@v6
@@ -79,3 +226,54 @@ jobs:
 
       - name: Build docs
         run: npm run docs:build
+
+  summary:
+    name: Publish test and coverage results
+    if: ${{ always() && !cancelled() }}
+    needs:
+      - tests
+      - coverage
+      - package
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download CTRF test results
+        continue-on-error: true
+        uses: actions/download-artifact@v8
+        with:
+          pattern: test-ctrf-*
+          path: artifacts/summary/tests
+
+      - name: Download Markdown coverage summaries
+        continue-on-error: true
+        uses: actions/download-artifact@v8
+        with:
+          name: coverage-markdown
+          path: artifacts/summary/coverage
+
+      - name: Publish test results
+        uses: ctrf-io/github-test-reporter@v1
+        with:
+          report-path: artifacts/summary/tests/**/pester.ctrf.json
+          title: Pester test results
+          summary-report: true
+          failed-folded-report: true
+          skipped-report: true
+          exit-on-no-files: false
+          exit-on-fail: false
+
+      - name: Publish coverage results
+        shell: pwsh
+        run: |
+          $summaryFiles = @(
+            './artifacts/summary/coverage/html/SummaryGithub.md',
+            './artifacts/summary/coverage/CoverageRegression.md'
+          )
+
+          foreach ($summaryFile in $summaryFiles) {
+            if (Test-Path -LiteralPath $summaryFile -PathType Leaf) {
+              $summary = Get-Content -Raw -LiteralPath $summaryFile
+              $summary = $summary -replace '# Summary - gly coverage', '# gly coverage results'
+              $summary = $summary -replace '<summary>Summary</summary>', '<summary>Overview</summary>'
+              $summary >> $env:GITHUB_STEP_SUMMARY
+            }
+          }

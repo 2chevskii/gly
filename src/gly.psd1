@@ -35,9 +35,9 @@
   PrivateData          = @{
     PSData = @{
       Tags         = @('PowerShell', 'FileSystem', 'Formatting', 'Glyphs', 'PSEdition_Core')
-      LicenseUri   = 'https://github.com/2CHEVSKII/gly/blob/main/LICENSE'
+      LicenseUri   = 'https://github.com/2CHEVSKII/gly/blob/master/LICENSE'
       ProjectUri   = 'https://github.com/2CHEVSKII/gly'
-      IconUri      = 'https://raw.githubusercontent.com/2CHEVSKII/gly/main/assets/branding/gly-logo-128.png'
+      IconUri      = 'https://raw.githubusercontent.com/2CHEVSKII/gly/master/assets/branding/gly-logo-128.png'
       ReleaseNotes = 'Initial MVP implementation.'
     }
   }

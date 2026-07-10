@@ -66,11 +66,32 @@ https://nuget.pkg.github.com/2CHEVSKII/index.json
 
 GitHub Packages requires authentication even when a package is public. After the first publication, confirm the package is linked to this repository and set its intended visibility in the package settings.
 
+## Repository Maintenance
+
+GitHub repository metadata keeps contribution, support, and security processes discoverable:
+
+- [Contributing guidelines](../../.github/CONTRIBUTING.md)
+- [Code of Conduct](../../.github/CODE_OF_CONDUCT.md)
+- [Security policy](../../.github/SECURITY.md)
+- [Support guidance](../../.github/SUPPORT.md)
+
+Issue forms and the pull request template live in `.github`. Dependabot checks npm dependencies and GitHub Actions weekly. Repository administrators should keep private vulnerability reporting, Dependabot security updates, secret scanning, and push protection enabled.
+
 ## Pester Tests
 
 ```powershell
-pwsh -NoProfile -Command "Invoke-Pester ./tests"
+npm test
 ```
+
+The test command writes JUnit XML, CTRF JSON, and a self-contained HTML report to `artifacts/tests/local`. Install the pinned Node.js reporting tools with `npm ci` before the first run.
+
+Collect Cobertura coverage in addition to the test reports:
+
+```powershell
+npm run test:coverage
+```
+
+CI publishes each report format as a separate artifact: JUnit XML, CTRF JSON, and HTML test reports for each operating system; Cobertura XML, HTML, and Markdown coverage reports; plus the module ZIP and NuGet package. Its job summary combines CTRF test statistics with the coverage results. Coverage may decrease by at most one percentage point compared with the latest successful `master` run; when no previous artifact exists, the first successful run establishes the baseline.
 
 ## Performance Benchmarks
 

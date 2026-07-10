@@ -5,16 +5,28 @@ $script:GlyBuiltInSelectorCatalog = $null
 $script:GlyBuiltInSelectorIndex = $null
 $script:GlyBuiltInMatcherLabels = $null
 
-# Parsing one combined script block avoids per-file parser and dot-sourcing overhead during import.
-$sourceBuilder = [System.Text.StringBuilder]::new()
-[void] $sourceBuilder.AppendLine([System.IO.File]::ReadAllText((Join-Path $PSScriptRoot 'GlyTypes.ps1')))
-foreach ($directory in @('private', 'public')) {
-  foreach ($path in [System.IO.Directory]::GetFiles((Join-Path $PSScriptRoot $directory), '*.ps1')) {
-    [void] $sourceBuilder.AppendLine([System.IO.File]::ReadAllText($path))
+# Pester needs file-backed script blocks to attribute coverage to the original source files.
+if ($env:GLY_PESTER_COVERAGE -eq '1') {
+  . (Join-Path $PSScriptRoot 'GlyTypes.ps1')
+  foreach ($directory in @('private', 'public')) {
+    foreach ($path in [System.IO.Directory]::GetFiles((Join-Path $PSScriptRoot $directory), '*.ps1')) {
+      . $path
+    }
   }
 }
-. ([scriptblock]::Create($sourceBuilder.ToString()))
-Remove-Variable sourceBuilder, directory, path
+else {
+  # Parsing one combined script block avoids per-file parser and dot-sourcing overhead during import.
+  $sourceBuilder = [System.Text.StringBuilder]::new()
+  [void] $sourceBuilder.AppendLine([System.IO.File]::ReadAllText((Join-Path $PSScriptRoot 'GlyTypes.ps1')))
+  foreach ($directory in @('private', 'public')) {
+    foreach ($path in [System.IO.Directory]::GetFiles((Join-Path $PSScriptRoot $directory), '*.ps1')) {
+      [void] $sourceBuilder.AppendLine([System.IO.File]::ReadAllText($path))
+    }
+  }
+  . ([scriptblock]::Create($sourceBuilder.ToString()))
+  Remove-Variable sourceBuilder
+}
+Remove-Variable directory, path
 
 Initialize-GlyConfiguration
 Initialize-GlyThemeRegistry
