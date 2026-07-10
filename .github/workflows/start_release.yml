@@ -8,36 +8,97 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: release-${{ github.ref_name }}
+  cancel-in-progress: false
+
+env:
+  PSRESOURCEGET_VERSION: 1.2.0
+  PESTER_VERSION: 5.7.1
+
 jobs:
-  draft-release:
-    name: Create draft release
+  prepare-release:
+    name: Test and create draft release
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout release tag
         uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
-      - name: Validate release tag
+      - name: Validate release tag and module version
         id: version
         shell: pwsh
         run: |
           $tag = '${{ github.ref_name }}'
-          $semverPattern = '^v(?<version>(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)(?:-(?:0|[1-9]\d*|\d*[A-Za-z-][0-9A-Za-z-]*)(?:\.(?:0|[1-9]\d*|\d*[A-Za-z-][0-9A-Za-z-]*))*)?(?:\+[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?)$'
+          $stableTagPattern = '^v(?<version>(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*))$'
 
-          if ($tag -notmatch $semverPattern) {
-            throw "Release tag '$tag' must start with 'v' and follow SemVer 2.0.0, for example v1.2.3 or v1.2.3-beta.1."
+          if ($tag -notmatch $stableTagPattern) {
+            throw "Release tag '$tag' must follow the stable version format vX.Y.Z."
+          }
+
+          $version = $Matches.version
+          $manifest = Test-ModuleManifest ./src/gly.psd1
+
+          if ($manifest.Version.ToString() -ne $version) {
+            throw "ModuleVersion '$($manifest.Version)' must match release tag version '$version'."
           }
 
           "tag=$tag" >> $env:GITHUB_OUTPUT
-          "version=$($Matches.version)" >> $env:GITHUB_OUTPUT
+          "version=$version" >> $env:GITHUB_OUTPUT
+          "package=gly.$version.nupkg" >> $env:GITHUB_OUTPUT
 
-      - name: Create draft release
+      - name: Install release tooling
+        shell: pwsh
+        run: |
+          if (-not (Get-Module Microsoft.PowerShell.PSResourceGet -ListAvailable | Where-Object Version -EQ $env:PSRESOURCEGET_VERSION)) {
+            Install-PSResource Microsoft.PowerShell.PSResourceGet -Version $env:PSRESOURCEGET_VERSION -Scope CurrentUser -TrustRepository
+          }
+
+          if (-not (Get-Module Pester -ListAvailable | Where-Object Version -EQ $env:PESTER_VERSION)) {
+            Install-PSResource Pester -Version $env:PESTER_VERSION -Scope CurrentUser -TrustRepository
+          }
+
+      - name: Run Pester
+        shell: pwsh
+        run: |
+          Import-Module Pester -RequiredVersion $env:PESTER_VERSION
+          Invoke-Pester -Path ./tests -CI
+
+      - name: Build release package
+        shell: pwsh
+        run: |
+          New-Item -Path ./artifacts/release -ItemType Directory -Force | Out-Null
+          Compress-PSResource -Path ./src -DestinationPath ./artifacts/release
+
+          $packagePath = Join-Path ./artifacts/release '${{ steps.version.outputs.package }}'
+          if (-not (Test-Path -LiteralPath $packagePath -PathType Leaf)) {
+            throw "Expected release package was not created: $packagePath"
+          }
+
+      - name: Create draft GitHub release
         env:
           GH_TOKEN: ${{ github.token }}
+        shell: pwsh
         run: |
-          gh release create "${{ steps.version.outputs.tag }}" \
-            --draft \
-            --verify-tag \
-            --title "gly ${{ steps.version.outputs.tag }}" \
+          $tag = '${{ steps.version.outputs.tag }}'
+          $packagePath = './artifacts/release/${{ steps.version.outputs.package }}'
+          $isDraft = gh release view $tag --json isDraft --jq .isDraft 2>$null
+
+          if ($LASTEXITCODE -eq 0) {
+            if ($isDraft -ne 'true') {
+              throw "Release '$tag' already exists and is not a draft."
+            }
+
+            gh release upload $tag $packagePath --clobber
+            if ($LASTEXITCODE -ne 0) {
+              throw "Failed to update package asset on draft release '$tag'."
+            }
+            exit
+          }
+
+          gh release create $tag $packagePath `
+            --draft `
+            --verify-tag `
+            --title 'gly ${{ steps.version.outputs.tag }}' `
             --generate-notes

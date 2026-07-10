@@ -14,21 +14,42 @@ docs/
 assets/branding/
 ```
 
-## Gallery Package Layout
+## Release Package
 
-PowerShell Gallery publishing expects a module directory named `gly`. Build that layout before publishing:
-
-```powershell
-npm run module:pack
-```
-
-The package script validates the generated module manifest.
+The **Start release** workflow packages the module directly from `src` with `Compress-PSResource`. The resulting `gly.<version>.nupkg` is attached to the draft GitHub Release and later published unchanged to both registries.
 
 ## Publish Dry Run
 
 ```powershell
 npm run module:publish:whatif
 ```
+
+## Releases
+
+Stable releases are published from a Git tag to PowerShell Gallery, GitHub Packages, and GitHub Releases.
+
+Configure the `PSGALLERY_API_KEY` Actions repository secret before the first release. GitHub Packages uses the workflow's short-lived `GITHUB_TOKEN`; the release workflow grants it `packages: write` only for that publishing job.
+
+To prepare a release:
+
+1. Update `ModuleVersion` and `ReleaseNotes` in `src/gly.psd1`.
+2. Merge the release commit and wait for CI to pass.
+3. Create and push a stable tag matching `ModuleVersion`, for example `v0.2.0`.
+4. Wait for the **Start release** workflow to run the tests, build `gly.<version>.nupkg`, and create a draft GitHub Release containing that package.
+5. Review the generated notes and attached package, then publish the draft release.
+6. Verify that both jobs in **Finish release** succeed.
+
+Publishing the draft triggers independent PowerShell Gallery and GitHub Packages jobs. Both jobs download and publish the same package attached to the GitHub Release. If one registry is temporarily unavailable, rerun only its failed job; do not recreate the tag or package.
+
+Only stable `vX.Y.Z` tags are accepted. Prerelease publishing is not part of the current release process.
+
+The GitHub Packages feed is scoped to the repository owner:
+
+```text
+https://nuget.pkg.github.com/2CHEVSKII/index.json
+```
+
+GitHub Packages requires authentication even when a package is public. After the first publication, confirm the package is linked to this repository and set its intended visibility in the package settings.
 
 ## Pester Tests
 

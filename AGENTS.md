@@ -25,7 +25,7 @@ Shell commands in this environment use the `rtk` prefix.
 Examples:
 
 ```powershell
-rtk npm run module:pack
+rtk npm run docs:build
 rtk pwsh -NoProfile -Command "Invoke-Pester ./tests"
 rtk git status --short
 ```

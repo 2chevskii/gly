@@ -117,12 +117,6 @@ npm ci
 npm run docs:build
 ```
 
-Build the PowerShell Gallery package layout:
-
-```powershell
-npm run module:pack
-```
-
 Run repeatable startup and rendering benchmarks:
 
 ```powershell

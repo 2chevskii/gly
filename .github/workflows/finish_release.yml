@@ -7,70 +7,71 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
-  group: pages
+  group: release-${{ github.event.release.tag_name }}
   cancel-in-progress: false
 
+env:
+  PSRESOURCEGET_VERSION: 1.2.0
+
 jobs:
-  publish-module:
-    name: Publish module to PowerShell Gallery
-    runs-on: windows-latest
+  release-metadata:
+    name: Validate release metadata
+    runs-on: ubuntu-latest
+    outputs:
+      package: ${{ steps.version.outputs.package }}
+      version: ${{ steps.version.outputs.version }}
     steps:
       - name: Checkout release tag
         uses: actions/checkout@v5
         with:
           ref: ${{ github.event.release.tag_name }}
 
-      - name: Validate release tag
+      - name: Validate release tag and module version
         id: version
         shell: pwsh
         run: |
           $tag = '${{ github.event.release.tag_name }}'
-          $semverPattern = '^v(?<version>(?<moduleVersion>(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*))(?:-(?<prerelease>(?:0|[1-9]\d*|\d*[A-Za-z-][0-9A-Za-z-]*)(?:\.(?:0|[1-9]\d*|\d*[A-Za-z-][0-9A-Za-z-]*))*))?(?:\+(?<build>[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?)$'
+          $stableTagPattern = '^v(?<version>(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*))$'
 
-          if ($tag -notmatch $semverPattern) {
-            throw "Release tag '$tag' must start with 'v' and follow SemVer 2.0.0."
+          if ($tag -notmatch $stableTagPattern) {
+            throw "Release tag '$tag' must follow the stable version format vX.Y.Z."
           }
 
-          "version=$($Matches.version)" >> $env:GITHUB_OUTPUT
-          "moduleVersion=$($Matches.moduleVersion)" >> $env:GITHUB_OUTPUT
-          "prerelease=$($Matches.prerelease)" >> $env:GITHUB_OUTPUT
-          "build=$($Matches.build)" >> $env:GITHUB_OUTPUT
-
-      - name: Install Pester
-        shell: pwsh
-        run: |
-          Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
-          Install-Module Pester -RequiredVersion 5.7.1 -Scope CurrentUser -Force -SkipPublisherCheck
-
-      - name: Validate module version
-        shell: pwsh
-        run: |
+          $version = $Matches.version
           $manifest = Test-ModuleManifest ./src/gly.psd1
-          $releaseVersion = '${{ steps.version.outputs.moduleVersion }}'
 
-          if ($manifest.Version.ToString() -ne $releaseVersion) {
-            throw "ModuleVersion '$($manifest.Version)' must match release tag version '$releaseVersion'."
+          if ($manifest.Version.ToString() -ne $version) {
+            throw "ModuleVersion '$($manifest.Version)' must match release tag version '$version'."
           }
 
-          if ('${{ steps.version.outputs.prerelease }}' -or '${{ steps.version.outputs.build }}') {
-            throw 'Prerelease or build metadata tags are valid for draft release notes, but PowerShell Gallery publishing currently expects a stable vX.Y.Z tag for this module.'
-          }
+          "version=$version" >> $env:GITHUB_OUTPUT
+          "package=gly.$version.nupkg" >> $env:GITHUB_OUTPUT
 
-      - name: Run Pester
+  publish-powershell-gallery:
+    name: Publish to PowerShell Gallery
+    needs: release-metadata
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install PSResourceGet
         shell: pwsh
         run: |
-          Import-Module Pester -RequiredVersion 5.7.1
-          Invoke-Pester -Path ./tests -CI
+          if (-not (Get-Module Microsoft.PowerShell.PSResourceGet -ListAvailable | Where-Object Version -EQ $env:PSRESOURCEGET_VERSION)) {
+            Install-PSResource Microsoft.PowerShell.PSResourceGet -Version $env:PSRESOURCEGET_VERSION -Scope CurrentUser -TrustRepository
+          }
 
-      - name: Build PowerShell Gallery package layout
-        shell: pwsh
-        run: ./scripts/New-GlyGalleryPackage.ps1 -Clean
+      - name: Download release package
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p artifacts/release
+          gh release download '${{ github.event.release.tag_name }}' \
+            --repo '${{ github.repository }}' \
+            --pattern '${{ needs.release-metadata.outputs.package }}' \
+            --dir artifacts/release
 
-      - name: Publish module
+      - name: Publish package
         shell: pwsh
         env:
           PSGALLERY_API_KEY: ${{ secrets.PSGALLERY_API_KEY }}
@@ -79,51 +80,51 @@ jobs:
             throw 'Repository secret PSGALLERY_API_KEY is required to publish to PowerShell Gallery.'
           }
 
-          Publish-Module -Path ./artifacts/psgallery/gly -Repository PSGallery -NuGetApiKey $env:PSGALLERY_API_KEY -Verbose
+          Publish-PSResource `
+            -NupkgPath './artifacts/release/${{ needs.release-metadata.outputs.package }}' `
+            -Repository PSGallery `
+            -ApiKey $env:PSGALLERY_API_KEY `
+            -Verbose
 
-  publish-docs:
-    name: Publish documentation to GitHub Pages
-    needs: publish-module
+  publish-github-packages:
+    name: Publish to GitHub Packages
+    needs: release-metadata
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      contents: read
+      packages: write
     steps:
-      - name: Checkout release tag
-        uses: actions/checkout@v5
-        with:
-          ref: ${{ github.event.release.tag_name }}
+      - name: Install PSResourceGet
+        shell: pwsh
+        run: |
+          if (-not (Get-Module Microsoft.PowerShell.PSResourceGet -ListAvailable | Where-Object Version -EQ $env:PSRESOURCEGET_VERSION)) {
+            Install-PSResource Microsoft.PowerShell.PSResourceGet -Version $env:PSRESOURCEGET_VERSION -Scope CurrentUser -TrustRepository
+          }
 
-      - name: Setup Node
-        uses: actions/setup-node@v6
-        with:
-          node-version: 24
-          cache: npm
-
-      - name: Cache VitePress
-        uses: actions/cache@v4
-        with:
-          path: docs/web/.vitepress/cache
-          key: ${{ runner.os }}-vitepress-${{ hashFiles('docs/web/**', 'package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-vitepress-
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build site
+      - name: Download release package
         env:
-          VITEPRESS_BASE: /${{ github.event.repository.name }}/
-        run: npm run docs:build
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p artifacts/release
+          gh release download '${{ github.event.release.tag_name }}' \
+            --repo '${{ github.repository }}' \
+            --pattern '${{ needs.release-metadata.outputs.package }}' \
+            --dir artifacts/release
 
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: docs/web/.vitepress/dist
+      - name: Publish package
+        shell: pwsh
+        env:
+          GITHUB_PACKAGES_TOKEN: ${{ github.token }}
+        run: |
+          $repositoryName = 'GitHubPackages'
+          $repositoryUri = 'https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json'
+          Register-PSResourceRepository -Name $repositoryName -Uri $repositoryUri -Trusted
 
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          $secureToken = ConvertTo-SecureString $env:GITHUB_PACKAGES_TOKEN -AsPlainText -Force
+          $credential = [pscredential]::new('${{ github.actor }}', $secureToken)
+
+          Publish-PSResource `
+            -NupkgPath './artifacts/release/${{ needs.release-metadata.outputs.package }}' `
+            -Repository $repositoryName `
+            -Credential $credential `
+            -Verbose

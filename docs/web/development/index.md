@@ -3,7 +3,7 @@
 ## PowerShell Checks
 
 ```powershell
-npm run module:pack
+Test-ModuleManifest ./src/gly.psd1
 pwsh -NoProfile -Command "Invoke-Pester ./tests"
 ```
 

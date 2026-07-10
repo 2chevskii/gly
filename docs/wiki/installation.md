@@ -23,6 +23,29 @@ Import-Module gly
 
 The module calls `Enable-Gly` during import. This loads the custom format data and initializes session configuration, built-in themes, and built-in glyph sets.
 
+## Install from GitHub Packages
+
+GitHub Packages is an authenticated alternative. Create a classic GitHub personal access token with the `read:packages` scope, then register the owner-scoped NuGet feed and install with PSResourceGet:
+
+```powershell
+$credential = Get-Credential -UserName 'GITHUB_USERNAME' -Message 'Enter a classic PAT with read:packages'
+
+Register-PSResourceRepository `
+  -Name GitHubPackages `
+  -Uri 'https://nuget.pkg.github.com/2CHEVSKII/index.json' `
+  -Trusted
+
+Install-PSResource `
+  -Name gly `
+  -Repository GitHubPackages `
+  -Scope CurrentUser `
+  -Credential $credential
+
+Import-Module gly
+```
+
+GitHub Packages requires credentials for installation even when the package visibility is public.
+
 ## Profile Example
 
 For terminals without Nerd Font glyph support:

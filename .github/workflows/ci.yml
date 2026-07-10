@@ -11,6 +11,9 @@ on:
 permissions:
   contents: read
 
+env:
+  PSRESOURCEGET_VERSION: 1.2.0
+
 jobs:
   powershell:
     name: PowerShell tests (${{ matrix.os }})
@@ -34,6 +37,19 @@ jobs:
       - name: Validate module manifest
         shell: pwsh
         run: Test-ModuleManifest ./src/gly.psd1
+
+      - name: Install PSResourceGet
+        shell: pwsh
+        run: |
+          if (-not (Get-Module Microsoft.PowerShell.PSResourceGet -ListAvailable | Where-Object Version -EQ $env:PSRESOURCEGET_VERSION)) {
+            Install-PSResource Microsoft.PowerShell.PSResourceGet -Version $env:PSRESOURCEGET_VERSION -Scope CurrentUser -TrustRepository
+          }
+
+      - name: Build module package
+        shell: pwsh
+        run: |
+          New-Item -Path ./artifacts/release -ItemType Directory -Force | Out-Null
+          Compress-PSResource -Path ./src -DestinationPath ./artifacts/release
 
       - name: Import module
         shell: pwsh
