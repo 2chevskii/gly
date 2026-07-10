@@ -74,6 +74,13 @@ Show-GlyGlyph Unicode
 Show-GlyThemePreview -Theme DefaultDark -GlyphSet Unicode
 ```
 
+Use `-All` to preview every currently registered theme or glyph set:
+
+```powershell
+Show-GlyThemeColor -All
+Show-GlyGlyph -All
+```
+
 ## Configuration
 
 Configuration is kept only in the current PowerShell session:
