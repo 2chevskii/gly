@@ -14,6 +14,21 @@ docs/
 assets/branding/
 ```
 
+## Branch Names
+
+Use short-lived, descriptive branches. Branch names must begin with one of these prefixes:
+
+- `feature/`
+- `fix/`
+- `hotfix/`
+- `chore/`
+- `docs/`
+- `refactor/`
+- `test/`
+- `ci/`
+
+For example: `docs/branch-name-policy`.
+
 ## Release Package
 
 The **Start release** workflow packages the module directly from `src` with `Compress-PSResource`. The resulting `gly.<version>.nupkg` is attached to the draft GitHub Release and later published unchanged to both registries.
