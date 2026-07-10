@@ -16,6 +16,7 @@ Describe 'gly previews' {
     $rows = @(Show-GlyThemeColor -Theme DefaultDark)
 
     $rows.Count | Should -Be 5
+    @($rows.Theme | Where-Object { $_ -ne 'DefaultDark' }).Count | Should -Be 0
     $rows[0].Matcher | Should -Be 'Default'
     $rows[0].Color | Should -Match '#d4d4d4'
     $rows[0].Preview | Should -Match "`e\["
@@ -29,6 +30,7 @@ Describe 'gly previews' {
     $rows = @(Show-GlyGlyph -GlyphSet ANSI)
 
     $rows.Count | Should -Be ($glyphSet.Rules.Count + 1)
+    @($rows.GlyphSet | Where-Object { $_ -ne 'ANSI' }).Count | Should -Be 0
     $rows[0].Glyph | Should -Be '[file]'
     ($rows | Where-Object Matcher -EQ 'dir').Glyph | Should -Be '[dir]'
   }
@@ -52,6 +54,35 @@ Describe 'gly previews' {
 
     (Show-GlyThemeColor | Select-Object -First 1).Color | Should -Match '#24292f'
     (Show-GlyGlyph | Select-Object -First 1).Glyph | Should -Be '□'
+  }
+
+  It 'shows previews for all available themes' {
+    Register-GlyTheme (Copy-GlyTheme DefaultDark PreviewAllTheme)
+    $themeNames = @(Get-GlyTheme).Name
+    $rows = @(Show-GlyThemeColor -All)
+
+    $rows.Theme | Should -Contain 'PreviewAllTheme'
+    @($rows.Theme | Select-Object -Unique).Count | Should -Be $themeNames.Count
+    foreach ($themeName in $themeNames) {
+      $rows.Theme | Should -Contain $themeName
+    }
+  }
+
+  It 'shows previews for all available glyph sets' {
+    Register-GlyGlyphSet (Copy-GlyGlyphSet ANSI PreviewAllGlyphSet)
+    $glyphSetNames = @(Get-GlyGlyphSet).Name
+    $rows = @(Show-GlyGlyph -All)
+
+    $rows.GlyphSet | Should -Contain 'PreviewAllGlyphSet'
+    @($rows.GlyphSet | Select-Object -Unique).Count | Should -Be $glyphSetNames.Count
+    foreach ($glyphSetName in $glyphSetNames) {
+      $rows.GlyphSet | Should -Contain $glyphSetName
+    }
+  }
+
+  It 'does not accept an item name together with All' {
+    { Show-GlyThemeColor DefaultDark -All } | Should -Throw
+    { Show-GlyGlyph ANSI -All } | Should -Throw
   }
 
   It 'throws for unknown preview selections' {
