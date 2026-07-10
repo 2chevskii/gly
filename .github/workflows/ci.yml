@@ -118,20 +118,56 @@ jobs:
           reporttypes: Html;MarkdownSummaryGithub
           title: gly coverage
 
-      - name: Download default-branch coverage baseline
+      - name: Find default-branch coverage baseline
+        id: coverage-baseline
         if: ${{ !cancelled() }}
-        continue-on-error: true
-        uses: Legit-Labs/action-download-artifact@v2
+        uses: actions/github-script@v9
         with:
-          github_token: ${{ github.token }}
-          workflow: ci.yml
-          workflow_conclusion: success
-          branch: master
-          event: push
+          script: |
+            const runs = await github.paginate(
+              github.rest.actions.listWorkflowRuns,
+              {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                workflow_id: 'ci.yml',
+                branch: 'master',
+                event: 'push',
+                status: 'success',
+                per_page: 100,
+              },
+            )
+
+            for (const run of runs) {
+              const artifacts = await github.paginate(
+                github.rest.actions.listWorkflowRunArtifacts,
+                {
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  run_id: run.id,
+                  per_page: 100,
+                },
+              )
+              const baseline = artifacts.find(
+                (artifact) => artifact.name === 'coverage-cobertura' && !artifact.expired,
+              )
+
+              if (baseline) {
+                core.setOutput('run-id', run.id)
+                return
+              }
+            }
+
+            core.notice('No unexpired coverage baseline artifact is available yet.')
+
+      - name: Download default-branch coverage baseline
+        if: ${{ !cancelled() && steps.coverage-baseline.outputs.run-id != '' }}
+        uses: actions/download-artifact@v8
+        with:
           name: coverage-cobertura
           path: artifacts/baseline
-          check_artifacts: true
-          search_artifacts: true
+          github-token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          run-id: ${{ steps.coverage-baseline.outputs.run-id }}
 
       - name: Validate coverage regression
         if: ${{ !cancelled() }}
