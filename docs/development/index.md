@@ -28,11 +28,14 @@ npm run test:coverage
 ## Performance Benchmarks
 
 ```powershell
+npm run bench
 npm run bench:startup
 npm run bench:rendering
 ```
 
-The startup benchmark uses isolated PowerShell processes. The rendering benchmark covers display-name, standard-table, and renderer paths against generated file-system data. Each rendering scenario runs with the `PSStyle`, `Ansi`, and `PlainText` style backends, and reports the backend in the `StyleRenderer` column for direct comparison.
+The combined command runs the independent startup and rendering suites concurrently while each suite keeps its own timed measurements sequential. The startup benchmark uses isolated PowerShell processes. The rendering benchmark covers display-name, standard-table, and renderer paths against generated file-system data. Each rendering scenario runs with the `PSStyle`, `Ansi`, and `PlainText` style backends, and reports the backend in the `StyleRenderer` column for direct comparison.
+
+Pass `-- --OutputPath ./artifacts/benchmarks/local` to the combined command to write `startup.json` and `rendering.json` to that directory.
 
 ## Documentation Site
 
