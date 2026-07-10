@@ -128,9 +128,12 @@ npm run docs:build
 Run repeatable startup and rendering benchmarks:
 
 ```powershell
+npm run bench
 npm run bench:startup
 npm run bench:rendering
 ```
+
+The combined command runs the independent startup and rendering suites concurrently.
 
 ## Contributing and Support
 
