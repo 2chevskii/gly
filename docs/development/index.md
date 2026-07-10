@@ -31,6 +31,7 @@ npm run test:coverage
 npm run bench
 npm run bench:startup
 npm run bench:rendering
+npm run bench:comparison
 ```
 
 The combined command runs the independent startup and rendering suites concurrently while each suite keeps its own timed measurements sequential. The startup benchmark uses isolated PowerShell processes. The rendering benchmark covers display-name, standard-table, and renderer paths against generated file-system data. Each rendering scenario runs with the `PSStyle`, `Ansi`, and `PlainText` style backends, and reports the backend in the `StyleRenderer` column for direct comparison.
@@ -38,6 +39,8 @@ The combined command runs the independent startup and rendering suites concurren
 Pass `-- --OutputPath ./artifacts/benchmarks/local` to the combined command to write `startup.json` and `rendering.json` to that directory.
 
 CI runs both benchmark suites on `ubuntu-latest`, publishes their median timings in the workflow summary, and stores the JSON results as the `benchmark-results` artifact. Each run compares matching scenarios with the latest successful `master` push. A scenario fails the regression gate when its median time is more than 20% slower; the first run and newly added scenarios establish a baseline instead.
+
+The comparison command downloads pinned versions of PSFileIcons, GlyphShell, and Terminal-Icons from PowerShell Gallery, then measures module import and the standard file-system table path in isolated PowerShell processes. It is intended for manual comparisons and is not part of the CI regression gate. See [Performance Comparison](/performance/) for the methodology and current snapshot.
 
 ## Documentation Site
 

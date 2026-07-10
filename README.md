@@ -74,6 +74,19 @@ Show-GlyGlyph Unicode
 Show-GlyThemePreview -Theme DefaultDark -GlyphSet Unicode
 ```
 
+## Performance Comparison
+
+The following medians are a local snapshot, not a universal ranking. The comparison used PowerShell 7.6.3 on Windows 11 with an AMD Ryzen 5 5600X and 32 GB RAM. Import timing excludes PowerShell process startup; standard-table timing formats 3,000 generated file-system objects to an in-memory string and excludes enumeration and terminal drawing.
+
+| Module | Version | Import (10 iterations) | Standard table (5 iterations) |
+| --- | ---: | ---: | ---: |
+| gly | 0.1.0 | 149.28 ms | 1,112.54 ms |
+| PSFileIcons | 0.1.1 | 74.20 ms | 531.04 ms |
+| GlyphShell | 0.1.1 | 240.74 ms | 209.85 ms |
+| Terminal-Icons | 0.11.0 | 456.42 ms | 649.74 ms |
+
+These modules do not produce identical columns or perform identical work. Results can change with module versions, operating system, hardware, filesystem cache, theme, and data mix. See the [performance comparison methodology](https://2chevskii.github.io/gly/performance/) for the complete environment, timed operations, and reproduction command.
+
 ## Configuration
 
 Configuration is kept only in the current PowerShell session:
@@ -134,6 +147,12 @@ npm run bench:rendering
 ```
 
 The combined command runs the independent startup and rendering suites concurrently.
+
+Run the pinned cross-module comparison (downloads the compared versions from PowerShell Gallery):
+
+```powershell
+npm run bench:comparison
+```
 
 ## Contributing and Support
 
