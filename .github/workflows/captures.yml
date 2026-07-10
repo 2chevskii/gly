@@ -37,11 +37,9 @@ jobs:
           sudo apt-get install --yes ffmpeg fonts-noto-color-emoji ttyd
 
           curl --fail --location --retry 3 --silent --show-error \
-            --output /tmp/vhs.tar.gz \
-            "https://github.com/charmbracelet/vhs/releases/download/v${VHS_VERSION}/vhs_${VHS_VERSION}_Linux_x86_64.tar.gz"
-          tar --extract --gzip --file /tmp/vhs.tar.gz --directory /tmp
-          install --mode 0755 /tmp/vhs "$HOME/.local/bin/vhs"
-          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+            --output /tmp/vhs.deb \
+            "https://github.com/charmbracelet/vhs/releases/download/v${VHS_VERSION}/vhs_${VHS_VERSION}_amd64.deb"
+          sudo apt-get install --yes /tmp/vhs.deb
 
           curl --fail --location --retry 3 --silent --show-error \
             --output /tmp/jetbrains-mono-nerd-font.zip \
@@ -50,7 +48,7 @@ jobs:
           unzip -j /tmp/jetbrains-mono-nerd-font.zip 'JetBrainsMonoNerdFontMono-*.ttf' \
             -d "$HOME/.local/share/fonts"
           fc-cache --force
-          "$HOME/.local/bin/vhs" --version
+          vhs --version
 
       - name: Generate theme gallery tape
         shell: pwsh
