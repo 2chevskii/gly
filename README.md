@@ -34,6 +34,12 @@ The module:
 
 Windows PowerShell `5.1` is not supported by the MVP.
 
+## Preview
+
+![Animated terminal demo of gly theme and glyph-set previews](assets/captures/overview.gif)
+
+The animation demonstrates a Dracula preview with Nerd Fonts, followed by a DefaultLight preview with Emoji. Browse static previews for every built-in theme and glyph set in the [terminal capture gallery](https://2chevskii.github.io/gly/guide/captures).
+
 ## Quick Start
 
 Install the module from PowerShell Gallery:

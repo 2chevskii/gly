@@ -34,6 +34,7 @@ export default defineConfig({
           { text: "Selectors", link: "/guide/selectors" },
           { text: "Themes", link: "/guide/themes" },
           { text: "Glyph Sets", link: "/guide/glyph-sets" },
+          { text: "Capture Gallery", link: "/guide/captures" },
           { text: "Renderer Commands", link: "/guide/renderers" },
         ],
       },

@@ -52,7 +52,10 @@ jobs:
 
       - name: Generate theme gallery tape
         shell: pwsh
-        run: ./scripts/capture/New-GlyThemeGalleryTape.ps1
+        run: |
+          ./scripts/capture/New-GlyThemeGalleryTape.ps1
+          ./scripts/capture/New-GlyGlyphSetGalleryTape.ps1
+          ./scripts/capture/New-GlyCaptureGalleryDocs.ps1
 
       - name: Render overview
         run: vhs scripts/capture/overview.tape
@@ -63,9 +66,12 @@ jobs:
       - name: Render light theme gallery
         run: vhs scripts/capture/generated/theme-gallery-light.tape
 
+      - name: Render glyph set gallery
+        run: vhs scripts/capture/generated/glyph-set-gallery.tape
+
       - name: Verify committed captures
         shell: pwsh
-        run: git diff --exit-code -- assets/captures
+        run: git diff --exit-code -- assets/captures docs/guide/captures.md
 
       - name: Upload terminal captures
         if: always()
