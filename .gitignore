@@ -18,8 +18,8 @@
 
 # Node/VitePress
 node_modules/
-docs/web/.vitepress/cache/
-docs/web/.vitepress/dist/
+docs/.vitepress/cache/
+docs/.vitepress/dist/
 
 # OS noise
 Thumbs.db

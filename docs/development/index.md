@@ -43,7 +43,7 @@ npm run docs:build
 npm run docs:preview
 ```
 
-The VitePress source root is `docs/web`.
+The VitePress source root is `docs`.
 
 ## Repository Maintenance
 

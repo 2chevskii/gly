@@ -7,10 +7,10 @@ Instructions for agents working in the `gly` repository.
 Before changing code or documentation, read the current user and developer documentation:
 
 1. `README.md`
-2. `docs/wiki/index.md`
-3. `docs/wiki/architecture.md`
-4. `docs/wiki/development.md`
-5. `docs/wiki/limitations.md`
+2. `docs/index.md`
+3. `docs/architecture/index.md`
+4. `docs/development/index.md`
+5. `docs/limitations/index.md`
 
 ## Language
 
@@ -59,7 +59,7 @@ Do not add the following without a separate decision:
 - Make minimal, verifiable changes.
 - Do not restructure the project without a reason.
 - Do not remove or regenerate branding assets without an explicit task.
-- Before the final response, run the relevant check from `docs/wiki/development.md`, or explain why it was not run.
+- Before the final response, run the relevant check from `docs/development/index.md`, or explain why it was not run.
 
 ## Branch names
 
