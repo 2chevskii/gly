@@ -4,8 +4,11 @@
 
 ```powershell
 Test-ModuleManifest ./src/gly.psd1
-pwsh -NoProfile -Command "Invoke-Pester ./tests"
+npm test
+npm run test:coverage
 ```
+
+`npm test` creates JUnit XML, CTRF JSON, and a self-contained HTML report in `artifacts/tests/local`. The coverage command also creates a Cobertura report. CI converts the coverage data to HTML, publishes all test, coverage, ZIP, and NuGet artifacts, and rejects line-coverage regressions larger than one percentage point from the latest successful `master` run.
 
 ## Performance Benchmarks
 

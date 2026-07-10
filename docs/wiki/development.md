@@ -54,8 +54,18 @@ GitHub Packages requires authentication even when a package is public. After the
 ## Pester Tests
 
 ```powershell
-pwsh -NoProfile -Command "Invoke-Pester ./tests"
+npm test
 ```
+
+The test command writes JUnit XML, CTRF JSON, and a self-contained HTML report to `artifacts/tests/local`. Install the pinned Node.js reporting tools with `npm ci` before the first run.
+
+Collect Cobertura coverage in addition to the test reports:
+
+```powershell
+npm run test:coverage
+```
+
+CI publishes the module ZIP, module NuGet package, test reports for each operating system, and Cobertura plus HTML coverage reports as workflow artifacts. Its job summary combines CTRF test statistics with the coverage summary. Coverage may decrease by at most one percentage point compared with the latest successful `master` run; when no previous artifact exists, the first successful run establishes the baseline.
 
 ## Performance Benchmarks
 
