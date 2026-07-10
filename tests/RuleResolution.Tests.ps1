@@ -10,7 +10,7 @@ Describe 'gly rule resolution through glyph sets' {
     $packageFile = New-Item -ItemType File -Path (Join-Path $root 'package.json')
     $imageFile = New-Item -ItemType File -Path (Join-Path $root 'logo.png')
     $dockerFile = New-Item -ItemType File -Path (Join-Path $root 'Dockerfile.dev')
-    $hiddenPsFile = New-Item -ItemType File -Path (Join-Path $root 'hidden.ps1')
+    $hiddenPsFile = New-Item -ItemType File -Path (Join-Path $root '.hidden.ps1')
     $hiddenPsFile.Attributes = $hiddenPsFile.Attributes -bor [System.IO.FileAttributes]::Hidden
     $directory = New-Item -ItemType Directory -Path (Join-Path $root 'src')
 
@@ -48,7 +48,7 @@ Describe 'gly rule resolution through glyph sets' {
   }
 
   It 'preserves last-match precedence across selector categories' {
-    Get-GlyFileSystemDisplayName -InputObject $hiddenPsFile | Should -Match '^\[hidden\] hidden\.ps1$'
+    Get-GlyFileSystemDisplayName -InputObject $hiddenPsFile | Should -Match '^\[hidden\] \.hidden\.ps1$'
   }
 
   It 'later matching rule wins over earlier matching rule' {
