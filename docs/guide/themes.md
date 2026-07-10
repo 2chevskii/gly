@@ -158,7 +158,10 @@ The palettes are adapted for file-system output. Source projects retain their ow
 ```powershell
 Get-GlyTheme
 Set-GlyTheme DefaultLight
+Show-GlyThemeColor DefaultLight
 ```
+
+`Show-GlyThemeColor` displays each distinct style beside mock file-system entries derived from its selectors, such as `file.txt`, `directory/`, and `link -> target`.
 
 ## Essential Color Rules
 

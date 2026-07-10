@@ -18,9 +18,13 @@ Describe 'gly previews' {
     $rows.Count | Should -Be 5
     $rows[0].Matcher | Should -Be 'Default'
     $rows[0].Color | Should -Match '#d4d4d4'
+    $rows[0].Preview | Should -Match 'file\.txt'
     $rows[0].Preview | Should -Match "`e\["
     $rows.Matcher | Should -Contain 'dir'
     $rows.Matcher | Should -Contain 'junction, lnk'
+    ($rows | Where-Object Matcher -EQ 'dir').Preview | Should -Match 'directory/'
+    ($rows | Where-Object Matcher -EQ 'junction, lnk').Preview | Should -Match 'junction -> target/'
+    ($rows | Where-Object Matcher -EQ 'junction, lnk').Preview | Should -Match 'link -> target'
     @($rows.Color | Select-Object -Unique).Count | Should -Be $rows.Count
   }
 
@@ -30,7 +34,18 @@ Describe 'gly previews' {
 
     $rows.Count | Should -Be ($glyphSet.Rules.Count + 1)
     $rows[0].Glyph | Should -Be '[file]'
+    $rows[0].Preview | Should -Be '[file] file.txt'
     ($rows | Where-Object Matcher -EQ 'dir').Glyph | Should -Be '[dir]'
+    ($rows | Where-Object Matcher -EQ 'dir').Preview | Should -Be '[dir] directory/'
+    ($rows | Where-Object Matcher -EQ 'lnk').Preview | Should -Be '[link] link -> target'
+  }
+
+  It 'uses selector-specific mock names for complete glyph sets' {
+    $rows = @(Show-GlyGlyph -GlyphSet Emoji)
+
+    ($rows | Where-Object Matcher -EQ 'ps').Preview | Should -Match 'file\.ps1$'
+    ($rows | Where-Object Matcher -EQ 'dirSource').Preview | Should -Match 'src/$'
+    ($rows | Where-Object Matcher -EQ 'project').Preview | Should -Match 'sample\.sln$'
   }
 
   It 'combines matching colors and glyphs without changing configuration' {
