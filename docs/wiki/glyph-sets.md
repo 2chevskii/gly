@@ -19,6 +19,14 @@ Get-GlyGlyphSet
 Set-GlyGlyphSet Unicode
 ```
 
+Preview every glyph matcher without changing the active set:
+
+```powershell
+Show-GlyGlyph Unicode
+```
+
+See [Theme and glyph previews](previews.md) for combined previews and pipeline behavior.
+
 If `NerdFonts` glyphs do not render correctly, select a fallback explicitly:
 
 ```powershell

@@ -64,6 +64,19 @@ Built-in glyph sets cannot be overwritten.
 
 `Get-GlyGlyphSet` and `Copy-GlyGlyphSet` return `GlyGlyphSet` values with typed rules and selectors. `Register-GlyGlyphSet` accepts that type or a compatible hashtable/`pscustomobject`.
 
+### Preview Commands
+
+```powershell
+Show-GlyThemeColor
+Show-GlyThemeColor DefaultDark
+Show-GlyGlyph
+Show-GlyGlyph Unicode
+Show-GlyThemePreview
+Show-GlyThemePreview -Theme DefaultDark -GlyphSet Unicode
+```
+
+The commands use the active theme and glyph set when names are omitted. They return one preview object for the fallback and each matcher, and do not alter session configuration.
+
 ### Renderer Commands
 
 ```powershell
