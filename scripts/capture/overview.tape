@@ -34,12 +34,12 @@ Show
 
 Type "Show-GlyThemePreview -Theme Dracula -GlyphSet NerdFonts"
 Enter
-Wait+Screen /Directory/
+Wait+Screen /Matcher/
 Sleep 1s
 Screenshot assets/captures/overview.png
 Sleep 1s
 
 Type "Clear-Host; Show-GlyThemePreview -Theme DefaultLight -GlyphSet Emoji"
 Enter
-Wait+Screen /Directory/
+Wait+Screen /Matcher/
 Sleep 2s
