@@ -51,6 +51,17 @@ https://nuget.pkg.github.com/2CHEVSKII/index.json
 
 GitHub Packages requires authentication even when a package is public. After the first publication, confirm the package is linked to this repository and set its intended visibility in the package settings.
 
+## Repository Maintenance
+
+GitHub repository metadata keeps contribution, support, and security processes discoverable:
+
+- [Contributing guidelines](../../.github/CONTRIBUTING.md)
+- [Code of Conduct](../../.github/CODE_OF_CONDUCT.md)
+- [Security policy](../../.github/SECURITY.md)
+- [Support guidance](../../.github/SUPPORT.md)
+
+Issue forms and the pull request template live in `.github`. Dependabot checks npm dependencies and GitHub Actions weekly. Repository administrators should keep private vulnerability reporting, Dependabot security updates, secret scanning, and push protection enabled.
+
 ## Pester Tests
 
 ```powershell

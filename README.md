@@ -2,12 +2,18 @@
 
 ![gly banner](assets/branding/gly-banner.png)
 
+[![CI](https://github.com/2CHEVSKII/gly/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/2CHEVSKII/gly/actions/workflows/ci.yml)
+[![Documentation](https://github.com/2CHEVSKII/gly/actions/workflows/docs.yml/badge.svg?branch=master)](https://2chevskii.github.io/gly/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 `gly` is a PowerShell module for customizable visual formatting of file system objects:
 
 - `System.IO.FileInfo`
 - `System.IO.DirectoryInfo`
 
 It improves interactive output for `Get-ChildItem`, `Get-Item`, and user commands that return PowerShell file system objects while preserving the object model and pipeline compatibility.
+
+[Documentation](https://2chevskii.github.io/gly/) · [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md) · [Support](SUPPORT.md)
 
 ## Status
 
@@ -125,6 +131,10 @@ Run repeatable startup and rendering benchmarks:
 npm run bench:startup
 npm run bench:rendering
 ```
+
+## Contributing and Support
+
+Contributions are welcome. Read the [contribution guidelines](CONTRIBUTING.md) before opening an issue or pull request. For usage questions, start a [GitHub Discussion](https://github.com/2CHEVSKII/gly/discussions). Please report security vulnerabilities privately as described in the [security policy](SECURITY.md).
 
 ## License
 

@@ -1,0 +1,60 @@
+name: Bug report
+description: Report reproducible unexpected behavior in gly.
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for taking the time to report a problem. Please remove or redact secrets and personal data before submitting.
+  - type: input
+    id: gly-version
+    attributes:
+      label: gly version
+      description: What version of gly are you using?
+      placeholder: 0.1.0
+    validations:
+      required: true
+  - type: input
+    id: powershell-version
+    attributes:
+      label: PowerShell version
+      description: Run `$PSVersionTable.PSVersion` and paste the version.
+      placeholder: 7.x
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Operating system and terminal
+      description: Include the operating system and terminal host when relevant.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Provide the smallest PowerShell commands and file layout that reproduce the behavior.
+      render: powershell
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: Include relevant output, error text, or screenshots. Do not include sensitive information.
+    validations:
+      required: true
+  - type: checkboxes
+    id: code-of-conduct
+    attributes:
+      label: Code of Conduct
+      options:
+        - label: I agree to follow this project's Code of Conduct.
+          required: true
