@@ -56,7 +56,7 @@ Module state uses PowerShell classes declared in `src/GlyTypes.ps1`:
 
 Registration commands still accept hashtables and `pscustomobject` values. Input is validated and converted before it reaches a registry. Getter and copy commands return detached typed copies, so callers cannot mutate a built-in registry entry through a returned object.
 
-Built-in themes and glyph sets share one selector catalog, keeping their coverage and rule precedence synchronized.
+Built-in themes and full icon glyph sets share one selector catalog, keeping their coverage and rule precedence synchronized. ANSI, ANSICompact, and Unicode intentionally register only essential structural rules and use their default glyph for other matches.
 
 ## Session State
 

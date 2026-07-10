@@ -14,11 +14,19 @@ Describe 'gly glyph set registry' {
   }
 
   It 'returns strongly typed glyph sets, rules, and selectors' {
-    $glyphSet = Get-GlyGlyphSet ANSI
+    $glyphSet = Get-GlyGlyphSet NerdFonts
     $glyphSet.GetType().Name | Should -Be 'GlyGlyphSet'
     $glyphSet.Rules[0].GetType().Name | Should -Be 'GlyGlyphRule'
     $glyphSet.Rules[0].Selector.GetType().Name | Should -Be 'GlySelector'
     $glyphSet.Rules.Count | Should -BeGreaterThan 50
+  }
+
+  It 'keeps fallback glyph sets limited to essential matchers' {
+    foreach ($name in @('ANSI', 'ANSICompact', 'Unicode')) {
+      $glyphSet = Get-GlyGlyphSet $name
+      $glyphSet.Rules.Count | Should -Be 5
+      @($glyphSet.Rules | Where-Object { [string] $_.Selector.Kind -eq 'Directory' }).Count | Should -Be 1
+    }
   }
 
   It 'does not allow overwriting a built-in glyph set' {

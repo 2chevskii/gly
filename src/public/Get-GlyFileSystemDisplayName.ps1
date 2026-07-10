@@ -28,7 +28,7 @@ function Get-GlyFileSystemDisplayName {
         $null
       }
 
-      $builtInSelector = if (($null -ne $glyphSet -and $glyphSet -isnot [GlyGlyphSet]) -or
+      $builtInSelector = if (($null -ne $glyphSet -and $glyphSet -isnot [GlyGlyphSet] -and $glyphSet.CompleteCatalog) -or
         ($null -ne $theme -and $theme -isnot [GlyTheme] -and $theme.HasRules)) {
         Resolve-GlyBuiltInSelector -InputObject $InputObject
       }
@@ -40,12 +40,7 @@ function Get-GlyFileSystemDisplayName {
         ''
       }
       elseif ($glyphSet -isnot [GlyGlyphSet]) {
-        if ($null -ne $builtInSelector) {
-          [string] $glyphSet.Map[$builtInSelector.Token]
-        }
-        else {
-          [string] $glyphSet.Map.Default
-        }
+        Resolve-GlyBuiltInGlyph -GlyphSet $glyphSet -InputObject $InputObject -ResolvedSelector $builtInSelector
       }
       else {
         $rule = Resolve-GlyFileSystemRule -InputObject $InputObject -Rules $glyphSet.Rules

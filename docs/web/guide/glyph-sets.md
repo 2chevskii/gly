@@ -1,15 +1,15 @@
 # Glyph Sets
 
-A glyph set defines the symbol shown before a file or directory name. All built-in sets share the same selectors and differ in their symbols.
+A glyph set defines the symbol shown before a file or directory name. Nerd Fonts and Emoji provide the complete selector catalog. The text and Unicode fallback sets intentionally use only essential file-system matchers.
 
 ## Built-in Sets
 
 | Set | Default file glyph | Purpose |
 | --- | --- | --- |
 | `NerdFonts` | `` | Full Nerd Font icons; the default set. |
-| `ANSI` | `[file]` | Readable ASCII labels without special font requirements. |
-| `ANSICompact` | `f` | Compact text labels. |
-| `Unicode` | `□` | Unicode symbols and short labels without the Private Use Area. |
+| `ANSI` | `[file]` | Readable ASCII labels for files, directories, links, and attributes. |
+| `ANSICompact` | `f` | Compact structural labels. |
+| `Unicode` | `□` | Unicode structural symbols without the Private Use Area. |
 | `Emoji` | `📄` | Emoji and short text labels. |
 
 ```powershell
@@ -19,9 +19,13 @@ Set-GlyGlyphSet Unicode
 
 `gly` does not detect the terminal font or switch sets automatically.
 
-## Selector Coverage
+## Essential Fallback Matchers
 
-Every built-in set contains rules for:
+`ANSI`, `ANSICompact`, and `Unicode` define matcher-specific glyphs only for directories, junctions, symbolic links, read-only items, and hidden items. All other matches use the set's default file glyph.
+
+## Complete Icon Coverage
+
+`NerdFonts` and `Emoji` contain rules for:
 
 - `Directory`, `Junction`, `Symlink`, `ReadOnly`, and `Hidden`;
 - Git, editor-config, dependency, source, test, documentation, build, cache, download, media, and infrastructure directories;
