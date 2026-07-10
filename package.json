@@ -7,6 +7,10 @@
   "description": "Custom visual formatting for PowerShell file system objects.",
   "type": "module",
   "scripts": {
+    "test": "pwsh -NoProfile -File ./scripts/Invoke-Tests.ps1",
+    "test:coverage": "pwsh -NoProfile -File ./scripts/Invoke-Tests.ps1 -Coverage",
+    "report:ctrf": "junit-to-ctrf",
+    "report:html": "ctrf-html-reporter",
     "module:publish:whatif": "pwsh -NoProfile -Command \"Publish-PSResource -Path ./src -Repository PSGallery -ApiKey $env:PSGALLERY_API_KEY -WhatIf -Verbose\"",
     "bench:startup": "pwsh -NoProfile -File ./benchmarks/Measure-GlyStartup.ps1",
     "bench:rendering": "pwsh -NoProfile -File ./benchmarks/Measure-GlyRendering.ps1",
@@ -16,6 +20,8 @@
   },
   "devDependencies": {
     "@types/node": "^26.1.1",
+    "ctrf-html-reporter": "^1.1.22",
+    "junit-to-ctrf": "^0.0.14",
     "vitepress": "^1.6.4"
   }
 }

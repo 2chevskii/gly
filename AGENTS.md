@@ -60,3 +60,16 @@ Do not add the following without a separate decision:
 - Do not restructure the project without a reason.
 - Do not remove or regenerate branding assets without an explicit task.
 - Before the final response, run the relevant check from `docs/development/index.md`, or explain why it was not run.
+
+## Branch names
+
+Use a short, descriptive branch name with one of these prefixes only:
+
+- `feature/`
+- `fix/`
+- `hotfix/`
+- `chore/`
+- `docs/`
+- `refactor/`
+- `test/`
+- `ci/`
