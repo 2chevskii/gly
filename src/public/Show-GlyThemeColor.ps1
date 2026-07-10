@@ -19,11 +19,16 @@ function Show-GlyThemeColor {
   $rows = foreach ($selectedTheme in $selectedThemes) {
     $styles = [ordered]@{}
     $entries = @(
-      [pscustomobject]@{ Matcher = 'Default'; Style = $selectedTheme.Default }
+      [pscustomobject]@{
+        Matcher = 'Default'
+        Sample  = ConvertTo-GlyPreviewName
+        Style   = $selectedTheme.Default
+      }
 
       foreach ($rule in $selectedTheme.Rules) {
         [pscustomobject]@{
           Matcher = ConvertTo-GlyMatcherLabel -Selector $rule.Selector
+          Sample  = ConvertTo-GlyPreviewName -Selector $rule.Selector
           Style   = $rule.Style
         }
       }
@@ -41,10 +46,12 @@ function Show-GlyThemeColor {
 
       if ($styles.Contains($signature)) {
         $styles[$signature].Matchers += $entry.Matcher
+        $styles[$signature].Samples += $entry.Sample
       }
       else {
         $styles[$signature] = [pscustomobject]@{
           Matchers = @($entry.Matcher)
+          Samples  = @($entry.Sample)
           Style    = $style
         }
       }
@@ -56,7 +63,7 @@ function Show-GlyThemeColor {
         Theme      = $selectedTheme.Name
         Matcher    = $entry.Matchers -join ', '
         Color      = ConvertTo-GlyStyleLabel -Style $entry.Style
-        Preview    = ConvertTo-GlyPreviewText -Text 'Sample' -Style $entry.Style
+        Preview    = ConvertTo-GlyPreviewText -Text ($entry.Samples -join ', ') -Style $entry.Style
       }
     }
   }
