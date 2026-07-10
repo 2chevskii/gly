@@ -1,0 +1,69 @@
+name: Capture terminal media
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "src/**"
+      - "scripts/capture/**"
+      - "assets/captures/**"
+      - ".github/workflows/captures.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  capture:
+    name: Render VHS captures
+    runs-on: ubuntu-latest
+    env:
+      TERM: xterm-256color
+      COLORTERM: truecolor
+      LANG: C.UTF-8
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Prepare capture directories
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path ./assets/captures/themes, ./artifacts/captures | Out-Null
+
+      - name: Generate theme gallery tape
+        shell: pwsh
+        run: ./scripts/capture/New-GlyThemeGalleryTape.ps1
+
+      - name: Render overview
+        uses: charmbracelet/vhs-action@v2
+        with:
+          version: v0.11.0
+          path: scripts/capture/overview.tape
+          install-fonts: true
+
+      - name: Render theme gallery
+        uses: charmbracelet/vhs-action@v2
+        with:
+          version: v0.11.0
+          path: scripts/capture/generated/theme-gallery-dark.tape
+          install-fonts: true
+
+      - name: Render light theme gallery
+        uses: charmbracelet/vhs-action@v2
+        with:
+          version: v0.11.0
+          path: scripts/capture/generated/theme-gallery-light.tape
+          install-fonts: true
+
+      - name: Verify committed captures
+        shell: pwsh
+        run: git diff --exit-code -- assets/captures
+
+      - name: Upload terminal captures
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: terminal-captures
+          path: |
+            assets/captures
+            artifacts/captures
+          if-no-files-found: warn
