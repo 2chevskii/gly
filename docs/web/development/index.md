@@ -1,5 +1,20 @@
 # Development
 
+## Branch Names
+
+Use short-lived, descriptive branches. Branch names must begin with one of these prefixes:
+
+- `feature/`
+- `fix/`
+- `hotfix/`
+- `chore/`
+- `docs/`
+- `refactor/`
+- `test/`
+- `ci/`
+
+For example: `docs/branch-name-policy`.
+
 ## PowerShell Checks
 
 ```powershell
