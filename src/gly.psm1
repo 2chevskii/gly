@@ -3,6 +3,7 @@ $script:GlyFormatDataPath = Join-Path $PSScriptRoot 'formats/FileSystem.format.p
 $script:GlyFormatDataLoaded = $false
 $script:GlyBuiltInSelectorCatalog = $null
 $script:GlyBuiltInSelectorIndex = $null
+$script:GlyBuiltInMatcherLabels = $null
 
 # Parsing one combined script block avoids per-file parser and dot-sourcing overhead during import.
 $sourceBuilder = [System.Text.StringBuilder]::new()
@@ -37,6 +38,9 @@ Export-ModuleMember -Function @(
   'Set-GlyGlyphSet',
   'Register-GlyGlyphSet',
   'Copy-GlyGlyphSet',
+  'Show-GlyThemeColor',
+  'Show-GlyGlyph',
+  'Show-GlyThemePreview',
   'Show-Gly',
   'Show-GlyTree',
   'Show-GlyGrid',

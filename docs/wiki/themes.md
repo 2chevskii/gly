@@ -167,6 +167,14 @@ Select a theme:
 Set-GlyTheme DefaultLight
 ```
 
+Preview every color matcher without changing the active theme:
+
+```powershell
+Show-GlyThemeColor DefaultLight
+```
+
+See [Theme and glyph previews](previews.md) for combined previews and pipeline behavior.
+
 ## Shared Rule Catalog
 
 All color themes use the same catalog of more than 60 selectors as the built-in glyph sets. Each palette maps selectors to eight stable groups:

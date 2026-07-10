@@ -25,6 +25,7 @@ Only `Name` is visually enhanced by the MVP. Renderer commands provide additiona
 - [Themes](themes.md)
 - [Glyph sets](glyph-sets.md)
 - [Renderer commands](renderers.md)
+- [Theme and glyph previews](previews.md)
 - [API reference](api-reference.md)
 - [Architecture](architecture.md)
 - [Limitations](limitations.md)

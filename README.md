@@ -60,6 +60,14 @@ glytr . -Depth 2
 glygr .
 ```
 
+Preview registered theme colors, glyphs, or their combined appearance for every matcher:
+
+```powershell
+Show-GlyThemeColor DefaultDark
+Show-GlyGlyph Unicode
+Show-GlyThemePreview -Theme DefaultDark -GlyphSet Unicode
+```
+
 ## Configuration
 
 Configuration is kept only in the current PowerShell session:
