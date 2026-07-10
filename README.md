@@ -91,16 +91,16 @@ Set-GlyGlyphSet Unicode
 
 ## Documentation
 
-- [Wiki index](docs/wiki/index.md)
-- [Installation](docs/wiki/installation.md)
-- [Quick start](docs/wiki/quick-start.md)
-- [Configuration](docs/wiki/configuration.md)
-- [Themes](docs/wiki/themes.md)
-- [Glyph sets](docs/wiki/glyph-sets.md)
-- [Renderer commands](docs/wiki/renderers.md)
-- [API reference](docs/wiki/api-reference.md)
-- [Limitations](docs/wiki/limitations.md)
-- [Troubleshooting](docs/wiki/troubleshooting.md)
+- [Wiki index](https://github.com/2CHEVSKII/gly/wiki)
+- [Installation](https://github.com/2CHEVSKII/gly/wiki/Installation)
+- [Quick start](https://github.com/2CHEVSKII/gly/wiki/Quick-start)
+- [Configuration](https://github.com/2CHEVSKII/gly/wiki/Configuration)
+- [Themes](https://github.com/2CHEVSKII/gly/wiki/Themes)
+- [Glyph sets](https://github.com/2CHEVSKII/gly/wiki/Glyph-sets)
+- [Renderer commands](https://github.com/2CHEVSKII/gly/wiki/Renderer-commands)
+- [API reference](https://github.com/2CHEVSKII/gly/wiki/API-reference)
+- [Limitations](https://github.com/2CHEVSKII/gly/wiki/Limitations)
+- [Troubleshooting](https://github.com/2CHEVSKII/gly/wiki/Troubleshooting)
 
 ## Development
 
