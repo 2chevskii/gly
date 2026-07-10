@@ -50,10 +50,6 @@ npm run docs:preview
 
 The VitePress source root is `docs`.
 
-## Research Notes
-
-- [Dynamic name completion](./dynamic-name-completion.md)
-
 ## Repository Maintenance
 
 GitHub repository metadata documents the contribution, support, and security processes:
