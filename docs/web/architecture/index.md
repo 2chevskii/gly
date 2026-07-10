@@ -43,4 +43,4 @@ The built-in resolver caches an index for kinds, extensions, exact names, globs,
 
 Session state uses `GlyConfiguration`, `GlyTheme`, `GlyThemeRule`, `GlyStyle`, `GlyGlyphSet`, `GlyGlyphRule`, and `GlySelector`.
 
-Registration commands accept hashtables and `pscustomobject` values, validate them, and convert them before storage. Getter and copy commands return detached typed copies. Built-in themes, Nerd Fonts, and Emoji share one complete selector catalog; ANSI, ANSICompact, and Unicode use its essential structural subset.
+Registration commands accept hashtables and `pscustomobject` values, validate them, and convert them before storage. Getter and copy commands return detached typed copies. Nerd Fonts and Emoji use the complete selector catalog; built-in themes, ANSI, ANSICompact, and Unicode use its essential structural subset.

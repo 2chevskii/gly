@@ -160,21 +160,19 @@ Get-GlyTheme
 Set-GlyTheme DefaultLight
 ```
 
-## Shared Rule Catalog
+## Essential Color Rules
 
-All color themes use a shared catalog of more than 60 selectors. It is divided into `File`, `Directory`, `Symlink`, `Hidden`, `ReadOnly`, `PowerShell`, `Json`, and `Markdown` groups.
+Built-in color themes use only filesystem-oriented colors so that output remains readable instead of assigning arbitrary colors to every recognized file type.
 
 | Group | Main coverage |
 | --- | --- |
-| `Directory` | Ordinary directories and downloads. |
-| `Symlink` | Links, Git, Docker, CI, infrastructure, and databases. |
-| `Hidden` | Hidden items, logs, and caches. |
-| `ReadOnly` | Settings, archives, fonts, certificates, binaries, and licenses. |
-| `PowerShell` | Programming languages, shell/web, source/build, and projects. |
-| `Json` | Structured data, packages, tests/dependencies, and office documents. |
-| `Markdown` | Documentation, text, README/changelog, and media. |
+| `File` | Files and fallback. |
+| `Directory` | Directories. |
+| `Symlink` | Symbolic links and junctions. |
+| `Hidden` | Items with the hidden attribute. |
+| `ReadOnly` | Items with the read-only attribute. |
 
-`NoColor` has no rules and no foreground/background color. Exact selectors are listed in the [selector catalog](./selectors.md#built-in-catalog).
+Recognized extensions and well-known names use the default file color. `NoColor` has no rules and no foreground/background color.
 
 ## Strongly Typed Structure
 

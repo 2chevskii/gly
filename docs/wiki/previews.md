@@ -1,10 +1,10 @@
 # Theme and Glyph Previews
 
-Preview commands display the fallback and every matcher in registered themes and glyph sets. They return objects, so their rows can still be filtered, selected, or exported through the PowerShell pipeline.
+Preview commands display the fallback and every registered matcher in themes and glyph sets. They return objects, so their rows can still be filtered, selected, or exported through the PowerShell pipeline.
 
 ## Theme Colors
 
-`Show-GlyThemeColor` displays the color and text attributes for every theme matcher:
+`Show-GlyThemeColor` displays each distinct style once. Matchers that share a style, such as symbolic links and junctions in built-in themes, are combined in one row:
 
 ```powershell
 Show-GlyThemeColor

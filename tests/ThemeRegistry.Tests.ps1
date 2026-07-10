@@ -121,7 +121,15 @@ Describe 'gly theme registry' {
     $theme.Default.GetType().Name | Should -Be 'GlyStyle'
     $theme.Rules[0].GetType().Name | Should -Be 'GlyThemeRule'
     $theme.Rules[0].Selector.GetType().Name | Should -Be 'GlySelector'
-    $theme.Rules.Count | Should -BeGreaterThan 50
+    $theme.Rules.Count | Should -Be 5
+  }
+
+  It 'limits built-in themes to essential file-system colors' {
+    foreach ($theme in Get-GlyTheme | Where-Object Name -NE 'NoColor') {
+      $theme.Rules.Count | Should -Be 5
+      @($theme.Rules | Where-Object { $_.Selector.Extension.Count -gt 0 }).Count | Should -Be 0
+      @($theme.Rules | Where-Object { $_.Selector.Glob.Count -gt 0 }).Count | Should -Be 0
+    }
   }
 
   It 'copies and registers a user theme' {

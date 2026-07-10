@@ -52,9 +52,10 @@ function Get-GlyFileSystemDisplayName {
         $null
       }
       elseif ($theme -isnot [GlyTheme]) {
-        $palette = if ($null -ne $builtInSelector) { $builtInSelector.Palette } else { 'File' }
-        $bold = $null -ne $builtInSelector -and $builtInSelector.Bold
-        Get-GlyBuiltInThemeStyle -Theme $theme -Palette $palette -Bold $bold
+        Resolve-GlyBuiltInThemeStyle `
+          -Theme $theme `
+          -InputObject $InputObject `
+          -ResolvedSelector $builtInSelector
       }
       else {
         $rule = Resolve-GlyFileSystemRule -InputObject $InputObject -Rules $theme.Rules
