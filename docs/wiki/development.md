@@ -65,7 +65,7 @@ Collect Cobertura coverage in addition to the test reports:
 npm run test:coverage
 ```
 
-CI publishes the module ZIP, module NuGet package, test reports for each operating system, and Cobertura plus HTML coverage reports as workflow artifacts. Its job summary combines CTRF test statistics with the coverage summary. Coverage may decrease by at most one percentage point compared with the latest successful `master` run; when no previous artifact exists, the first successful run establishes the baseline.
+CI publishes each report format as a separate artifact: JUnit XML, CTRF JSON, and HTML test reports for each operating system; Cobertura XML, HTML, and Markdown coverage reports; plus the module ZIP and NuGet package. Its job summary combines CTRF test statistics with the coverage results. Coverage may decrease by at most one percentage point compared with the latest successful `master` run; when no previous artifact exists, the first successful run establishes the baseline.
 
 ## Performance Benchmarks
 

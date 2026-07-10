@@ -52,12 +52,28 @@ jobs:
       - name: Run Pester and generate reports
         run: npm test -- --OutputPath './artifacts/tests/${{ matrix.os }}'
 
-      - name: Upload test results
+      - name: Upload JUnit test results
         if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v7
         with:
-          name: test-results-${{ matrix.os }}
-          path: artifacts/tests/${{ matrix.os }}
+          name: test-junit-${{ matrix.os }}
+          path: artifacts/tests/${{ matrix.os }}/pester.junit.xml
+          if-no-files-found: error
+
+      - name: Upload CTRF test results
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: test-ctrf-${{ matrix.os }}
+          path: artifacts/tests/${{ matrix.os }}/pester.ctrf.json
+          if-no-files-found: error
+
+      - name: Upload HTML test report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: test-html-${{ matrix.os }}
+          path: artifacts/tests/${{ matrix.os }}/html
           if-no-files-found: error
 
   coverage:
@@ -112,7 +128,7 @@ jobs:
           workflow_conclusion: success
           branch: master
           event: push
-          name: coverage-results
+          name: coverage-cobertura
           path: artifacts/baseline
           check_artifacts: true
           search_artifacts: true
@@ -127,12 +143,30 @@ jobs:
             -MaximumRegression 1.0 `
             -SummaryPath ./artifacts/coverage/CoverageRegression.md
 
-      - name: Upload coverage results
+      - name: Upload Cobertura coverage result
         if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v7
         with:
-          name: coverage-results
-          path: artifacts/coverage
+          name: coverage-cobertura
+          path: artifacts/coverage/coverage.cobertura.xml
+          if-no-files-found: error
+
+      - name: Upload HTML coverage report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: coverage-html
+          path: artifacts/coverage/html
+          if-no-files-found: error
+
+      - name: Upload Markdown coverage summaries
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: coverage-markdown
+          path: |
+            artifacts/coverage/html/SummaryGithub.md
+            artifacts/coverage/CoverageRegression.md
           if-no-files-found: error
 
   package:
@@ -194,7 +228,7 @@ jobs:
         run: npm run docs:build
 
   summary:
-    name: Test and coverage summary
+    name: Publish test and coverage results
     if: ${{ always() && !cancelled() }}
     needs:
       - tests
@@ -202,32 +236,32 @@ jobs:
       - package
     runs-on: ubuntu-latest
     steps:
-      - name: Download test results
+      - name: Download CTRF test results
         continue-on-error: true
         uses: actions/download-artifact@v8
         with:
-          pattern: test-results-*
+          pattern: test-ctrf-*
           path: artifacts/summary/tests
 
-      - name: Download coverage results
+      - name: Download Markdown coverage summaries
         continue-on-error: true
         uses: actions/download-artifact@v8
         with:
-          name: coverage-results
+          name: coverage-markdown
           path: artifacts/summary/coverage
 
-      - name: Publish test summary
+      - name: Publish test results
         uses: ctrf-io/github-test-reporter@v1
         with:
           report-path: artifacts/summary/tests/**/pester.ctrf.json
-          title: Pester test runs
+          title: Pester test results
           summary-report: true
           failed-folded-report: true
           skipped-report: true
           exit-on-no-files: false
           exit-on-fail: false
 
-      - name: Publish coverage summary
+      - name: Publish coverage results
         shell: pwsh
         run: |
           $summaryFiles = @(
@@ -237,6 +271,9 @@ jobs:
 
           foreach ($summaryFile in $summaryFiles) {
             if (Test-Path -LiteralPath $summaryFile -PathType Leaf) {
-              Get-Content -Raw -LiteralPath $summaryFile >> $env:GITHUB_STEP_SUMMARY
+              $summary = Get-Content -Raw -LiteralPath $summaryFile
+              $summary = $summary -replace '# Summary - gly coverage', '# gly coverage results'
+              $summary = $summary -replace '<summary>Summary</summary>', '<summary>Overview</summary>'
+              $summary >> $env:GITHUB_STEP_SUMMARY
             }
           }
