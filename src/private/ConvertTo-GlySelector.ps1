@@ -39,5 +39,5 @@ function ConvertTo-GlySelector {
     }
   }
 
-  return $result
+  return Initialize-GlySelector -Selector $result
 }

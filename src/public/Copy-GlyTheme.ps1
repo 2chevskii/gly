@@ -12,7 +12,7 @@ function Copy-GlyTheme {
     throw "Unknown gly theme '$Name'."
   }
 
-  $copy = ConvertTo-GlyTheme -Theme $script:GlyThemes[$Name]
+  $copy = ConvertTo-GlyTheme -Theme (Get-GlyThemeRegistryEntry -Name $Name)
   $copy.Name = $NewName
   $copy.BuiltIn = $false
   $copy

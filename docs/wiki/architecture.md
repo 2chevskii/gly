@@ -22,12 +22,12 @@ PowerShell format data is session-wide. It can remain active after `Remove-Modul
 
 `src/gly.psm1`:
 
-- dot-sources private functions;
-- dot-sources public functions;
+- parses module types and functions as one combined script block to minimize import overhead;
 - initializes configuration;
-- initializes built-in themes;
-- initializes built-in glyph sets;
+- registers compact built-in theme and glyph-set definitions;
 - calls `Enable-Gly`.
+
+Built-in theme and glyph-set rules are expanded into detached strongly typed objects only when a registry command returns them. Formatting uses the compact immutable definitions directly and resolves their shared selector catalog through a cached index.
 
 ## Rule Resolution
 
@@ -40,6 +40,8 @@ Themes and glyph sets use the same selector model:
 - `Attributes`
 
 Rules are evaluated from top to bottom. The last matching rule wins.
+
+The built-in resolver indexes kinds, extensions, exact names, globs, and attributes once. User-registered rules retain the general selector evaluator and the same precedence semantics.
 
 The resolver does not read file contents, does not run Git commands, and does not perform expensive file system lookups in the hot path.
 

@@ -7,15 +7,64 @@ function Get-GlyFileSystemDisplayName {
 
   process {
     try {
-      $name = $InputObject.Name + (Get-GlyLinkSuffix -InputObject $InputObject)
+      $name = $InputObject.Name
+      if (($InputObject.Attributes -band [System.IO.FileAttributes]::ReparsePoint) -ne 0) {
+        $name += Get-GlyLinkSuffix -InputObject $InputObject
+      }
       if (-not $script:GlyConfiguration.Enabled) {
         return $name
       }
 
-      $glyph = Get-GlyFileSystemGlyph -InputObject $InputObject
+      $glyphSet = if ($script:GlyConfiguration.ShowGlyphs) {
+        $script:GlyGlyphSets[$script:GlyConfiguration.GlyphSet]
+      }
+      else {
+        $null
+      }
+      $theme = if ($script:GlyConfiguration.ShowColors) {
+        $script:GlyThemes[$script:GlyConfiguration.Theme]
+      }
+      else {
+        $null
+      }
+
+      $builtInSelector = if (($null -ne $glyphSet -and $glyphSet -isnot [GlyGlyphSet]) -or
+        ($null -ne $theme -and $theme -isnot [GlyTheme] -and $theme.HasRules)) {
+        Resolve-GlyBuiltInSelector -InputObject $InputObject
+      }
+      else {
+        $null
+      }
+
+      $glyph = if ($null -eq $glyphSet) {
+        ''
+      }
+      elseif ($glyphSet -isnot [GlyGlyphSet]) {
+        if ($null -ne $builtInSelector) {
+          [string] $glyphSet.Map[$builtInSelector.Token]
+        }
+        else {
+          [string] $glyphSet.Map.Default
+        }
+      }
+      else {
+        $rule = Resolve-GlyFileSystemRule -InputObject $InputObject -Rules $glyphSet.Rules
+        if ($null -ne $rule) { $rule.Glyph } else { $glyphSet.Default }
+      }
       $displayName = if ([string]::IsNullOrEmpty($glyph)) { $name } else { "$glyph $name" }
 
-      $style = Get-GlyFileSystemStyle -InputObject $InputObject
+      $style = if ($null -eq $theme) {
+        $null
+      }
+      elseif ($theme -isnot [GlyTheme]) {
+        $palette = if ($null -ne $builtInSelector) { $builtInSelector.Palette } else { 'File' }
+        $bold = $null -ne $builtInSelector -and $builtInSelector.Bold
+        Get-GlyBuiltInThemeStyle -Theme $theme -Palette $palette -Bold $bold
+      }
+      else {
+        $rule = Resolve-GlyFileSystemRule -InputObject $InputObject -Rules $theme.Rules
+        if ($null -ne $rule) { $rule.Style } else { $theme.Default }
+      }
       $renderer = Resolve-GlyStyleRenderer
       if ($renderer -eq 'PlainText') {
         return $displayName

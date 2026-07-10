@@ -5,12 +5,14 @@ function Get-GlyGlyphSet {
   )
 
   if ([string]::IsNullOrWhiteSpace($Name)) {
-    return $script:GlyGlyphSets.Values | ForEach-Object { ConvertTo-GlyGlyphSet -GlyphSet $_ }
+    return $script:GlyGlyphSets.Keys | ForEach-Object {
+      ConvertTo-GlyGlyphSet -GlyphSet (Get-GlyGlyphSetRegistryEntry -Name $_)
+    }
   }
 
   if (-not $script:GlyGlyphSets.Contains($Name)) {
     throw "Unknown gly glyph set '$Name'."
   }
 
-  ConvertTo-GlyGlyphSet -GlyphSet $script:GlyGlyphSets[$Name]
+  ConvertTo-GlyGlyphSet -GlyphSet (Get-GlyGlyphSetRegistryEntry -Name $Name)
 }

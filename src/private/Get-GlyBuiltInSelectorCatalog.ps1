@@ -72,5 +72,10 @@ function Get-GlyBuiltInSelectorCatalog {
   )
 
   $script:GlyBuiltInSelectorCatalog = [GlyBuiltInSelectorDefinition[]] $definitions
+  for ($i = 0; $i -lt $script:GlyBuiltInSelectorCatalog.Count; $i++) {
+    $definition = $script:GlyBuiltInSelectorCatalog[$i]
+    $definition.Index = $i
+    Initialize-GlySelector -Selector $definition.Selector | Out-Null
+  }
   return $script:GlyBuiltInSelectorCatalog
 }

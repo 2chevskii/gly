@@ -29,6 +29,16 @@ Describe 'gly rendering' {
     Remove-Item Env:NO_COLOR
   }
 
+  It 'reacts to global renderer overrides without stale cached output' {
+    Set-GlyConfiguration -ShowColors $true -StyleRenderer Ansi | Out-Null
+    Get-GlyFileSystemDisplayName -InputObject $file | Should -Match "`e\[[0-9;]*m"
+    $global:GlyStyleRenderer = 'PlainText'
+    Get-GlyFileSystemDisplayName -InputObject $file | Should -Not -Match "`e\[[0-9;]*m"
+    Remove-Variable GlyStyleRenderer -Scope Global
+    Get-GlyFileSystemDisplayName -InputObject $file | Should -Match "`e\[[0-9;]*m"
+    Set-GlyConfiguration -ShowColors $false -StyleRenderer PlainText | Out-Null
+  }
+
   It 'Show-Gly accepts pipeline input' {
     $record = Get-Item -LiteralPath $file.FullName | Show-Gly
     $record.Name | Should -Match 'README\.md'

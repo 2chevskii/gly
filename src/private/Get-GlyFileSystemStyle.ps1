@@ -13,6 +13,18 @@ function Get-GlyFileSystemStyle {
     return $null
   }
 
+  if ($theme -isnot [GlyTheme]) {
+    $definition = if ($theme.HasRules) {
+      Resolve-GlyBuiltInSelector -InputObject $InputObject
+    }
+    else {
+      $null
+    }
+    $palette = if ($null -ne $definition) { $definition.Palette } else { 'File' }
+    $bold = $null -ne $definition -and $definition.Bold
+    return Get-GlyBuiltInThemeStyle -Theme $theme -Palette $palette -Bold $bold
+  }
+
   $rule = Resolve-GlyFileSystemRule -InputObject $InputObject -Rules $theme.Rules
   if ($null -ne $rule) {
     return $rule.Style
