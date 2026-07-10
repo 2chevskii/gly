@@ -19,32 +19,32 @@ Describe 'gly rule resolution through glyph sets' {
     Set-GlyGlyphSet ANSI | Out-Null
   }
 
-  It 'selects glyph by normal extension' {
-    Get-GlyFileSystemDisplayName -InputObject $psFile | Should -Match '^\[ps\] build\.ps1$'
+  It 'uses the default fallback glyph for a normal extension' {
+    Get-GlyFileSystemDisplayName -InputObject $psFile | Should -Match '^\[file\] build\.ps1$'
   }
 
-  It 'selects glyph by compound extension before normal extension' {
-    Get-GlyFileSystemDisplayName -InputObject $compoundFile | Should -Match '^\[d\.ts\] types\.d\.ts$'
+  It 'uses the default fallback glyph for a compound extension' {
+    Get-GlyFileSystemDisplayName -InputObject $compoundFile | Should -Match '^\[file\] types\.d\.ts$'
   }
 
   It 'falls back to default glyph for unknown files' {
     Get-GlyFileSystemDisplayName -InputObject $plainFile | Should -Match '^\[file\] plain\.unknown$'
   }
 
-  It 'uses a well-known source directory glyph' {
-    Get-GlyFileSystemDisplayName -InputObject $directory | Should -Match '^\[src\] src$'
+  It 'falls back from a specialized directory to the directory glyph' {
+    Get-GlyFileSystemDisplayName -InputObject $directory | Should -Match '^\[dir\] src$'
   }
 
-  It 'selects glyph for a well-known package file before its extension' {
-    Get-GlyFileSystemDisplayName -InputObject $packageFile | Should -Match '^\[package\] package\.json$'
+  It 'uses the default fallback glyph for a well-known package file' {
+    Get-GlyFileSystemDisplayName -InputObject $packageFile | Should -Match '^\[file\] package\.json$'
   }
 
-  It 'selects glyph for an expanded media extension' {
-    Get-GlyFileSystemDisplayName -InputObject $imageFile | Should -Match '^\[image\] logo\.png$'
+  It 'uses the default fallback glyph for a media extension' {
+    Get-GlyFileSystemDisplayName -InputObject $imageFile | Should -Match '^\[file\] logo\.png$'
   }
 
-  It 'selects glyph by wildcard file name' {
-    Get-GlyFileSystemDisplayName -InputObject $dockerFile | Should -Match '^\[docker\] Dockerfile\.dev$'
+  It 'uses the default fallback glyph for a wildcard file name' {
+    Get-GlyFileSystemDisplayName -InputObject $dockerFile | Should -Match '^\[file\] Dockerfile\.dev$'
   }
 
   It 'preserves last-match precedence across selector categories' {

@@ -33,7 +33,7 @@ Rules = @(
 
 ## Built-in Catalog
 
-Built-in themes and glyph sets share a catalog of more than 60 rules. It covers:
+Built-in themes, Nerd Fonts, and Emoji share a catalog of more than 60 rules. ANSI, ANSICompact, and Unicode use the essential structural subset. The complete catalog covers:
 
 - core kinds and attributes: `Directory`, `Junction`, `Symlink`, `ReadOnly`, `Hidden`;
 - well-known directories: Git, editor settings, dependencies, source, tests, documentation, build, cache, downloads, media, infrastructure;

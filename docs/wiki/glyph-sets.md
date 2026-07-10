@@ -1,15 +1,15 @@
 # Glyph Sets
 
-A glyph set defines the symbol shown before a file or directory name. All built-in sets use the same selector catalog and differ only in their symbols.
+A glyph set defines the symbol shown before a file or directory name. Nerd Fonts and Emoji provide the complete selector catalog. The text and Unicode fallback sets intentionally use only essential file-system matchers.
 
 ## Built-in Sets
 
 | Set | Default file glyph | Purpose |
 | --- | --- | --- |
 | `NerdFonts` | `` | Full Nerd Font icon set; the default. |
-| `ANSI` | `[file]` | Readable ASCII labels such as `[dir]`, `[package]`, and `[image]`; no special font required. |
-| `ANSICompact` | `f` | Short text labels for narrow terminals. |
-| `Unicode` | `□` | Unicode symbols without the Private Use Area; some types use short labels such as `JS`, `TS`, and `PDF`. |
+| `ANSI` | `[file]` | Readable ASCII labels for files, directories, links, and attributes; no special font required. |
+| `ANSICompact` | `f` | Compact structural labels for narrow terminals. |
+| `Unicode` | `□` | Unicode structural symbols without the Private Use Area. |
 | `Emoji` | `📄` | Emoji and short text labels; actual width depends on the terminal. |
 
 List and select a set:
@@ -30,9 +30,21 @@ Set-GlyGlyphSet Emoji
 
 `gly` does not detect the active terminal font or switch sets automatically.
 
+## Essential Fallback Matchers
+
+`ANSI`, `ANSICompact`, and `Unicode` define only these matcher-specific glyphs:
+
+- directory;
+- junction;
+- symbolic link;
+- read-only attribute;
+- hidden attribute.
+
+All extension, well-known-name, and specialized-directory matches use the set's default file glyph. This keeps fallback output predictable instead of representing dedicated Nerd Font icons with arbitrary abbreviations.
+
 ## Complete Built-in Selector Catalog
 
-Every built-in set contains rules for the groups below. More specific well-known-name rules are declared after extension rules and therefore take precedence.
+`NerdFonts` and `Emoji` contain rules for the groups below. More specific well-known-name rules are declared after extension rules and therefore take precedence.
 
 ### Directories
 

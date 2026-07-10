@@ -10,13 +10,11 @@ function Get-GlyGlyphSetRegistryEntry {
   }
 
   $rules = foreach ($definition in Get-GlyBuiltInSelectorCatalog) {
-    if (-not $entry.Map.ContainsKey($definition.Token)) {
-      throw "Glyph map '$Name' does not define token '$($definition.Token)'."
-    }
-
-    [GlyGlyphRule]@{
-      Selector = $definition.Selector
-      Glyph    = [string] $entry.Map[$definition.Token]
+    if ($entry.Map.ContainsKey($definition.Token)) {
+      [GlyGlyphRule]@{
+        Selector = $definition.Selector
+        Glyph    = [string] $entry.Map[$definition.Token]
+      }
     }
   }
 

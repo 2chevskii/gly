@@ -14,11 +14,13 @@ function Get-GlyFileSystemGlyph {
   }
 
   if ($glyphSet -isnot [GlyGlyphSet]) {
-    $definition = Resolve-GlyBuiltInSelector -InputObject $InputObject
-    if ($null -ne $definition) {
-      return [string] $glyphSet.Map[$definition.Token]
+    $definition = if ($glyphSet.CompleteCatalog) {
+      Resolve-GlyBuiltInSelector -InputObject $InputObject
     }
-    return [string] $glyphSet.Map.Default
+    else {
+      $null
+    }
+    return Resolve-GlyBuiltInGlyph -GlyphSet $glyphSet -InputObject $InputObject -ResolvedSelector $definition
   }
 
   $rule = Resolve-GlyFileSystemRule -InputObject $InputObject -Rules $glyphSet.Rules
