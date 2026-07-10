@@ -27,6 +27,8 @@ The proof of concept is implemented in the repository:
 
 Run the workflow manually for the initial artifact. It will fail the capture-diff step until the uploaded output has been reviewed and committed in a focused generated-media pull request. This preserves the read-only permissions of pull-request workflows and keeps capture tooling off contributors' workstations.
 
+The proof of concept installs the pinned VHS release and JetBrains Mono Nerd Font, plus `ttyd`, `ffmpeg`, and Noto Color Emoji, directly on the runner. This avoids coupling the generated media to an action-managed dependency installer while retaining fixed VHS and Nerd Font versions.
+
 ## Requirements and constraints
 
 The capture pipeline needs to:

@@ -17,6 +17,7 @@ jobs:
     name: Render VHS captures
     runs-on: ubuntu-latest
     env:
+      VHS_VERSION: 0.11.0
       TERM: xterm-256color
       COLORTERM: truecolor
       LANG: C.UTF-8
@@ -29,30 +30,40 @@ jobs:
         run: |
           New-Item -ItemType Directory -Force -Path ./assets/captures/themes, ./artifacts/captures | Out-Null
 
+      - name: Install VHS and capture dependencies
+        shell: bash
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes ffmpeg fonts-noto-color-emoji ttyd
+
+          curl --fail --location --retry 3 --silent --show-error \
+            --output /tmp/vhs.tar.gz \
+            "https://github.com/charmbracelet/vhs/releases/download/v${VHS_VERSION}/vhs_${VHS_VERSION}_Linux_x86_64.tar.gz"
+          tar --extract --gzip --file /tmp/vhs.tar.gz --directory /tmp
+          install --mode 0755 /tmp/vhs "$HOME/.local/bin/vhs"
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+
+          curl --fail --location --retry 3 --silent --show-error \
+            --output /tmp/jetbrains-mono-nerd-font.zip \
+            https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip
+          mkdir --parents "$HOME/.local/share/fonts"
+          unzip -j /tmp/jetbrains-mono-nerd-font.zip 'JetBrainsMonoNerdFontMono-*.ttf' \
+            -d "$HOME/.local/share/fonts"
+          fc-cache --force
+          "$HOME/.local/bin/vhs" --version
+
       - name: Generate theme gallery tape
         shell: pwsh
         run: ./scripts/capture/New-GlyThemeGalleryTape.ps1
 
       - name: Render overview
-        uses: charmbracelet/vhs-action@v2
-        with:
-          version: v0.11.0
-          path: scripts/capture/overview.tape
-          install-fonts: true
+        run: vhs scripts/capture/overview.tape
 
       - name: Render theme gallery
-        uses: charmbracelet/vhs-action@v2
-        with:
-          version: v0.11.0
-          path: scripts/capture/generated/theme-gallery-dark.tape
-          install-fonts: true
+        run: vhs scripts/capture/generated/theme-gallery-dark.tape
 
       - name: Render light theme gallery
-        uses: charmbracelet/vhs-action@v2
-        with:
-          version: v0.11.0
-          path: scripts/capture/generated/theme-gallery-light.tape
-          install-fonts: true
+        run: vhs scripts/capture/generated/theme-gallery-light.tape
 
       - name: Verify committed captures
         shell: pwsh
