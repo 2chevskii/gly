@@ -17,6 +17,16 @@ The first implementation should be a small proof of concept containing:
 
 This keeps capture generation separate from the existing documentation deployment workflow until rendering and repository-size costs are known.
 
+## Proof-of-concept implementation
+
+The proof of concept is implemented in the repository:
+
+- `scripts/capture/overview.tape` emits the shared PNG poster, GIF, and WebM overview.
+- `scripts/capture/New-GlyThemeGalleryTape.ps1` imports the local module, reads its built-in theme registry, and writes dark and light gallery tapes. It validates every built-in theme against the explicit dark/light assignments in `scripts/capture/ThemeBackgrounds.psd1` before rendering. Separate tapes keep VHS settings at the top of each tape while giving each screenshot its fixed terminal background.
+- `.github/workflows/captures.yml` runs on `workflow_dispatch` and relevant pull requests. It renders on Ubuntu with VHS, uploads both committed and intermediate outputs, and fails if the generated files differ from `assets/captures`.
+
+Run the workflow manually for the initial artifact. It will fail the capture-diff step until the uploaded output has been reviewed and committed in a focused generated-media pull request. This preserves the read-only permissions of pull-request workflows and keeps capture tooling off contributors' workstations.
+
 ## Requirements and constraints
 
 The capture pipeline needs to:
@@ -267,4 +277,3 @@ Pixel comparison should tolerate a very small threshold only if identical bytes 
 - [agg usage, fonts, timing, and rendering](https://docs.asciinema.org/manual/agg/usage/)
 - [VitePress asset handling](https://vitepress.dev/guide/asset-handling)
 - [GitHub supported non-code image formats](https://docs.github.com/en/repositories/working-with-files/using-files/working-with-non-code-files)
-
