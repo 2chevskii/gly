@@ -10,11 +10,14 @@ function Get-GlyThemeRegistryEntry {
   }
 
   $default = Get-GlyBuiltInThemeStyle -Theme $entry -Palette File
+  $essentialTokens = @('dir', 'junction', 'lnk', 'readonly', 'hidden')
   $rules = if ($entry.HasRules) {
     foreach ($definition in Get-GlyBuiltInSelectorCatalog) {
-      [GlyThemeRule]@{
-        Selector = $definition.Selector
-        Style    = Get-GlyBuiltInThemeStyle -Theme $entry -Palette $definition.Palette -Bold $definition.Bold
+      if ($definition.Token -in $essentialTokens) {
+        [GlyThemeRule]@{
+          Selector = $definition.Selector
+          Style    = Get-GlyBuiltInThemeStyle -Theme $entry -Palette $definition.Palette -Bold $definition.Bold
+        }
       }
     }
   }

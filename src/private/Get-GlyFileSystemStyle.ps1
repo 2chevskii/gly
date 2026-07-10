@@ -20,9 +20,10 @@ function Get-GlyFileSystemStyle {
     else {
       $null
     }
-    $palette = if ($null -ne $definition) { $definition.Palette } else { 'File' }
-    $bold = $null -ne $definition -and $definition.Bold
-    return Get-GlyBuiltInThemeStyle -Theme $theme -Palette $palette -Bold $bold
+    return Resolve-GlyBuiltInThemeStyle `
+      -Theme $theme `
+      -InputObject $InputObject `
+      -ResolvedSelector $definition
   }
 
   $rule = Resolve-GlyFileSystemRule -InputObject $InputObject -Rules $theme.Rules

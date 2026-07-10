@@ -11,15 +11,17 @@ Describe 'gly previews' {
     $commands | Should -Contain 'Show-GlyThemePreview'
   }
 
-  It 'shows the default and every theme matcher' {
+  It 'shows each distinct theme style once' {
     $theme = Get-GlyTheme DefaultDark
     $rows = @(Show-GlyThemeColor -Theme DefaultDark)
 
-    $rows.Count | Should -Be ($theme.Rules.Count + 1)
+    $rows.Count | Should -Be 5
     $rows[0].Matcher | Should -Be 'Default'
     $rows[0].Color | Should -Match '#d4d4d4'
     $rows[0].Preview | Should -Match "`e\["
     $rows.Matcher | Should -Contain 'dir'
+    $rows.Matcher | Should -Contain 'junction, lnk'
+    @($rows.Color | Select-Object -Unique).Count | Should -Be $rows.Count
   }
 
   It 'shows the default and every glyph matcher' {

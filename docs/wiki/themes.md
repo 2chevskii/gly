@@ -175,22 +175,19 @@ Show-GlyThemeColor DefaultLight
 
 See [Theme and glyph previews](previews.md) for combined previews and pipeline behavior.
 
-## Shared Rule Catalog
+## Essential Color Rules
 
-All color themes use the same catalog of more than 60 selectors as the built-in glyph sets. Each palette maps selectors to eight stable groups:
+Built-in color themes intentionally use only five filesystem-oriented rules. This keeps output readable and avoids assigning arbitrary colors to every recognized extension or well-known name:
 
 | Palette group | Selectors |
 | --- | --- |
 | File | Unknown files and fallback. |
-| Directory | Ordinary directories and downloads. |
-| Symlink | Links/junctions, Git, Docker, CI, infrastructure, and databases. |
-| Hidden | The `Hidden` attribute, logs, and cache directories. |
-| ReadOnly | The `ReadOnly` attribute, settings/configs, archives, fonts, certificates, binaries, and licenses. |
-| PowerShell | Programming languages, shell/web, source/build directories, and project files. |
-| Json | JSON/YAML/XML, package files, test/dependency directories, and office documents. |
-| Markdown | Documentation, README/changelog, text, and media. |
+| Directory | Directories. |
+| Symlink | Symbolic links and junctions. |
+| Hidden | Items with the `Hidden` attribute. |
+| ReadOnly | Items with the `ReadOnly` attribute. |
 
-`NoColor` is the exception: it has no rules, and its default style does not set a foreground or background. See the complete names, patterns, and extensions in the [glyph set catalog](glyph-sets.md#complete-built-in-selector-catalog).
+Recognized extensions, specialized directories, and well-known filenames use the default file color. `NoColor` is the exception: it has no rules, and its default style does not set a foreground or background.
 
 ## Strongly Typed Structure
 

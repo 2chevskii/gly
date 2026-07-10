@@ -27,7 +27,7 @@ PowerShell format data is session-wide. It can remain active after `Remove-Modul
 - registers compact built-in theme and glyph-set definitions;
 - calls `Enable-Gly`.
 
-Built-in theme and glyph-set rules are expanded into detached strongly typed objects only when a registry command returns them. Formatting uses the compact immutable definitions directly and resolves their shared selector catalog through a cached index.
+Built-in theme and glyph-set rules are expanded into detached strongly typed objects only when a registry command returns them. Formatting uses compact immutable definitions directly. Themes and fallback glyph sets use only essential structural rules; Nerd Fonts and Emoji use the complete selector catalog.
 
 ## Rule Resolution
 
@@ -56,7 +56,7 @@ Module state uses PowerShell classes declared in `src/GlyTypes.ps1`:
 
 Registration commands still accept hashtables and `pscustomobject` values. Input is validated and converted before it reaches a registry. Getter and copy commands return detached typed copies, so callers cannot mutate a built-in registry entry through a returned object.
 
-Built-in themes and full icon glyph sets share one selector catalog, keeping their coverage and rule precedence synchronized. ANSI, ANSICompact, and Unicode intentionally register only essential structural rules and use their default glyph for other matches.
+Built-in themes, ANSI, ANSICompact, and Unicode intentionally register only essential structural rules. Nerd Fonts and Emoji use the complete selector catalog.
 
 ## Session State
 
