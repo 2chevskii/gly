@@ -77,6 +77,8 @@ Do not add the following without a separate decision:
 - Never report, discuss, or disclose security vulnerabilities or sensitive information in a public issue or pull request. Follow `.github/SECURITY.md` instead.
 - Follow the Code of Conduct in all project spaces.
 - When opening a pull request, use `.github/PULL_REQUEST_TEMPLATE.md` without removing its sections or checklist. Complete the Summary and Validation sections with the motivation, implementation, and checks actually run; mark a checklist item only when it is true.
+- Apply labels that accurately describe the pull request, and assign it to the person responsible for the agent's actions.
+- When an agent opens a pull request for a person who is not a repository maintainer, request a review from a repository maintainer.
 
 ## Branch names
 
