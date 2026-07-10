@@ -227,13 +227,75 @@ jobs:
       - name: Build docs
         run: npm run docs:build
 
+  benchmarks:
+    name: Performance benchmarks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Run benchmarks
+        shell: pwsh
+        run: |
+          New-Item -Path ./artifacts/benchmarks/results -ItemType Directory -Force | Out-Null
+          npm run bench:startup -- --OutputPath ./artifacts/benchmarks/results/startup.json
+          npm run bench:rendering -- --OutputPath ./artifacts/benchmarks/results/rendering.json
+
+      - name: Download default-branch benchmark baseline
+        if: ${{ !cancelled() }}
+        continue-on-error: true
+        uses: Legit-Labs/action-download-artifact@v2
+        with:
+          github_token: ${{ github.token }}
+          workflow: ci.yml
+          workflow_conclusion: success
+          branch: master
+          event: push
+          name: benchmark-results
+          path: artifacts/benchmarks/baseline
+          check_artifacts: true
+          search_artifacts: true
+
+      - name: Validate benchmark regression
+        if: ${{ !cancelled() }}
+        shell: pwsh
+        run: |
+          ./scripts/Compare-Benchmarks.ps1 `
+            -CurrentPath ./artifacts/benchmarks/results `
+            -BaselinePath ./artifacts/benchmarks/baseline `
+            -MaximumRegressionPercent 20 `
+            -SummaryPath ./artifacts/benchmarks/BenchmarkRegression.md
+
+      - name: Upload benchmark results
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: benchmark-results
+          path: artifacts/benchmarks/results
+          if-no-files-found: error
+
+      - name: Upload benchmark summary
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: benchmark-markdown
+          path: artifacts/benchmarks/BenchmarkRegression.md
+          if-no-files-found: error
+
   summary:
-    name: Publish test and coverage results
+    name: Publish test, coverage, and benchmark results
     if: ${{ always() && !cancelled() }}
     needs:
       - tests
       - coverage
       - package
+      - benchmarks
     runs-on: ubuntu-latest
     steps:
       - name: Download CTRF test results
@@ -249,6 +311,13 @@ jobs:
         with:
           name: coverage-markdown
           path: artifacts/summary/coverage
+
+      - name: Download benchmark summary
+        continue-on-error: true
+        uses: actions/download-artifact@v8
+        with:
+          name: benchmark-markdown
+          path: artifacts/summary/benchmarks
 
       - name: Publish test results
         uses: ctrf-io/github-test-reporter@v1
@@ -276,4 +345,12 @@ jobs:
               $summary = $summary -replace '<summary>Summary</summary>', '<summary>Overview</summary>'
               $summary >> $env:GITHUB_STEP_SUMMARY
             }
+          }
+
+      - name: Publish benchmark results
+        shell: pwsh
+        run: |
+          $summaryFile = './artifacts/summary/benchmarks/BenchmarkRegression.md'
+          if (Test-Path -LiteralPath $summaryFile -PathType Leaf) {
+            Get-Content -Raw -LiteralPath $summaryFile >> $env:GITHUB_STEP_SUMMARY
           }

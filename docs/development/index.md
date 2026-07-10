@@ -37,6 +37,8 @@ The combined command runs the independent startup and rendering suites concurren
 
 Pass `-- --OutputPath ./artifacts/benchmarks/local` to the combined command to write `startup.json` and `rendering.json` to that directory.
 
+CI runs both benchmark suites on `ubuntu-latest`, publishes their median timings in the workflow summary, and stores the JSON results as the `benchmark-results` artifact. Each run compares matching scenarios with the latest successful `master` push. A scenario fails the regression gate when its median time is more than 20% slower; the first run and newly added scenarios establish a baseline instead.
+
 ## Documentation Site
 
 ```powershell
