@@ -60,3 +60,7 @@ GitHub repository metadata documents the contribution, support, and security pro
 - [Support guidance](https://github.com/2CHEVSKII/gly/blob/master/.github/SUPPORT.md)
 
 Issue forms and the pull request template live in `.github`. Dependabot checks npm dependencies and GitHub Actions weekly. Repository administrators should keep private vulnerability reporting, Dependabot security updates, secret scanning, and push protection enabled.
+
+## Research Notes
+
+- [Headless terminal capture](./terminal-capture-research.md): options and a recommended CI design for README screenshots, documentation video, and a generated theme gallery.

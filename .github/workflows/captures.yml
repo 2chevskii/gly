@@ -1,0 +1,93 @@
+name: Capture terminal media
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "src/**"
+      - "scripts/capture/**"
+      - "assets/captures/**"
+      - ".github/workflows/captures.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  capture:
+    name: Render VHS captures
+    runs-on: ubuntu-latest
+    env:
+      VHS_VERSION: 0.11.0
+      TERM: xterm-256color
+      COLORTERM: truecolor
+      LANG: C.UTF-8
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Prepare capture directories
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path ./assets/captures/themes, ./artifacts/captures | Out-Null
+
+      - name: Install VHS and capture dependencies
+        shell: bash
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes ffmpeg fonts-noto-color-emoji ttyd
+
+          curl --fail --location --retry 3 --silent --show-error \
+            --output /tmp/vhs.deb \
+            "https://github.com/charmbracelet/vhs/releases/download/v${VHS_VERSION}/vhs_${VHS_VERSION}_amd64.deb"
+          sudo apt-get install --yes /tmp/vhs.deb
+
+          curl --fail --location --retry 3 --silent --show-error \
+            --output /tmp/jetbrains-mono-nerd-font.zip \
+            https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip
+          mkdir --parents "$HOME/.local/share/fonts"
+          unzip -j /tmp/jetbrains-mono-nerd-font.zip 'JetBrainsMonoNerdFontMono-*.ttf' \
+            -d "$HOME/.local/share/fonts"
+          fc-cache --force
+          vhs --version
+
+      - name: Generate theme gallery tape
+        shell: pwsh
+        run: |
+          ./scripts/capture/New-GlyThemeGalleryTape.ps1
+          ./scripts/capture/New-GlyGlyphSetGalleryTape.ps1
+          ./scripts/capture/New-GlyCaptureGalleryDocs.ps1
+
+      - name: Render overview
+        run: vhs scripts/capture/overview.tape
+
+      - name: Render theme gallery
+        run: vhs scripts/capture/generated/theme-gallery-dark.tape
+
+      - name: Render light theme gallery
+        run: vhs scripts/capture/generated/theme-gallery-light.tape
+
+      - name: Render glyph set gallery
+        run: vhs scripts/capture/generated/glyph-set-gallery.tape
+
+      - name: Verify committed captures
+        shell: pwsh
+        run: |
+          $changes = git status --porcelain -- `
+            assets/captures/overview.png `
+            assets/captures/themes `
+            assets/captures/glyph-sets `
+            docs/guide/captures.md
+          if ($changes) {
+            $changes
+            throw 'Generated PNG captures or gallery documentation are stale.'
+          }
+
+      - name: Upload terminal captures
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: terminal-captures
+          path: |
+            assets/captures
+            artifacts/captures
+          if-no-files-found: warn
