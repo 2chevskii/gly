@@ -98,7 +98,7 @@ function New-ThemeGalleryTape {
 
   foreach ($themeName in $Names) {
     $screenshotPath = "assets/captures/themes/$(ConvertTo-CaptureSlug $themeName).png"
-    $lines.Add("Type `"Clear-Host; Show-GlyThemePreview -Theme $themeName -GlyphSet NerdFonts | Select-Object -First 12; Write-Output 'Theme: $themeName'`"")
+    $lines.Add("Type `"Clear-Host; Show-GlyThemePreview -Theme $themeName -GlyphSet NerdFonts | Select-Object -First 12; Write-Output ('Theme' + ': ' + '$themeName')`"")
     $lines.Add('Enter')
     $lines.Add("Wait+Screen /Theme: $themeName/")
     $lines.Add("Screenshot $screenshotPath")
