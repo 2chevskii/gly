@@ -103,7 +103,7 @@ function New-ThemeGalleryTape {
     $lines.Add('Enter')
     $lines.Add("Wait+Screen /Theme: $themeName/")
     $lines.Add("Screenshot $screenshotPath")
-    $lines.Add('Sleep 250ms')
+    $lines.Add('Sleep 1s')
     $lines.Add('')
   }
 
