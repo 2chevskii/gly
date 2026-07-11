@@ -72,12 +72,19 @@ glytr . -Depth 2
 glygr .
 ```
 
-Preview registered theme colors, glyphs, or their combined appearance for every matcher:
+Preview registered theme colors, glyphs, or their combined appearance for every matcher. Color and glyph previews use mock file and directory names so each rule is easy to recognize:
 
 ```powershell
 Show-GlyThemeColor DefaultDark
 Show-GlyGlyph Unicode
 Show-GlyThemePreview -Theme DefaultDark -GlyphSet Unicode
+```
+
+Use `-All` to preview every currently registered theme or glyph set:
+
+```powershell
+Show-GlyThemeColor -All
+Show-GlyGlyph -All
 ```
 
 ## Configuration

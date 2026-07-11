@@ -15,9 +15,12 @@ A glyph set defines the symbol shown before a file or directory name. Nerd Fonts
 ```powershell
 Get-GlyGlyphSet
 Set-GlyGlyphSet Unicode
+Show-GlyGlyph Unicode
 ```
 
 `gly` does not detect the terminal font or switch sets automatically.
+
+`Show-GlyGlyph` displays each glyph beside a mock file-system entry derived from its selector, such as `file.ps1`, `src/`, or `link -> target`.
 
 ## Essential Fallback Matchers
 
