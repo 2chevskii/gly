@@ -32,14 +32,14 @@ Type "Clear-Host"
 Enter
 Show
 
-Type "Show-GlyThemePreview -Theme Dracula -GlyphSet NerdFonts; Write-Output 'Theme: Dracula'"
+Type "Show-GlyThemePreview -Theme Dracula -GlyphSet NerdFonts | Select-Object -First 12; Write-Output 'Theme: Dracula'"
 Enter
 Wait+Screen /Theme: Dracula/
 Sleep 1s
 Screenshot assets/captures/overview.png
 Sleep 1s
 
-Type "Clear-Host; Show-GlyThemePreview -Theme DefaultLight -GlyphSet Emoji; Write-Output 'Theme: DefaultLight'"
+Type "Clear-Host; Show-GlyThemePreview -Theme DefaultLight -GlyphSet Emoji | Select-Object -First 12; Write-Output 'Theme: DefaultLight'"
 Enter
 Wait+Screen /Theme: DefaultLight/
 Sleep 2s
