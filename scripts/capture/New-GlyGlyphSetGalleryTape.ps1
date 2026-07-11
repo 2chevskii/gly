@@ -66,7 +66,7 @@ foreach ($glyphSetName in $glyphSetNames) {
   $lines.Add('Enter')
   $lines.Add("Wait+Screen /Glyph set: $glyphSetName/")
   $lines.Add("Screenshot $screenshotPath")
-  $lines.Add('Sleep 1s')
+  $lines.Add('Sleep 2s')
   $lines.Add('')
 }
 
