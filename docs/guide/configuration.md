@@ -16,6 +16,11 @@ Set-GlyConfiguration -DateFormat Iso
 Set-GlyConfiguration -StyleRenderer PlainText
 ```
 
+Theme and glyph-set names complete dynamically for `Set-GlyTheme`,
+`Set-GlyGlyphSet`, and the corresponding `Set-GlyConfiguration` parameters.
+Items registered during the current session are available on the next completion
+request; command validation still rejects unknown names.
+
 ## Renderer Backend
 
 Supported values:
@@ -33,4 +38,3 @@ Remove-Variable GlyStyleRenderer -Scope Global
 ```
 
 If `RespectNoColor` is enabled and `NO_COLOR` exists, `gly` renders plain text.
-
