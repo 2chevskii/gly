@@ -1,6 +1,6 @@
 # Glyph Sets
 
-A glyph set defines the symbol shown before a file or directory name. Nerd Fonts and Emoji provide the complete selector catalog. The text and Unicode fallback sets intentionally use only essential file-system matchers.
+A glyph set defines the symbol shown before a file or directory name. Nerd Fonts provides the complete selector catalog, including dedicated icons for the supported languages and build tools. The text and Unicode fallback sets intentionally use only essential file-system matchers.
 
 ## Built-in Sets
 
@@ -28,18 +28,21 @@ Show-GlyGlyph Unicode
 
 ## Complete Icon Coverage
 
-`NerdFonts` and `Emoji` contain rules for:
+`NerdFonts` contains rules for:
 
 - `Directory`, `Junction`, `Symlink`, `ReadOnly`, and `Hidden`;
 - Git, editor-config, dependency, source, test, documentation, build, cache, download, media, and infrastructure directories;
 - Git, Docker, README, license, changelog, package, project, settings, and CI files;
 - PowerShell, shell, .NET, C/C++, JVM, JavaScript/TypeScript/React, Python, Rust, Go, Ruby, PHP, and web files;
+- Ada, Assembly, Astro, Clojure, CoffeeScript, Crystal, Dart, D, Elixir, Elm, Erlang, F#, Fortran, GraphQL, Groovy, Haskell, Haxe, Julia, Kotlin, Lua, Nim, Nix, OCaml, Perl, Prisma, PureScript, R, Reason, ReScript, Scala, Solidity, Swift, Terraform, V, WebAssembly, Zig, and other file types with dedicated Nerd Font icons;
 - JSON, YAML, TOML/INI/ENV, XML, Markdown, text, and log files;
 - archives, images, audio, video, office documents, databases, fonts, certificates, and binaries.
 
 Complete name and extension lists are in the [selector catalog](./selectors.md#built-in-catalog).
 
 Mappings were inspired by [Terminal-Icons](https://github.com/devblackops/Terminal-Icons), [GlyphShell](https://github.com/SemperFu/GlyphShell), and [PSFileIcons](https://github.com/hanthor/PSFileIcons). `gly` uses only file-system object properties and does not add Git-aware or executable-aware behavior.
+
+The expanded Nerd Fonts mappings use the current [Nerd Fonts cheat sheet](https://www.nerdfonts.com/cheat-sheet) as the glyph source.
 
 ## Strongly Typed Structure
 
