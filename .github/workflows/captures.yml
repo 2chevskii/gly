@@ -72,10 +72,14 @@ jobs:
       - name: Verify committed captures
         shell: pwsh
         run: |
-          $changes = git status --porcelain -- assets/captures docs/guide/captures.md
+          $changes = git status --porcelain -- `
+            assets/captures/overview.png `
+            assets/captures/themes `
+            assets/captures/glyph-sets `
+            docs/guide/captures.md
           if ($changes) {
             $changes
-            throw 'Generated captures or gallery documentation are stale.'
+            throw 'Generated PNG captures or gallery documentation are stale.'
           }
 
       - name: Upload terminal captures
