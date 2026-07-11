@@ -14,6 +14,7 @@ Describe 'gly theme gallery tape' {
     ($screenshots | Select-Object -Unique).Count | Should -Be 90
     ($tapes -contains 'Set Theme "Catppuccin Mocha"') | Should -Be $true
     ($tapes -contains 'Set Theme "Catppuccin Latte"') | Should -Be $true
+    ($tapes | Where-Object { $_ -like 'Wait+Screen /Theme: */' }).Count | Should -Be 90
   }
 
   It 'generates one glyph set capture and gallery entry for each built-in set' {
@@ -27,6 +28,7 @@ Describe 'gly theme gallery tape' {
     $gallery = Get-Content -Raw -LiteralPath $galleryPath
 
     @($tape | Where-Object { $_ -like 'Screenshot assets/captures/glyph-sets/*.png' }).Count | Should -Be 5
+    @($tape | Where-Object { $_ -like 'Wait+Screen /Glyph set: */' }).Count | Should -Be 5
     ([regex]::Matches($gallery, '<figure>')).Count | Should -Be 95
     ([regex]::Matches($gallery, 'theme preview with Nerd Fonts glyphs')).Count | Should -Be 90
     ([regex]::Matches($gallery, 'glyph set preview with the DefaultDark theme')).Count | Should -Be 5
