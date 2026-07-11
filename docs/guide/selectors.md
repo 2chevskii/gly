@@ -16,7 +16,7 @@ The last matching rule wins.
 
 ## Built-in Catalog
 
-The shared built-in catalog for themes and glyph sets contains more than 60 rules.
+The shared built-in catalog for themes and glyph sets contains more than 170 rules. Nerd Fonts maps the extended language and tool rules to dedicated icons; the fallback sets retain their smaller structural matcher set.
 
 ### Directories
 
@@ -41,7 +41,7 @@ The shared built-in catalog for themes and glyph sets contains more than 60 rule
 
 ### Extensions
 
-- PowerShell, shell, .NET, C/C++, JVM, JavaScript/TypeScript/React, Python, Rust, Go, Ruby, PHP, web;
+- PowerShell, shell, .NET, C/C++, JVM, JavaScript/TypeScript/React, Python, Rust, Go, Ruby, PHP, web, and the additional Nerd Fonts language icons listed in [Glyph Sets](./glyph-sets.md#complete-icon-coverage);
 - JSON/JSONC, YAML, TOML/INI/CFG/CONF/ENV, XML/XSD/XSL/XAML/PLIST;
 - Markdown/text/logs, archives, media, office documents, databases, fonts, certificates, and binaries.
 
