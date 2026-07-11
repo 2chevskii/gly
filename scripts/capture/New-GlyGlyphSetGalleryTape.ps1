@@ -65,8 +65,9 @@ foreach ($glyphSetName in $glyphSetNames) {
   $lines.Add("Type `"Clear-Host; Show-GlyThemePreview -Theme DefaultDark -GlyphSet $glyphSetName | Select-Object -First 12; Write-Output ('Glyph set' + ': ' + '$glyphSetName')`"")
   $lines.Add('Enter')
   $lines.Add("Wait+Screen /Glyph set: $glyphSetName/")
+  $lines.Add('Sleep 1s')
   $lines.Add("Screenshot $screenshotPath")
-  $lines.Add('Sleep 2s')
+  $lines.Add('Sleep 1s')
   $lines.Add('')
 }
 

@@ -102,8 +102,9 @@ function New-ThemeGalleryTape {
     $lines.Add("Type `"Clear-Host; Show-GlyThemePreview -Theme $themeName -GlyphSet NerdFonts | Select-Object -First 12; Write-Output ('Theme' + ': ' + '$themeName')`"")
     $lines.Add('Enter')
     $lines.Add("Wait+Screen /Theme: $themeName/")
+    $lines.Add('Sleep 1s')
     $lines.Add("Screenshot $screenshotPath")
-    $lines.Add('Sleep 2s')
+    $lines.Add('Sleep 1s')
     $lines.Add('')
   }
 
