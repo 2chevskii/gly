@@ -61,9 +61,9 @@ $lines.Add('')
 
 foreach ($glyphSetName in $glyphSetNames) {
   $screenshotPath = "assets/captures/glyph-sets/$(ConvertTo-CaptureSlug $glyphSetName).png"
-  $lines.Add("Type `"Clear-Host; Show-GlyThemePreview -Theme DefaultDark -GlyphSet $glyphSetName`"")
+  $lines.Add("Type `"Clear-Host; Show-GlyThemePreview -Theme DefaultDark -GlyphSet $glyphSetName; Write-Output 'Glyph set: $glyphSetName'`"")
   $lines.Add('Enter')
-  $lines.Add('Wait+Screen /Matcher/')
+  $lines.Add("Wait+Screen /Glyph set: $glyphSetName/")
   $lines.Add("Screenshot $screenshotPath")
   $lines.Add('Sleep 250ms')
   $lines.Add('')
