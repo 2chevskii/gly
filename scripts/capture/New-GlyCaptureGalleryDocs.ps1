@@ -44,7 +44,7 @@ $lines.Add('The animation switches from the Dracula theme with Nerd Fonts to Def
 $lines.Add('')
 $lines.Add('## Built-in themes')
 $lines.Add('')
-$lines.Add('Each theme preview uses the NerdFonts glyph set. Open an image to inspect it at full size.')
+$lines.Add('Each theme preview uses the NerdFonts glyph set and shows a fixed representative matcher subset. Open an image to inspect it at full size.')
 $lines.Add('')
 
 foreach ($themeName in $themeNames) {
@@ -55,7 +55,7 @@ foreach ($themeName in $themeNames) {
 $lines.Add('')
 $lines.Add('## Built-in glyph sets')
 $lines.Add('')
-$lines.Add('Each glyph-set preview uses the DefaultDark theme.')
+$lines.Add('Each glyph-set preview uses the DefaultDark theme and the same representative matcher subset.')
 $lines.Add('')
 
 foreach ($glyphSetName in $glyphSetNames) {

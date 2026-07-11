@@ -15,7 +15,7 @@ The animation switches from the Dracula theme with Nerd Fonts to DefaultLight wi
 
 ## Built-in themes
 
-Each theme preview uses the NerdFonts glyph set. Open an image to inspect it at full size.
+Each theme preview uses the NerdFonts glyph set and shows a fixed representative matcher subset. Open an image to inspect it at full size.
 
 <figure><a :href="withBase('/captures/themes/andromeda.png')"><img :src="withBase('/captures/themes/andromeda.png')" loading="lazy" alt="Andromeda theme preview with Nerd Fonts glyphs"></a><figcaption>Andromeda</figcaption></figure>
 <figure><a :href="withBase('/captures/themes/apprentice.png')"><img :src="withBase('/captures/themes/apprentice.png')" loading="lazy" alt="Apprentice theme preview with Nerd Fonts glyphs"></a><figcaption>Apprentice</figcaption></figure>
@@ -110,7 +110,7 @@ Each theme preview uses the NerdFonts glyph set. Open an image to inspect it at 
 
 ## Built-in glyph sets
 
-Each glyph-set preview uses the DefaultDark theme.
+Each glyph-set preview uses the DefaultDark theme and the same representative matcher subset.
 
 <figure><a :href="withBase('/captures/glyph-sets/ansi.png')"><img :src="withBase('/captures/glyph-sets/ansi.png')" loading="lazy" alt="ANSI glyph set preview with the DefaultDark theme"></a><figcaption>ANSI</figcaption></figure>
 <figure><a :href="withBase('/captures/glyph-sets/ansicompact.png')"><img :src="withBase('/captures/glyph-sets/ansicompact.png')" loading="lazy" alt="ANSICompact glyph set preview with the DefaultDark theme"></a><figcaption>ANSICompact</figcaption></figure>
