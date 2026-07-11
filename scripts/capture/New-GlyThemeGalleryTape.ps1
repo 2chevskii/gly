@@ -87,6 +87,7 @@ function New-ThemeGalleryTape {
   $lines.Add('Enter')
   $lines.Add('Type "Import-Module ./src/gly.psd1 -Force"')
   $lines.Add('Enter')
+  $lines.Add('Sleep 2s')
   $lines.Add('Type "$global:GlyStyleRenderer = ''Ansi''"')
   $lines.Add('Enter')
   $lines.Add('Type "function global:prompt { ''PS> '' }"')
