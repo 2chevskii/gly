@@ -61,10 +61,16 @@ Describe 'gly rendering' {
 
   It 'formats sizes in the standard file-system view' {
     [System.IO.File]::WriteAllBytes($file.FullName, [byte[]]::new(1536))
+    Set-GlyConfiguration -SizeFormat Raw | Out-Null
+
+    $rawText = Get-ChildItem -LiteralPath $root | Format-Table | Out-String
+
+    $rawText | Should -Match '1536'
+
     Set-GlyConfiguration -SizeFormat Binary | Out-Null
 
-    $text = Get-ChildItem -LiteralPath $root | Format-Table | Out-String
+    $binaryText = Get-ChildItem -LiteralPath $root | Format-Table | Out-String
 
-    $text | Should -Match '1\.5 KiB'
+    $binaryText | Should -Match '1\.5 KiB'
   }
 }
