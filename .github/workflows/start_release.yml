@@ -17,9 +17,13 @@ env:
   PESTER_VERSION: 5.7.1
 
 jobs:
-  prepare-release:
-    name: Test and create draft release
+  validate-release:
+    name: Validate release tag and module version
     runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.version.outputs.tag }}
+      version: ${{ steps.version.outputs.version }}
+      package: ${{ steps.version.outputs.package }}
     steps:
       - name: Checkout release tag
         uses: actions/checkout@v7
@@ -48,13 +52,16 @@ jobs:
           "version=$version" >> $env:GITHUB_OUTPUT
           "package=gly.$version.nupkg" >> $env:GITHUB_OUTPUT
 
-      - name: Install release tooling
+  test:
+    name: Run tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout release tag
+        uses: actions/checkout@v7
+
+      - name: Install Pester
         shell: pwsh
         run: |
-          if (-not (Get-Module Microsoft.PowerShell.PSResourceGet -ListAvailable | Where-Object Version -EQ $env:PSRESOURCEGET_VERSION)) {
-            Install-PSResource Microsoft.PowerShell.PSResourceGet -Version $env:PSRESOURCEGET_VERSION -Scope CurrentUser -TrustRepository
-          }
-
           if (-not (Get-Module Pester -ListAvailable | Where-Object Version -EQ $env:PESTER_VERSION)) {
             Install-PSResource Pester -Version $env:PESTER_VERSION -Scope CurrentUser -TrustRepository
           }
@@ -65,24 +72,48 @@ jobs:
           Import-Module Pester -RequiredVersion $env:PESTER_VERSION
           Invoke-Pester -Path ./tests -CI
 
+  create-release:
+    name: Build package and create draft release
+    runs-on: ubuntu-latest
+    needs:
+      - validate-release
+      - test
+    steps:
+      - name: Checkout release tag
+        uses: actions/checkout@v7
+
+      - name: Install PSResourceGet
+        shell: pwsh
+        run: |
+          if (-not (Get-Module Microsoft.PowerShell.PSResourceGet -ListAvailable | Where-Object Version -EQ $env:PSRESOURCEGET_VERSION)) {
+            Install-PSResource Microsoft.PowerShell.PSResourceGet -Version $env:PSRESOURCEGET_VERSION -Scope CurrentUser -TrustRepository
+          }
+
       - name: Build release package
         shell: pwsh
         run: |
           New-Item -Path ./artifacts/release -ItemType Directory -Force | Out-Null
           Compress-PSResource -Path ./src -DestinationPath ./artifacts/release
 
-          $packagePath = Join-Path ./artifacts/release '${{ steps.version.outputs.package }}'
+          $packagePath = Join-Path ./artifacts/release '${{ needs.validate-release.outputs.package }}'
           if (-not (Test-Path -LiteralPath $packagePath -PathType Leaf)) {
             throw "Expected release package was not created: $packagePath"
           }
+
+      - name: Upload release package
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-package-${{ needs.validate-release.outputs.version }}
+          path: artifacts/release/${{ needs.validate-release.outputs.package }}
+          if-no-files-found: error
 
       - name: Create draft GitHub release
         env:
           GH_TOKEN: ${{ github.token }}
         shell: pwsh
         run: |
-          $tag = '${{ steps.version.outputs.tag }}'
-          $packagePath = './artifacts/release/${{ steps.version.outputs.package }}'
+          $tag = '${{ needs.validate-release.outputs.tag }}'
+          $packagePath = './artifacts/release/${{ needs.validate-release.outputs.package }}'
           $isDraft = gh release view $tag --json isDraft --jq .isDraft 2>$null
 
           if ($LASTEXITCODE -eq 0) {
@@ -100,5 +131,5 @@ jobs:
           gh release create $tag $packagePath `
             --draft `
             --verify-tag `
-            --title 'gly ${{ steps.version.outputs.tag }}' `
+            --title 'gly ${{ needs.validate-release.outputs.tag }}' `
             --generate-notes
