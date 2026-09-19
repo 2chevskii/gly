@@ -16,6 +16,9 @@ Set-GlyConfiguration -DateFormat Iso
 Set-GlyConfiguration -StyleRenderer PlainText
 ```
 
+`SizeFormat` controls file sizes in the standard PowerShell view and in
+`Show-Gly`. `Binary` renders values with binary units such as `KiB` and `MiB`.
+
 Theme and glyph-set names complete dynamically for `Set-GlyTheme`,
 `Set-GlyGlyphSet`, and the corresponding `Set-GlyConfiguration` parameters.
 Items registered during the current session are available on the next completion
