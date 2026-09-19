@@ -58,4 +58,13 @@ Describe 'gly rendering' {
     $text = Get-Item -LiteralPath $file.FullName | Format-Table | Out-String
     $text | Should -Match 'README\.md'
   }
+
+  It 'formats sizes in the standard file-system view' {
+    [System.IO.File]::WriteAllBytes($file.FullName, [byte[]]::new(1536))
+    Set-GlyConfiguration -SizeFormat Binary | Out-Null
+
+    $text = Get-ChildItem -LiteralPath $root | Format-Table | Out-String
+
+    $text | Should -Match '1\.5 KiB'
+  }
 }
