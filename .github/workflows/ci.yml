@@ -111,7 +111,7 @@ jobs:
 
       - name: Generate coverage HTML and Markdown
         if: ${{ !cancelled() }}
-        uses: danielpalme/ReportGenerator-GitHub-Action@5.5.10
+        uses: danielpalme/ReportGenerator-GitHub-Action@5.5.11
         with:
           reports: artifacts/coverage/coverage.cobertura.xml
           targetdir: artifacts/coverage/html
