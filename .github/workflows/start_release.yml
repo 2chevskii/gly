@@ -3,7 +3,7 @@ name: Start release
 on:
   push:
     tags:
-      - 'v*'
+      - "v*"
 
 permissions:
   contents: write
@@ -101,10 +101,11 @@ jobs:
           }
 
       - name: Upload release package
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
-          name: release-package-${{ needs.validate-release.outputs.version }}
+          name: gly.${{ needs.validate-release.outputs.version }}.nupkg
           path: artifacts/release/${{ needs.validate-release.outputs.package }}
+          archive: false
           if-no-files-found: error
 
       - name: Create draft GitHub release
