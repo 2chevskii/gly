@@ -23,7 +23,7 @@ The module:
 
 - targets PowerShell `7.0+`;
 - activates automatically on `Import-Module`;
-- customizes the standard table view only in the `Name` column;
+- customizes the standard table view, including file names and sizes;
 - adds glyphs and optional color to file and directory names;
 - provides session-only configuration;
 - supports built-in and user-registered themes;
@@ -99,6 +99,9 @@ Set-GlyConfiguration -DateFormat Iso
 Set-GlyTheme DefaultLight
 Set-GlyGlyphSet Unicode
 ```
+
+`SizeFormat` applies to file sizes in both the standard PowerShell view and
+the explicit `Show-Gly` renderer.
 
 `Disable-Gly` disables colors and glyphs through module configuration. PowerShell format data is session-wide, so the custom view can remain loaded until the session ends.
 
