@@ -1,0 +1,131 @@
+name: Refresh snapshots
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  PESTER_VERSION: 5.7.1
+
+concurrency:
+  group: refresh-snapshots
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    name: Generate snapshots (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Install Pester
+        shell: pwsh
+        run: |
+          Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
+          Install-Module Pester -RequiredVersion $env:PESTER_VERSION -Scope CurrentUser -Force -SkipPublisherCheck
+
+      - name: Generate snapshots
+        shell: pwsh
+        env:
+          GLY_UPDATE_SNAPSHOTS: '1'
+        run: |
+          Import-Module Pester -RequiredVersion $env:PESTER_VERSION
+          $result = Invoke-Pester -Path ./tests/Snapshots.Tests.ps1 -PassThru
+          if ($result.Result -ne 'Passed') {
+            throw "Snapshot generation failed with result '$($result.Result)'."
+          }
+
+      - name: Upload snapshots
+        uses: actions/upload-artifact@v7
+        with:
+          name: snapshots-${{ matrix.os }}
+          path: tests/snapshots
+          if-no-files-found: error
+
+  pull-request:
+    name: Open snapshot pull request
+    needs: generate
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Download Linux snapshots
+        uses: actions/download-artifact@v8
+        with:
+          name: snapshots-ubuntu-latest
+          path: artifacts/snapshots/ubuntu-latest
+
+      - name: Download Windows snapshots
+        uses: actions/download-artifact@v8
+        with:
+          name: snapshots-windows-latest
+          path: artifacts/snapshots/windows-latest
+
+      - name: Download macOS snapshots
+        uses: actions/download-artifact@v8
+        with:
+          name: snapshots-macos-latest
+          path: artifacts/snapshots/macos-latest
+
+      - name: Collect snapshots
+        shell: pwsh
+        run: |
+          Copy-Item ./artifacts/snapshots/ubuntu-latest/*.snap ./tests/snapshots -Force
+          Copy-Item ./artifacts/snapshots/windows-latest/*.windows.snap ./tests/snapshots -Force
+          Copy-Item ./artifacts/snapshots/macos-latest/*.macos.snap ./tests/snapshots -Force
+
+      - name: Create pull request
+        id: create-pr
+        uses: peter-evans/create-pull-request@v8
+        with:
+          add-paths: tests/snapshots/*.snap
+          branch: chore/refresh-snapshots
+          base: master
+          delete-branch: true
+          commit-message: 'test: refresh snapshots'
+          title: 'test: refresh snapshots'
+          labels: |
+            area-tests
+            github_actions
+          assignees: ${{ github.actor }}
+          body: |
+            ## Summary
+
+            Refresh committed snapshots from PowerShell test runs on Linux, Windows, and macOS.
+
+            ## Validation
+
+            - Snapshot generation passed on all three platforms in the workflow run.
+            - Review the generated diff before merging.
+
+            - [x] Pester tests
+            - [ ] Documentation build, when documentation changed
+            - [ ] Manual verification, when applicable
+
+            ## Checklist
+
+            - [x] The change is focused and does not include unrelated modifications.
+            - [x] Tests and documentation have been updated where needed.
+            - [x] I have read and agree to follow the Code of Conduct.
+
+      - name: Run CI for updated snapshots
+        if: ${{ steps.create-pr.outputs.pull-request-operation == 'created' || steps.create-pr.outputs.pull-request-operation == 'updated' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_BRANCH: ${{ steps.create-pr.outputs.pull-request-branch }}
+        run: gh workflow run ci.yml --ref "$PR_BRANCH"
