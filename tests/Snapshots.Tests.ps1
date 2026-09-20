@@ -167,7 +167,7 @@ Describe 'gly snapshots' {
     @{ Command = 'show-glytree' }
     @{ Command = 'show-glygrid' }
   ) {
-    $platform = if ($IsWindows) { 'windows' } elseif ($IsLinux) { 'linux' } else { throw 'No literal snapshot exists for this platform.' }
+    $platform = if ($IsWindows) { 'windows' } elseif ($IsLinux) { 'linux' } elseif ($IsMacOS) { 'macos' } else { throw 'No literal snapshot exists for this platform.' }
     $previousCulture = [System.Threading.Thread]::CurrentThread.CurrentCulture
     [System.Threading.Thread]::CurrentThread.CurrentCulture = [System.Globalization.CultureInfo]::GetCultureInfo('en-US')
 
