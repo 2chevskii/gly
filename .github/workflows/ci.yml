@@ -313,7 +313,7 @@ jobs:
                 },
               )
               const baseline = artifacts.find(
-                (artifact) => artifact.name === 'benchmark-results' && !artifact.expired,
+                (artifact) => artifact.name === 'benchmark-results-ubuntu-26.04' && !artifact.expired,
               )
 
               if (baseline) {
@@ -328,7 +328,7 @@ jobs:
         if: ${{ !cancelled() && steps.benchmark-baseline.outputs.run-id != '' }}
         uses: actions/download-artifact@v8
         with:
-          name: benchmark-results
+          name: benchmark-results-ubuntu-26.04
           path: artifacts/benchmarks/baseline
           github-token: ${{ github.token }}
           repository: ${{ github.repository }}
@@ -348,7 +348,7 @@ jobs:
         if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v7
         with:
-          name: benchmark-results
+          name: benchmark-results-ubuntu-26.04
           path: artifacts/benchmarks/results
           if-no-files-found: error
 
