@@ -28,8 +28,7 @@ function Get-GlyFileSystemDisplayName {
         $null
       }
 
-      $builtInSelector = if (($null -ne $glyphSet -and $glyphSet -isnot [GlyGlyphSet] -and $glyphSet.CompleteCatalog) -or
-        ($null -ne $theme -and $theme -isnot [GlyTheme] -and $theme.HasRules)) {
+      $builtInSelector = if ($null -ne $glyphSet -and $glyphSet -isnot [GlyGlyphSet] -and $glyphSet.CompleteCatalog) {
         Resolve-GlyBuiltInSelector -InputObject $InputObject
       }
       else {
@@ -48,24 +47,23 @@ function Get-GlyFileSystemDisplayName {
       }
       $displayName = if ([string]::IsNullOrEmpty($glyph)) { $name } else { "$glyph $name" }
 
+      $renderer = Resolve-GlyStyleRenderer
+      if ($renderer -eq 'PlainText') {
+        return $displayName
+      }
+
       $style = if ($null -eq $theme) {
         $null
       }
       elseif ($theme -isnot [GlyTheme]) {
         Resolve-GlyBuiltInThemeStyle `
           -Theme $theme `
-          -InputObject $InputObject `
-          -ResolvedSelector $builtInSelector
+          -InputObject $InputObject
       }
       else {
         $rule = Resolve-GlyFileSystemRule -InputObject $InputObject -Rules $theme.Rules
         if ($null -ne $rule) { $rule.Style } else { $theme.Default }
       }
-      $renderer = Resolve-GlyStyleRenderer
-      if ($renderer -eq 'PlainText') {
-        return $displayName
-      }
-
       $prefix = if ($renderer -eq 'PSStyle') {
         ConvertTo-GlyPSStyle -Style $style
       }

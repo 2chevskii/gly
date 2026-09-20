@@ -74,3 +74,44 @@ Describe 'gly rendering' {
     $binaryText | Should -Match '1\.5 KiB'
   }
 }
+
+Describe 'gly built-in theme precedence' {
+  BeforeAll {
+    $root = Join-Path $TestDrive 'theme-precedence'
+    New-Item -ItemType Directory -Path $root | Out-Null
+    $directory = New-Item -ItemType Directory -Path (Join-Path $root 'source')
+    $readOnlyFile = New-Item -ItemType File -Path (Join-Path $root 'read-only.txt')
+    $readOnlyFile.Attributes = $readOnlyFile.Attributes -bor [System.IO.FileAttributes]::ReadOnly
+    $hiddenReadOnlyFile = New-Item -ItemType File -Path (Join-Path $root 'hidden-read-only.txt')
+    $hiddenReadOnlyFile.Attributes = $hiddenReadOnlyFile.Attributes -bor
+      [System.IO.FileAttributes]::ReadOnly -bor [System.IO.FileAttributes]::Hidden
+    $regularFile = New-Item -ItemType File -Path (Join-Path $root 'ordinary.txt')
+
+    Import-Module (Join-Path $PSScriptRoot '../src/gly.psd1') -Force
+    Set-GlyTheme DefaultDark | Out-Null
+    Set-GlyConfiguration -ShowGlyphs $false -ShowColors $true -StyleRenderer Ansi -RespectNoColor $false | Out-Null
+  }
+
+  It 'uses the file color for an ordinary file' {
+    Get-GlyFileSystemDisplayName -InputObject $regularFile | Should -Match "`e\[38;2;212;212;212m"
+  }
+
+  It 'uses the directory color and bold style' {
+    Get-GlyFileSystemDisplayName -InputObject $directory | Should -Match "`e\[1;38;2;142;192;124m"
+  }
+
+  It 'uses the read-only color' {
+    Get-GlyFileSystemDisplayName -InputObject $readOnlyFile | Should -Match "`e\[38;2;250;189;47m"
+  }
+
+  It 'gives hidden precedence over read-only' {
+    Get-GlyFileSystemDisplayName -InputObject $hiddenReadOnlyFile | Should -Match "`e\[38;2;146;131;116m"
+  }
+
+  It 'keeps glyphs in plain-text mode without color escapes' {
+    Set-GlyConfiguration -ShowGlyphs $true -StyleRenderer PlainText | Out-Null
+    $name = Get-GlyFileSystemDisplayName -InputObject $regularFile
+    $name | Should -Match 'ordinary\.txt$'
+    $name | Should -Not -Match "`e\["
+  }
+}
