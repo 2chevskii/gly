@@ -25,6 +25,15 @@ npm run test:coverage
 
 `npm test` creates JUnit XML, CTRF JSON, and a self-contained HTML report in `artifacts/tests/local`. The coverage command also creates a Cobertura report. CI publishes each test and coverage format as a separate artifact, including HTML and Markdown coverage reports, plus the ZIP and NuGet module packages. It rejects line-coverage regressions larger than one percentage point from the latest successful `master` run.
 
+The Pester suite includes committed snapshots in `tests/snapshots`. They cover the exported command surface, built-in themes and glyph sets, previews, session configuration, display names, and renderers. Literal output snapshots also cover `Get-Item`, `Get-ChildItem`, `Show-Gly`, `Show-GlyTree`, and `Show-GlyGrid` with a fixed fixture and output width. Separate Windows and Linux snapshots preserve platform-specific spacing, file modes, and line endings. CI compares the output with these snapshots on Windows and Ubuntu. When an intentional behavior change requires new snapshots, regenerate them on each platform with PowerShell 7 and review the diff:
+
+```powershell
+$env:GLY_UPDATE_SNAPSHOTS = '1'
+Invoke-Pester ./tests/Snapshots.Tests.ps1
+Remove-Item Env:GLY_UPDATE_SNAPSHOTS
+npm test
+```
+
 ## Performance Benchmarks
 
 ```powershell

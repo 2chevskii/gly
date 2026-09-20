@@ -1,0 +1,28 @@
+{
+  "Commands": [
+    "Copy-GlyGlyphSet",
+    "Copy-GlyTheme",
+    "Disable-Gly",
+    "Enable-Gly",
+    "Get-GlyConfiguration",
+    "Get-GlyFileSystemDisplayName",
+    "Get-GlyGlyphSet",
+    "Get-GlyTheme",
+    "Register-GlyGlyphSet",
+    "Register-GlyTheme",
+    "Set-GlyConfiguration",
+    "Set-GlyGlyphSet",
+    "Set-GlyTheme",
+    "Show-Gly",
+    "Show-GlyGlyph",
+    "Show-GlyGrid",
+    "Show-GlyThemeColor",
+    "Show-GlyThemePreview",
+    "Show-GlyTree"
+  ],
+  "Aliases": [
+    "gly=Show-Gly",
+    "glytr=Show-GlyTree",
+    "glygr=Show-GlyGrid"
+  ]
+}

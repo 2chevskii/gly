@@ -49,7 +49,7 @@ jobs:
         shell: pwsh
         run: Import-Module ./src/gly.psd1 -Force
 
-      - name: Run Pester and generate reports
+      - name: Run Pester tests including snapshots and generate reports
         run: npm test -- --OutputPath './artifacts/tests/${{ matrix.os }}'
 
       - name: Upload JUnit test results
