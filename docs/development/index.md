@@ -38,6 +38,8 @@ Remove-Item Env:GLY_UPDATE_SNAPSHOTS
 npm test
 ```
 
+The **Refresh snapshots** GitHub Actions workflow can be run manually from the Actions tab. It generates snapshots on Linux, Windows, and macOS, then opens or updates a pull request to `master` when the committed snapshots change and starts CI for that branch. Review the diff before merging.
+
 ## Performance Benchmarks
 
 ```powershell
