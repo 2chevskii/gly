@@ -127,6 +127,7 @@ npm test
 ```
 
 This produces JUnit XML, CTRF JSON, and HTML test reports under `artifacts/tests/local`. Run `npm run test:coverage` to also produce Cobertura coverage data.
+The suite includes committed output snapshots, checked on Windows and Ubuntu in CI.
 
 Build the VitePress documentation site:
 
