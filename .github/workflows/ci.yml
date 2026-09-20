@@ -18,14 +18,18 @@ env:
 
 jobs:
   tests:
-    name: PowerShell tests (${{ matrix.os }})
+    name: PowerShell ${{ matrix.type }} tests (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
         os:
-          - ubuntu-latest
-          - windows-latest
+          - ubuntu-26.04
+          - windows-2025
+          - macos-26
+        type:
+          - Unit
+          - Snapshots
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -49,36 +53,36 @@ jobs:
         shell: pwsh
         run: Import-Module ./src/gly.psd1 -Force
 
-      - name: Run Pester and generate reports
-        run: npm test -- --OutputPath './artifacts/tests/${{ matrix.os }}'
+      - name: Run Pester tests and generate reports
+        run: npm test -- --TestType '${{ matrix.type }}' --OutputPath './artifacts/tests/${{ matrix.os }}/${{ matrix.type }}'
 
       - name: Upload JUnit test results
         if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v7
         with:
-          name: test-junit-${{ matrix.os }}
-          path: artifacts/tests/${{ matrix.os }}/pester.junit.xml
+          name: test-junit-${{ matrix.os }}-${{ matrix.type }}
+          path: artifacts/tests/${{ matrix.os }}/${{ matrix.type }}/pester.junit.xml
           if-no-files-found: error
 
       - name: Upload CTRF test results
         if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v7
         with:
-          name: test-ctrf-${{ matrix.os }}
-          path: artifacts/tests/${{ matrix.os }}/pester.ctrf.json
+          name: test-ctrf-${{ matrix.os }}-${{ matrix.type }}
+          path: artifacts/tests/${{ matrix.os }}/${{ matrix.type }}/pester.ctrf.json
           if-no-files-found: error
 
       - name: Upload HTML test report
         if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v7
         with:
-          name: test-html-${{ matrix.os }}
-          path: artifacts/tests/${{ matrix.os }}/html
+          name: test-html-${{ matrix.os }}-${{ matrix.type }}
+          path: artifacts/tests/${{ matrix.os }}/${{ matrix.type }}/html
           if-no-files-found: error
 
   coverage:
     name: Coverage analysis
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -207,7 +211,7 @@ jobs:
 
   package:
     name: Build module artifacts
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -246,7 +250,7 @@ jobs:
 
   docs:
     name: VitePress build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -265,7 +269,7 @@ jobs:
 
   benchmarks:
     name: Performance benchmarks
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -313,7 +317,7 @@ jobs:
                 },
               )
               const baseline = artifacts.find(
-                (artifact) => artifact.name === 'benchmark-results' && !artifact.expired,
+                (artifact) => artifact.name === 'benchmark-results-ubuntu-26.04' && !artifact.expired,
               )
 
               if (baseline) {
@@ -328,7 +332,7 @@ jobs:
         if: ${{ !cancelled() && steps.benchmark-baseline.outputs.run-id != '' }}
         uses: actions/download-artifact@v8
         with:
-          name: benchmark-results
+          name: benchmark-results-ubuntu-26.04
           path: artifacts/benchmarks/baseline
           github-token: ${{ github.token }}
           repository: ${{ github.repository }}
@@ -348,7 +352,7 @@ jobs:
         if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v7
         with:
-          name: benchmark-results
+          name: benchmark-results-ubuntu-26.04
           path: artifacts/benchmarks/results
           if-no-files-found: error
 
@@ -360,15 +364,12 @@ jobs:
           path: artifacts/benchmarks/BenchmarkRegression.md
           if-no-files-found: error
 
-  summary:
-    name: Publish test, coverage, and benchmark results
+  test-summary:
+    name: Publish test results
     if: ${{ always() && !cancelled() }}
     needs:
       - tests
-      - coverage
-      - package
-      - benchmarks
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - name: Download CTRF test results
         continue-on-error: true
@@ -377,6 +378,25 @@ jobs:
           pattern: test-ctrf-*
           path: artifacts/summary/tests
 
+      - name: Publish test results
+        uses: ctrf-io/github-test-reporter@v1
+        with:
+          report-path: artifacts/summary/tests/**/pester.ctrf.json
+          title: Pester test results
+          summary-report: true
+          failed-folded-report: true
+          skipped-report: true
+          exit-on-no-files: false
+          exit-on-fail: false
+
+  summary:
+    name: Publish coverage and benchmark results
+    if: ${{ always() && !cancelled() }}
+    needs:
+      - coverage
+      - benchmarks
+    runs-on: ubuntu-26.04
+    steps:
       - name: Download Markdown coverage summaries
         continue-on-error: true
         uses: actions/download-artifact@v8
@@ -390,17 +410,6 @@ jobs:
         with:
           name: benchmark-markdown
           path: artifacts/summary/benchmarks
-
-      - name: Publish test results
-        uses: ctrf-io/github-test-reporter@v1
-        with:
-          report-path: artifacts/summary/tests/**/pester.ctrf.json
-          title: Pester test results
-          summary-report: true
-          failed-folded-report: true
-          skipped-report: true
-          exit-on-no-files: false
-          exit-on-fail: false
 
       - name: Publish coverage results
         shell: pwsh
