@@ -27,6 +27,8 @@ npm run test:coverage
 
 Use `npm test -- --TestType Unit` or `npm test -- --TestType Snapshots` to run one test type. CI runs both types in parallel on each supported operating system and stores their reports separately.
 
+After the test jobs finish, a dedicated CI job combines their CTRF artifacts into the GitHub test summary. Coverage and benchmark summaries are published by a separate job.
+
 The Pester suite includes committed snapshots in `tests/snapshots`. They cover the exported command surface, built-in themes and glyph sets, previews, session configuration, display names, and renderers. Literal output snapshots also cover `Get-Item`, `Get-ChildItem`, `Show-Gly`, `Show-GlyTree`, and `Show-GlyGrid` with a fixed fixture and output width. Separate Windows and Linux snapshots preserve platform-specific spacing, file modes, and line endings. CI compares the output with these snapshots on Windows and Ubuntu. When an intentional behavior change requires new snapshots, regenerate them on each platform with PowerShell 7 and review the diff:
 
 ```powershell

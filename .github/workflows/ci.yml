@@ -363,14 +363,11 @@ jobs:
           path: artifacts/benchmarks/BenchmarkRegression.md
           if-no-files-found: error
 
-  summary:
-    name: Publish test, coverage, and benchmark results
+  test-summary:
+    name: Publish test results
     if: ${{ always() && !cancelled() }}
     needs:
       - tests
-      - coverage
-      - package
-      - benchmarks
     runs-on: ubuntu-latest
     steps:
       - name: Download CTRF test results
@@ -380,6 +377,25 @@ jobs:
           pattern: test-ctrf-*
           path: artifacts/summary/tests
 
+      - name: Publish test results
+        uses: ctrf-io/github-test-reporter@v1
+        with:
+          report-path: artifacts/summary/tests/**/pester.ctrf.json
+          title: Pester test results
+          summary-report: true
+          failed-folded-report: true
+          skipped-report: true
+          exit-on-no-files: false
+          exit-on-fail: false
+
+  summary:
+    name: Publish coverage and benchmark results
+    if: ${{ always() && !cancelled() }}
+    needs:
+      - coverage
+      - benchmarks
+    runs-on: ubuntu-latest
+    steps:
       - name: Download Markdown coverage summaries
         continue-on-error: true
         uses: actions/download-artifact@v8
@@ -393,17 +409,6 @@ jobs:
         with:
           name: benchmark-markdown
           path: artifacts/summary/benchmarks
-
-      - name: Publish test results
-        uses: ctrf-io/github-test-reporter@v1
-        with:
-          report-path: artifacts/summary/tests/**/pester.ctrf.json
-          title: Pester test results
-          summary-report: true
-          failed-folded-report: true
-          skipped-report: true
-          exit-on-no-files: false
-          exit-on-fail: false
 
       - name: Publish coverage results
         shell: pwsh
