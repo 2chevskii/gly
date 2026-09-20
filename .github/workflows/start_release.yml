@@ -19,7 +19,7 @@ env:
 jobs:
   validate-release:
     name: Validate release tag and module version
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     outputs:
       tag: ${{ steps.version.outputs.tag }}
       version: ${{ steps.version.outputs.version }}
@@ -54,7 +54,7 @@ jobs:
 
   test:
     name: Run tests
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - name: Checkout release tag
         uses: actions/checkout@v7
@@ -74,7 +74,7 @@ jobs:
 
   create-release:
     name: Build package and create draft release
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     needs:
       - validate-release
       - test
