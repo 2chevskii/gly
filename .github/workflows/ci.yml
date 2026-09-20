@@ -24,9 +24,9 @@ jobs:
       fail-fast: false
       matrix:
         os:
-          - ubuntu-latest
-          - windows-latest
-          - macos-latest
+          - ubuntu-26.04
+          - windows-2025
+          - macos-26
         type:
           - Unit
           - Snapshots
@@ -82,7 +82,7 @@ jobs:
 
   coverage:
     name: Coverage analysis
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -211,7 +211,7 @@ jobs:
 
   package:
     name: Build module artifacts
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -250,7 +250,7 @@ jobs:
 
   docs:
     name: VitePress build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -269,7 +269,7 @@ jobs:
 
   benchmarks:
     name: Performance benchmarks
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -317,7 +317,7 @@ jobs:
                 },
               )
               const baseline = artifacts.find(
-                (artifact) => artifact.name === 'benchmark-results' && !artifact.expired,
+                (artifact) => artifact.name === 'benchmark-results-ubuntu-26.04' && !artifact.expired,
               )
 
               if (baseline) {
@@ -332,7 +332,7 @@ jobs:
         if: ${{ !cancelled() && steps.benchmark-baseline.outputs.run-id != '' }}
         uses: actions/download-artifact@v8
         with:
-          name: benchmark-results
+          name: benchmark-results-ubuntu-26.04
           path: artifacts/benchmarks/baseline
           github-token: ${{ github.token }}
           repository: ${{ github.repository }}
@@ -352,7 +352,7 @@ jobs:
         if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v7
         with:
-          name: benchmark-results
+          name: benchmark-results-ubuntu-26.04
           path: artifacts/benchmarks/results
           if-no-files-found: error
 
@@ -369,7 +369,7 @@ jobs:
     if: ${{ always() && !cancelled() }}
     needs:
       - tests
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - name: Download CTRF test results
         continue-on-error: true
@@ -395,7 +395,7 @@ jobs:
     needs:
       - coverage
       - benchmarks
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - name: Download Markdown coverage summaries
         continue-on-error: true

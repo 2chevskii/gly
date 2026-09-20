@@ -21,9 +21,9 @@ jobs:
       fail-fast: false
       matrix:
         os:
-          - ubuntu-latest
-          - windows-latest
-          - macos-latest
+          - ubuntu-26.04
+          - windows-2025
+          - macos-26
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -55,7 +55,7 @@ jobs:
   pull-request:
     name: Open snapshot pull request
     needs: generate
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     permissions:
       actions: write
       contents: write
@@ -67,27 +67,27 @@ jobs:
       - name: Download Linux snapshots
         uses: actions/download-artifact@v8
         with:
-          name: snapshots-ubuntu-latest
-          path: artifacts/snapshots/ubuntu-latest
+          name: snapshots-ubuntu-26.04
+          path: artifacts/snapshots/ubuntu-26.04
 
       - name: Download Windows snapshots
         uses: actions/download-artifact@v8
         with:
-          name: snapshots-windows-latest
-          path: artifacts/snapshots/windows-latest
+          name: snapshots-windows-2025
+          path: artifacts/snapshots/windows-2025
 
       - name: Download macOS snapshots
         uses: actions/download-artifact@v8
         with:
-          name: snapshots-macos-latest
-          path: artifacts/snapshots/macos-latest
+          name: snapshots-macos-26
+          path: artifacts/snapshots/macos-26
 
       - name: Collect snapshots
         shell: pwsh
         run: |
-          Copy-Item ./artifacts/snapshots/ubuntu-latest/*.snap ./tests/snapshots -Force
-          Copy-Item ./artifacts/snapshots/windows-latest/*.windows.snap ./tests/snapshots -Force
-          Copy-Item ./artifacts/snapshots/macos-latest/*.macos.snap ./tests/snapshots -Force
+          Copy-Item ./artifacts/snapshots/ubuntu-26.04/*.snap ./tests/snapshots -Force
+          Copy-Item ./artifacts/snapshots/windows-2025/*.windows.snap ./tests/snapshots -Force
+          Copy-Item ./artifacts/snapshots/macos-26/*.macos.snap ./tests/snapshots -Force
 
       - name: Create pull request
         id: create-pr
