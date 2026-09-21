@@ -20,7 +20,7 @@
     "docs:preview": "vitepress preview docs"
   },
   "devDependencies": {
-    "@types/node": "^26.5.1",
+    "@types/node": "^26.6.1",
     "ctrf-html-reporter": "^1.1.22",
     "junit-to-ctrf": "^0.0.14",
     "vitepress": "^1.6.4"
