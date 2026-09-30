@@ -54,7 +54,16 @@ export default defineConfig({
         ],
       },
     ],
-    socialLinks: [{ icon: "github", link: "https://github.com/2CHEVSKII/gly" }],
+    socialLinks: [
+      { icon: "github", link: "https://github.com/2CHEVSKII/gly" },
+      {
+        icon: {
+          svg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"><path d="M5 4h17l-3 16H2L5 4Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="m9 8 4 4-6 4m6 0h4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+        },
+        link: "https://www.powershellgallery.com/packages/gly",
+        ariaLabel: "gly on PowerShell Gallery",
+      },
+    ],
     search: {
       provider: "local",
     },

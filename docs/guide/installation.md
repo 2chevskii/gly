@@ -8,6 +8,8 @@ Run `$PSVersionTable.PSVersion` to check your version. Windows PowerShell 5.1 is
 
 ## Install from PowerShell Gallery
 
+View the module listing on [PowerShell Gallery](https://www.powershellgallery.com/packages/gly).
+
 ```powershell
 Install-Module -Name gly -Repository PSGallery -Scope CurrentUser
 Import-Module gly
