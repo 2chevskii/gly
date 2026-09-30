@@ -56,7 +56,9 @@ The combined command runs the independent startup and rendering suites concurren
 
 Pass `-- --OutputPath ./artifacts/benchmarks/local` to the combined command to write `startup.json` and `rendering.json` to that directory.
 
-CI runs both benchmark suites on `ubuntu-26.04`, publishes their median timings in the workflow summary, and stores the JSON results as the `benchmark-results-ubuntu-26.04` artifact. Each run compares matching scenarios with the latest successful `master` push on the same runner image. A scenario fails the regression gate when its median time is more than 20% slower; the first run on a new runner image and newly added scenarios establish a baseline instead.
+CI runs both benchmark suites sequentially on `ubuntu-26.04`, publishes their median timings in the workflow summary, and stores the JSON results as the `benchmark-results-ubuntu-26.04` artifact. Each run compares matching scenarios with the committed `startup.json` and `rendering.json` files in `benchmarks/baselines/ubuntu-26.04`. A scenario fails the regression gate when its median time is more than 20% slower. If no baseline exists for the runner image or a scenario, CI reports **Baseline unavailable** and skips that comparison; ordinary CI runs never update the baselines.
+
+Run the **Refresh benchmark baselines** GitHub Actions workflow manually from the Actions tab to establish or intentionally update the baselines. It runs the same startup and rendering suites sequentially on `ubuntu-26.04`, uploads the generated JSON files, then opens or updates a pull request to `master` and starts CI for that branch. Review the timing changes before merging. The new baselines take effect in subsequent runs after the pull request is merged. Keep baselines in a separate directory for each runner image when changing runners.
 
 ## Documentation Site
 
