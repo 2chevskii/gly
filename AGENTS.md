@@ -37,9 +37,9 @@ rtk pwsh -NoProfile -Command "Invoke-Pester ./tests"
 rtk git status --short
 ```
 
-If `pwsh` is unavailable, report that fact and do not replace the target PowerShell 7+ compatibility with Windows PowerShell `5.1`: the MVP targets PowerShell `7+`.
+If `pwsh` is unavailable, report that fact and do not replace the target PowerShell 7+ compatibility with Windows PowerShell `5.1`: the module targets PowerShell `7+`.
 
-## MVP boundaries
+## Scope boundaries
 
 Do not add the following without a separate decision:
 
@@ -57,7 +57,7 @@ Do not add the following without a separate decision:
 - Standard `FileInfo` / `DirectoryInfo` formatting is implemented through `*.format.ps1xml`.
 - Tree/grid/compact/long/human-readable views are separate renderer commands.
 - Built-in themes and glyph sets are immutable; users may copy and register them under a new name.
-- MVP configuration is stored only in memory for the current PowerShell session.
+- Module configuration is stored only in memory for the current PowerShell session.
 - The module must not modify input `FileInfo` / `DirectoryInfo` objects.
 - The module must not change sort order, provider behavior, or the semantics of `Get-ChildItem` / `Get-Item`.
 
