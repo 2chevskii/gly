@@ -1,0 +1,110 @@
+[
+  {
+    "Scenario": "DisplayName",
+    "StyleRenderer": "PSStyle",
+    "Branch": "master",
+    "Commit": "d6dcba4",
+    "ItemCount": 3002,
+    "Iterations": 5,
+    "MinMs": 716.89,
+    "MedianMs": 721.59,
+    "MeanMs": 841.27,
+    "MaxMs": 1326.62
+  },
+  {
+    "Scenario": "DisplayName",
+    "StyleRenderer": "Ansi",
+    "Branch": "master",
+    "Commit": "d6dcba4",
+    "ItemCount": 3002,
+    "Iterations": 5,
+    "MinMs": 673.45,
+    "MedianMs": 678.75,
+    "MeanMs": 678.39,
+    "MaxMs": 681.71
+  },
+  {
+    "Scenario": "DisplayName",
+    "StyleRenderer": "PlainText",
+    "Branch": "master",
+    "Commit": "d6dcba4",
+    "ItemCount": 3002,
+    "Iterations": 5,
+    "MinMs": 424.05,
+    "MedianMs": 428.82,
+    "MeanMs": 436.34,
+    "MaxMs": 469.16
+  },
+  {
+    "Scenario": "FormatTable",
+    "StyleRenderer": "PSStyle",
+    "Branch": "master",
+    "Commit": "d6dcba4",
+    "ItemCount": 3002,
+    "Iterations": 5,
+    "MinMs": 1133.84,
+    "MedianMs": 1147.43,
+    "MeanMs": 1148.43,
+    "MaxMs": 1167.21
+  },
+  {
+    "Scenario": "FormatTable",
+    "StyleRenderer": "Ansi",
+    "Branch": "master",
+    "Commit": "d6dcba4",
+    "ItemCount": 3002,
+    "Iterations": 5,
+    "MinMs": 1088.01,
+    "MedianMs": 1105.47,
+    "MeanMs": 1102.83,
+    "MaxMs": 1112.99
+  },
+  {
+    "Scenario": "FormatTable",
+    "StyleRenderer": "PlainText",
+    "Branch": "master",
+    "Commit": "d6dcba4",
+    "ItemCount": 3002,
+    "Iterations": 5,
+    "MinMs": 828.9,
+    "MedianMs": 831.17,
+    "MeanMs": 836.47,
+    "MaxMs": 855.86
+  },
+  {
+    "Scenario": "ShowGly",
+    "StyleRenderer": "PSStyle",
+    "Branch": "master",
+    "Commit": "d6dcba4",
+    "ItemCount": 3002,
+    "Iterations": 5,
+    "MinMs": 1017.19,
+    "MedianMs": 1023.27,
+    "MeanMs": 1026.32,
+    "MaxMs": 1037.06
+  },
+  {
+    "Scenario": "ShowGly",
+    "StyleRenderer": "Ansi",
+    "Branch": "master",
+    "Commit": "d6dcba4",
+    "ItemCount": 3002,
+    "Iterations": 5,
+    "MinMs": 965.97,
+    "MedianMs": 971.66,
+    "MeanMs": 971.88,
+    "MaxMs": 977.26
+  },
+  {
+    "Scenario": "ShowGly",
+    "StyleRenderer": "PlainText",
+    "Branch": "master",
+    "Commit": "d6dcba4",
+    "ItemCount": 3002,
+    "Iterations": 5,
+    "MinMs": 695.7,
+    "MedianMs": 700.38,
+    "MeanMs": 700.66,
+    "MaxMs": 707.6
+  }
+]
