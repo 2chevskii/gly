@@ -27,6 +27,8 @@ npm run test:coverage
 
 Use `npm test -- --TestType Unit` or `npm test -- --TestType Snapshots` to run one test type. CI runs both types in parallel on each supported operating system and stores their reports separately.
 
+The runner exports JUnit after Pester finishes. XML-invalid control characters in failure messages and stack traces are written as readable escapes such as `\u001b`, so failed ANSI assertions still produce JUnit, CTRF, and HTML reports. The runner reports a failed test run after generating the reports. Cross-platform hidden-file fixtures use a leading dot in the file name and explicitly set the Windows hidden attribute.
+
 After the test jobs finish, a dedicated CI job combines their CTRF artifacts into the GitHub test summary. Coverage and benchmark summaries are published by a separate job.
 
 The Pester suite includes committed snapshots in `tests/snapshots`. They cover the exported command surface, built-in themes and glyph sets, previews, session configuration, display names, and renderers. Literal output snapshots also cover `Get-Item`, `Get-ChildItem`, `Show-Gly`, `Show-GlyTree`, and `Show-GlyGrid` with a fixed fixture and output width. Separate Windows, Linux, and macOS snapshots preserve platform-specific spacing, file modes, and line endings. CI compares the output with these snapshots on all three platforms. When an intentional behavior change requires new snapshots, regenerate them on each platform with PowerShell 7 and review the diff:
