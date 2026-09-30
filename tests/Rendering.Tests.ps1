@@ -82,7 +82,7 @@ Describe 'gly built-in theme precedence' {
     $directory = New-Item -ItemType Directory -Path (Join-Path $root 'source')
     $readOnlyFile = New-Item -ItemType File -Path (Join-Path $root 'read-only.txt')
     $readOnlyFile.Attributes = $readOnlyFile.Attributes -bor [System.IO.FileAttributes]::ReadOnly
-    $hiddenReadOnlyFile = New-Item -ItemType File -Path (Join-Path $root 'hidden-read-only.txt')
+    $hiddenReadOnlyFile = New-Item -ItemType File -Path (Join-Path $root '.hidden-read-only.txt')
     $hiddenReadOnlyFile.Attributes = $hiddenReadOnlyFile.Attributes -bor
       [System.IO.FileAttributes]::ReadOnly -bor [System.IO.FileAttributes]::Hidden
     $regularFile = New-Item -ItemType File -Path (Join-Path $root 'ordinary.txt')
@@ -105,6 +105,9 @@ Describe 'gly built-in theme precedence' {
   }
 
   It 'gives hidden precedence over read-only' {
+    $hiddenReadOnlyFile.Refresh()
+    $hiddenReadOnlyFile.Attributes.HasFlag([System.IO.FileAttributes]::Hidden) | Should -BeTrue
+    $hiddenReadOnlyFile.Attributes.HasFlag([System.IO.FileAttributes]::ReadOnly) | Should -BeTrue
     Get-GlyFileSystemDisplayName -InputObject $hiddenReadOnlyFile | Should -Match "`e\[38;2;146;131;116m"
   }
 
