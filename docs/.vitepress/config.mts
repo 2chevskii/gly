@@ -55,7 +55,7 @@ export default defineConfig({
       },
     ],
     socialLinks: [
-      { icon: "github", link: "https://github.com/2CHEVSKII/gly" },
+      { icon: "github", link: "https://github.com/2CHEVSKII/gly", ariaLabel: 'Gly on GitHub' },
       {
         icon: {
           // Simple Icons v5.0.0 (CC0): https://github.com/simple-icons/simple-icons/blob/5.0.0/icons/powershell.svg
