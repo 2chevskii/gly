@@ -20,8 +20,8 @@ export default defineConfig({
     nav: [
       { text: "Guide", link: "/guide/" },
       { text: "API", link: "/api/" },
-      { text: "Architecture", link: "/architecture/" },
-      { text: "Limitations", link: "/limitations/" },
+      { text: "Troubleshooting", link: "/troubleshooting/" },
+      { text: "Contributors", link: "/development/" },
     ],
     sidebar: [
       {
@@ -31,20 +31,26 @@ export default defineConfig({
           { text: "Installation", link: "/guide/installation" },
           { text: "Quick Start", link: "/guide/quick-start" },
           { text: "Configuration", link: "/guide/configuration" },
-          { text: "Selectors", link: "/guide/selectors" },
           { text: "Themes", link: "/guide/themes" },
           { text: "Glyph Sets", link: "/guide/glyph-sets" },
           { text: "Renderer Commands", link: "/guide/renderers" },
+          { text: "Custom Rules", link: "/guide/selectors" },
         ],
       },
       {
         text: "Reference",
         items: [
           { text: "API Reference", link: "/api/" },
-          { text: "Architecture", link: "/architecture/" },
           { text: "Troubleshooting", link: "/troubleshooting/" },
           { text: "Limitations", link: "/limitations/" },
+        ],
+      },
+      {
+        text: "Contributors",
+        items: [
           { text: "Development", link: "/development/" },
+          { text: "Architecture", link: "/architecture/" },
+          { text: "Theme Palette Sources", link: "/development/theme-sources" },
         ],
       },
     ],

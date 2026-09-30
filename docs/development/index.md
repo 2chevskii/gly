@@ -1,5 +1,7 @@
 # Development
 
+This section is for contributors. See [Architecture](../architecture/index.md) for module internals and [Theme Palette Sources](theme-sources.md) for palette attribution.
+
 ## Branch Names
 
 Use short-lived, descriptive branches. Branch names must begin with one of these prefixes:
