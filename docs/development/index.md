@@ -71,6 +71,8 @@ npm run docs:preview
 
 The VitePress source root is `docs`.
 
+Documentation builds in CI and the publishing workflow validate that `package.json`'s `version` matches `ModuleVersion` in `src/gly.psd1`. A mismatch fails the job before building the documentation site. Keep both versions in sync when preparing a release.
+
 ## Repository Maintenance
 
 GitHub repository metadata documents the contribution, support, and security processes:
