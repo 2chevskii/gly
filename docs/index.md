@@ -15,6 +15,9 @@ hero:
     - theme: alt
       text: API Reference
       link: /api/
+    - theme: alt
+      text: PowerShell Gallery
+      link: https://www.powershellgallery.com/packages/gly
 
 features:
   - title: PowerShell-native

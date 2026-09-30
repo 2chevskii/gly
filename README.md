@@ -10,13 +10,13 @@
 
 Your usual `Get-ChildItem` and `Get-Item` commands keep working, including filtering, sorting, and passing results to other commands.
 
-[Documentation](https://2chevskii.github.io/gly/) · [Contributing](.github/CONTRIBUTING.md) · [Security](.github/SECURITY.md) · [Support](.github/SUPPORT.md)
+[Documentation](https://2chevskii.github.io/gly/) · [PowerShell Gallery](https://www.powershellgallery.com/packages/gly) · [Contributing](.github/CONTRIBUTING.md) · [Security](.github/SECURITY.md) · [Support](.github/SUPPORT.md)
 
 Requires PowerShell **7.0 or later**.
 
 ## Quick Start
 
-Install the module from PowerShell Gallery:
+Install the module from [PowerShell Gallery](https://www.powershellgallery.com/packages/gly):
 
 ```powershell
 Install-Module -Name gly -Repository PSGallery -Scope CurrentUser
