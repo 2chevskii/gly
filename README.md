@@ -10,7 +10,7 @@
 
 Your usual `Get-ChildItem` and `Get-Item` commands keep working, including filtering, sorting, and passing results to other commands.
 
-[Documentation](https://2chevskii.github.io/gly/) · [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md) · [Support](SUPPORT.md)
+[Documentation](https://2chevskii.github.io/gly/) · [Contributing](.github/CONTRIBUTING.md) · [Security](.github/SECURITY.md) · [Support](.github/SUPPORT.md)
 
 Requires PowerShell **7.0 or later**.
 
@@ -132,7 +132,7 @@ The combined command runs the independent startup and rendering suites concurren
 
 ## Contributing and Support
 
-Contributions are welcome. Read the [contribution guidelines](CONTRIBUTING.md) before opening an issue or pull request. For usage questions, start a [GitHub Discussion](https://github.com/2CHEVSKII/gly/discussions). Please report security vulnerabilities privately as described in the [security policy](SECURITY.md).
+Contributions are welcome. Read the [contribution guidelines](.github/CONTRIBUTING.md) before opening an issue or pull request. For usage questions, start a [GitHub Discussion](https://github.com/2CHEVSKII/gly/discussions). Please report security vulnerabilities privately as described in the [security policy](.github/SECURITY.md).
 
 ## License
 
