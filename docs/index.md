@@ -4,7 +4,7 @@ layout: home
 hero:
   name: gly
   text: Visual file system formatting for PowerShell
-  tagline: Add configurable glyphs and colors to FileInfo and DirectoryInfo output without replacing the PowerShell object pipeline.
+  tagline: Make file and folder listings easier to scan with icons, colors, and a choice of layouts.
   image:
     src: /branding/gly-logo-512.png
     alt: gly logo
@@ -15,15 +15,17 @@ hero:
     - theme: alt
       text: API Reference
       link: /api/
+    - theme: alt
+      text: PowerShell Gallery
+      link: https://www.powershellgallery.com/packages/gly
 
 features:
   - title: PowerShell-native
-    details: Uses PowerShell format data for the standard FileInfo and DirectoryInfo table view.
+    details: Formatting starts on import and works with your usual Get-ChildItem and Get-Item commands.
   - title: Pipeline-friendly
-    details: Preserves input objects and keeps Get-ChildItem and Get-Item semantics unchanged.
+    details: Keep filtering, sorting, and passing files to other commands as usual.
   - title: Configurable visuals
-    details: Supports session themes, glyph sets, renderer selection, and explicit plain-text fallback.
+    details: Choose colors and symbols, preview your choices, and browse folders in a list, tree, or grid.
 ---
 
 ![gly banner](/branding/gly-banner.png)
-

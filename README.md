@@ -6,51 +6,37 @@
 [![Documentation](https://github.com/2CHEVSKII/gly/actions/workflows/docs.yml/badge.svg?branch=master)](https://2chevskii.github.io/gly/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-`gly` is a PowerShell module for customizable visual formatting of file system objects:
+`gly` adds icons and colors to file and directory listings in PowerShell. Choose a theme, customize the symbols, or browse folders in a tree or grid.
 
-- `System.IO.FileInfo`
-- `System.IO.DirectoryInfo`
+Your usual `Get-ChildItem` and `Get-Item` commands keep working, including filtering, sorting, and passing results to other commands.
 
-It improves interactive output for `Get-ChildItem`, `Get-Item`, and user commands that return PowerShell file system objects while preserving the object model and pipeline compatibility.
+[Documentation](https://2chevskii.github.io/gly/) · [PowerShell Gallery](https://www.powershellgallery.com/packages/gly) · [Contributing](.github/CONTRIBUTING.md) · [Security](.github/SECURITY.md) · [Support](.github/SUPPORT.md)
 
-[Documentation](https://2chevskii.github.io/gly/) · [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md) · [Support](SUPPORT.md)
-
-## Status
-
-`gly` currently provides the MVP implementation described in the current user and developer documentation.
-
-The module:
-
-- targets PowerShell `7.0+`;
-- activates automatically on `Import-Module`;
-- customizes the standard table view, including file names and sizes;
-- adds glyphs and optional color to file and directory names;
-- provides session-only configuration;
-- supports built-in and user-registered themes;
-- supports built-in and user-registered glyph sets;
-- stores configuration, themes, glyph sets, rules, selectors, and styles in strongly typed models;
-- recognizes well-known project files and directories plus common development, document, archive, and media extensions;
-- includes `Show-Gly`, `Show-GlyTree`, and `Show-GlyGrid` renderer commands.
-
-Windows PowerShell `5.1` is not supported by the MVP.
+Requires PowerShell **7.0 or later**.
 
 ## Quick Start
 
-Install the module from PowerShell Gallery:
+Install the module from [PowerShell Gallery](https://www.powershellgallery.com/packages/gly):
 
 ```powershell
 Install-Module -Name gly -Repository PSGallery -Scope CurrentUser
 Import-Module gly
 ```
 
-After import, standard PowerShell file system output uses the custom view:
+Formatting starts as soon as you import the module. The default icons require a [Nerd Font](https://www.nerdfonts.com/) selected in your terminal settings. For symbols that work with ordinary fonts, use:
+
+```powershell
+Set-GlyGlyphSet Unicode
+```
+
+List files and folders with your usual commands:
 
 ```powershell
 Get-ChildItem .
 Get-Item .
 ```
 
-Use renderer commands for explicit interactive layouts:
+Choose a list, tree, or grid layout:
 
 ```powershell
 Show-Gly -Path .
@@ -66,7 +52,7 @@ glytr . -Depth 2
 glygr .
 ```
 
-Preview registered theme colors, glyphs, or their combined appearance for every matcher. Color and glyph previews use mock file and directory names so each rule is easy to recognize:
+Preview colors and symbols using sample file and folder names:
 
 ```powershell
 Show-GlyThemeColor DefaultDark
@@ -103,20 +89,18 @@ Set-GlyGlyphSet Unicode
 `SizeFormat` applies to file sizes in both the standard PowerShell view and
 the explicit `Show-Gly` renderer.
 
-`Disable-Gly` disables colors and glyphs through module configuration. PowerShell format data is session-wide, so the custom view can remain loaded until the session ends.
+Use `Disable-Gly` to turn off colors and symbols. To restore the standard PowerShell view completely, open a new session without importing `gly`.
+
+To apply your preferred settings in every new session, add the import and configuration commands to your [PowerShell profile](https://2chevskii.github.io/gly/guide/installation#load-gly-in-every-session).
 
 ## Documentation
 
-- [Wiki index](https://github.com/2CHEVSKII/gly/wiki)
-- [Installation](https://github.com/2CHEVSKII/gly/wiki/Installation)
-- [Quick start](https://github.com/2CHEVSKII/gly/wiki/Quick-start)
-- [Configuration](https://github.com/2CHEVSKII/gly/wiki/Configuration)
-- [Themes](https://github.com/2CHEVSKII/gly/wiki/Themes)
-- [Glyph sets](https://github.com/2CHEVSKII/gly/wiki/Glyph-sets)
-- [Renderer commands](https://github.com/2CHEVSKII/gly/wiki/Renderer-commands)
-- [API reference](https://github.com/2CHEVSKII/gly/wiki/API-reference)
-- [Limitations](https://github.com/2CHEVSKII/gly/wiki/Limitations)
-- [Troubleshooting](https://github.com/2CHEVSKII/gly/wiki/Troubleshooting)
+- [Installation and quick start](https://2chevskii.github.io/gly/guide/)
+- [Configuration](https://2chevskii.github.io/gly/guide/configuration)
+- [Themes](https://2chevskii.github.io/gly/guide/themes) and [glyph sets](https://2chevskii.github.io/gly/guide/glyph-sets)
+- [List, tree, and grid layouts](https://2chevskii.github.io/gly/guide/renderers)
+- [Command reference](https://2chevskii.github.io/gly/api/)
+- [Limitations](https://2chevskii.github.io/gly/limitations/) and [troubleshooting](https://2chevskii.github.io/gly/troubleshooting/)
 
 ## Development
 
@@ -148,7 +132,7 @@ The combined command runs the independent startup and rendering suites concurren
 
 ## Contributing and Support
 
-Contributions are welcome. Read the [contribution guidelines](CONTRIBUTING.md) before opening an issue or pull request. For usage questions, start a [GitHub Discussion](https://github.com/2CHEVSKII/gly/discussions). Please report security vulnerabilities privately as described in the [security policy](SECURITY.md).
+Contributions are welcome. Read the [contribution guidelines](.github/CONTRIBUTING.md) before opening an issue or pull request. For usage questions, start a [GitHub Discussion](https://github.com/2CHEVSKII/gly/discussions). Please report security vulnerabilities privately as described in the [security policy](.github/SECURITY.md).
 
 ## License
 
