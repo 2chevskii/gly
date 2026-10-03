@@ -14,6 +14,12 @@ Your usual `Get-ChildItem` and `Get-Item` commands keep working, including filte
 
 Requires PowerShell **7.0 or later**.
 
+## Preview
+
+![Animated terminal demo of gly theme and glyph-set previews](assets/captures/overview.gif)
+
+The animation demonstrates a Dracula preview with Nerd Fonts, followed by a DefaultLight preview with Emoji. Browse static previews for every built-in theme and glyph set in the [terminal capture gallery](https://2chevskii.github.io/gly/guide/captures).
+
 ## Quick Start
 
 Install the module from [PowerShell Gallery](https://www.powershellgallery.com/packages/gly):
