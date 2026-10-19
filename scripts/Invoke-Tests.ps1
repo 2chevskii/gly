@@ -33,6 +33,7 @@ $htmlDirectory = Join-Path $resultDirectory 'html'
 New-Item -Path $resultDirectory -ItemType Directory -Force | Out-Null
 
 Import-Module Pester -RequiredVersion 5.7.1
+. (Join-Path $PSScriptRoot 'Export-GlyJUnitReport.ps1')
 
 $configuration = New-PesterConfiguration
 $testDirectory = Join-Path $repositoryRoot 'tests'
@@ -52,9 +53,7 @@ switch ($TestType) {
   }
 }
 $configuration.Run.PassThru = $true
-$configuration.TestResult.Enabled = $true
-$configuration.TestResult.OutputFormat = 'JUnitXml'
-$configuration.TestResult.OutputPath = $junitPath
+$configuration.TestResult.Enabled = $false
 
 if ($Coverage) {
   $coveragePath = Resolve-RepositoryPath $CoverageOutputPath
@@ -79,6 +78,8 @@ try {
 finally {
   $env:GLY_PESTER_COVERAGE = $previousCoverageMode
 }
+
+Export-GlyJUnitReport -Result $result -Path $junitPath
 
 Push-Location $repositoryRoot
 try {

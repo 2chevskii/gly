@@ -1,22 +1,31 @@
 # Selectors
 
-Themes and glyph sets use the `GlySelector` type.
+A selector specifies which files or folders a custom color or symbol rule applies to. Use selectors when creating a [custom theme](themes.md#custom-theme) or [custom glyph set](glyph-sets.md#custom-glyph-set).
+
+For example, this rule selects files with `.log` or `.trace` extensions:
+
+```powershell
+@{
+    Selector = @{ Extension = @('.log', '.trace') }
+    Glyph = '[log]'
+}
+```
 
 ## Fields
 
 | Field | Behavior |
 | --- | --- |
-| `Kind` | `File`, `Directory`, `Symlink`, `Junction`, `Other`; case is preserved when registering from a hashtable. |
+| `Kind` | The item type: `File`, `Directory`, `Symlink`, `Junction`, or `Other`. |
 | `Name` | Exact name, matched case-sensitively. |
 | `Extension` | A string or array; the dot is optional, matching is case-insensitive, and compound extensions are supported. |
 | `Glob` | A PowerShell wildcard or array; matched against `Name` and `FullName` case-insensitively. |
 | `Attributes` | One `System.IO.FileAttributes` value or an array; all values must be present. |
 
-The last matching rule wins.
+When a selector has several fields, all of them must match. If several rules match an item, the last matching rule wins. Append a rule to override an earlier one.
 
 ## Built-in Catalog
 
-The shared built-in catalog for themes and glyph sets contains more than 170 rules. Nerd Fonts maps the extended language and tool rules to dedicated icons; the fallback sets retain their smaller structural matcher set.
+The built-in rules recognize the names and file types below. `NerdFonts` provides detailed icons for languages and tools. `ANSI`, `ANSICompact`, and `Unicode` use simpler symbols for files, folders, links, and attributes.
 
 ### Directories
 
@@ -45,11 +54,4 @@ The shared built-in catalog for themes and glyph sets contains more than 170 rul
 - JSON/JSONC, YAML, TOML/INI/CFG/CONF/ENV, XML/XSD/XSL/XAML/PLIST;
 - Markdown/text/logs, archives, media, office documents, databases, fonts, certificates, and binaries.
 
-Rules also distinguish `Directory`, `Junction`, `Symlink`, `ReadOnly`, and `Hidden`. Matching does not read content or run Git.
-
-```powershell
-@{
-    Selector = @{ Extension = @('.log', '.trace') }
-    Glyph = '[log]'
-}
-```
+Rules also distinguish directories, junctions, symbolic links, read-only items, and hidden items.

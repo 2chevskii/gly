@@ -1,5 +1,7 @@
 # Development
 
+This section is for contributors. See [Architecture](../architecture/index.md) for module internals and [Theme Palette Sources](theme-sources.md) for palette attribution.
+
 ## Branch Names
 
 Use short-lived, descriptive branches. Branch names must begin with one of these prefixes:
@@ -27,6 +29,8 @@ npm run test:coverage
 
 Use `npm test -- --TestType Unit` or `npm test -- --TestType Snapshots` to run one test type. CI runs both types in parallel on each supported operating system and stores their reports separately.
 
+The runner exports JUnit after Pester finishes. XML-invalid control characters in failure messages and stack traces are written as readable escapes such as `\u001b`, so failed ANSI assertions still produce JUnit, CTRF, and HTML reports. The runner reports a failed test run after generating the reports. Cross-platform hidden-file fixtures use a leading dot in the file name and explicitly set the Windows hidden attribute.
+
 After the test jobs finish, a dedicated CI job combines their CTRF artifacts into the GitHub test summary. Coverage and benchmark summaries are published by a separate job.
 
 The Pester suite includes committed snapshots in `tests/snapshots`. They cover the exported command surface, built-in themes and glyph sets, previews, session configuration, display names, and renderers. Literal output snapshots also cover `Get-Item`, `Get-ChildItem`, `Show-Gly`, `Show-GlyTree`, and `Show-GlyGrid` with a fixed fixture and output width. Separate Windows, Linux, and macOS snapshots preserve platform-specific spacing, file modes, and line endings. CI compares the output with these snapshots on all three platforms. When an intentional behavior change requires new snapshots, regenerate them on each platform with PowerShell 7 and review the diff:
@@ -52,7 +56,9 @@ The combined command runs the independent startup and rendering suites concurren
 
 Pass `-- --OutputPath ./artifacts/benchmarks/local` to the combined command to write `startup.json` and `rendering.json` to that directory.
 
-CI runs both benchmark suites on `ubuntu-26.04`, publishes their median timings in the workflow summary, and stores the JSON results as the `benchmark-results-ubuntu-26.04` artifact. Each run compares matching scenarios with the latest successful `master` push on the same runner image. A scenario fails the regression gate when its median time is more than 20% slower; the first run on a new runner image and newly added scenarios establish a baseline instead.
+CI runs both benchmark suites sequentially on `ubuntu-26.04`, publishes their median timings in the workflow summary, and stores the JSON results as the `benchmark-results-ubuntu-26.04` artifact. Each run compares matching scenarios with the committed `startup.json` and `rendering.json` files in `benchmarks/baselines/ubuntu-26.04`. A scenario fails the regression gate when its median time is more than 20% slower. If no baseline exists for the runner image or a scenario, CI reports **Baseline unavailable** and skips that comparison; ordinary CI runs never update the baselines.
+
+Run the **Refresh benchmark baselines** GitHub Actions workflow manually from the Actions tab to establish or intentionally update the baselines. It runs the same startup and rendering suites sequentially on `ubuntu-26.04`, uploads the generated JSON files, then opens or updates a pull request to `master` and starts CI for that branch. Review the timing changes before merging. The new baselines take effect in subsequent runs after the pull request is merged. Keep baselines in a separate directory for each runner image when changing runners.
 
 ## Documentation Site
 
@@ -64,6 +70,8 @@ npm run docs:preview
 ```
 
 The VitePress source root is `docs`.
+
+Documentation builds in CI and the publishing workflow validate that `package.json`'s `version` matches `ModuleVersion` in `src/gly.psd1`. A mismatch fails the job before building the documentation site. Keep both versions in sync when preparing a release.
 
 ## Repository Maintenance
 

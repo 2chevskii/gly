@@ -120,7 +120,7 @@ if (-not [string]::IsNullOrWhiteSpace($summaryDirectory)) {
 $summary = @(
   '## Benchmark regression gate'
   ''
-  "Median execution time may increase by at most **$($MaximumRegressionPercent.ToString('F2'))%** compared with the latest successful ``master`` run."
+  "Median execution time may increase by at most **$($MaximumRegressionPercent.ToString('F2'))%** compared with the committed benchmark baselines."
   ''
   '| Benchmark | Current median | Baseline median | Change | Status |'
   '| :--- | ---: | ---: | ---: | :--- |'
@@ -158,13 +158,13 @@ foreach ($current in $currentResults) {
 if ($baselineResults.Count -eq 0) {
   $summary += @(
     ''
-    'No successful default-branch benchmark artifact is available yet. This run establishes the baseline.'
+    'No committed benchmark baseline is available. Regression comparison was skipped. Run the Refresh benchmark baselines workflow and merge its pull request to establish the baseline.'
   )
 }
 elseif ($unmatchedCount -gt 0) {
   $summary += @(
     ''
-    'Benchmarks without a matching baseline establish their baseline in this run.'
+    'Regression comparison was skipped for benchmarks without a matching baseline. Run the Refresh benchmark baselines workflow and merge its pull request to add them.'
   )
 }
 

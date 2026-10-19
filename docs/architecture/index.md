@@ -1,5 +1,7 @@
 # Architecture
 
+This contributor reference describes module internals. For installation and everyday use, start with the [user guide](../guide/index.md).
+
 `gly` uses PowerShell's native formatting system for standard `FileInfo` and `DirectoryInfo` output.
 
 ## Format Data
@@ -13,6 +15,8 @@ src/formats/FileSystem.format.ps1xml
 It is loaded with `Update-FormatData -PrependPath`.
 
 PowerShell format data is session-wide, so the view can remain active after `Remove-Module gly`.
+
+`Get-GlyFileSystemDisplayName` is exported so format data can call it. It supplies the formatted name for the standard table view and the renderer commands.
 
 ## Initialization
 
@@ -46,3 +50,13 @@ The built-in resolver caches an index for kinds, extensions, exact names, globs,
 Session state uses `GlyConfiguration`, `GlyTheme`, `GlyThemeRule`, `GlyStyle`, `GlyGlyphSet`, `GlyGlyphRule`, and `GlySelector`.
 
 Registration commands accept hashtables and `pscustomobject` values, validate them, and convert them before storage. Getter and copy commands return detached typed copies. Nerd Fonts and Emoji use the complete selector catalog; built-in themes, ANSI, ANSICompact, and Unicode use its essential structural subset.
+
+## Style Backends
+
+`StyleRenderer` accepts `Auto`, `PSStyle`, `Ansi`, and `PlainText`. The global `$GlyStyleRenderer` preference takes priority over session configuration. With `RespectNoColor` enabled, the presence of `NO_COLOR` requests plain text.
+
+## Visual Sources
+
+Theme attribution is listed in [Theme Palette Sources](../development/theme-sources.md). Source projects retain their own names, licenses, and distribution terms.
+
+Glyph mappings were inspired by [Terminal-Icons](https://github.com/devblackops/Terminal-Icons), [GlyphShell](https://github.com/SemperFu/GlyphShell), and [PSFileIcons](https://github.com/hanthor/PSFileIcons). The expanded Nerd Fonts mappings use the [Nerd Fonts cheat sheet](https://www.nerdfonts.com/cheat-sheet) as the glyph source.

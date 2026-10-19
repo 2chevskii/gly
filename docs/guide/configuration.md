@@ -1,43 +1,63 @@
 # Configuration
 
-Configuration exists only in the current PowerShell session.
+Settings apply to the current PowerShell session. To reuse them when PowerShell starts, add your commands to your [profile](installation.md#load-gly-in-every-session).
+
+## View Your Settings
 
 ```powershell
 Get-GlyConfiguration
 ```
 
-Common settings:
+## Choose Colors and Symbols
+
+Themes control colors; glyph sets control the symbols beside names:
+
+```powershell
+Set-GlyTheme DefaultLight
+Set-GlyGlyphSet Unicode
+```
+
+Use `DefaultDark` for a dark terminal background or `DefaultLight` for a light one. See [Themes](themes.md) and [Glyph Sets](glyph-sets.md) for previews and custom choices. Press Tab while entering a theme or glyph-set name to complete it.
+
+You can turn colors and symbols off independently:
 
 ```powershell
 Set-GlyConfiguration -ShowColors $false
 Set-GlyConfiguration -ShowGlyphs $false
+```
+
+Set either option to `$true` to turn it back on.
+
+## Format Sizes and Dates
+
+```powershell
 Set-GlyConfiguration -SizeFormat Binary
 Set-GlyConfiguration -DateFormat Iso
+```
+
+`Binary` displays file sizes with units such as `KiB` and `MiB`; `Raw` displays the byte count. Size formatting applies to the usual file listing and to `Show-Gly`.
+
+`Iso` uses a consistent year-month-day date format; `Default` uses the usual date format. Date formatting applies to `Show-Gly`.
+
+## Plain Text
+
+To display names without color or text styling:
+
+```powershell
 Set-GlyConfiguration -StyleRenderer PlainText
 ```
 
-`SizeFormat` controls file sizes in the standard PowerShell view and in
-`Show-Gly`. `Binary` renders values with binary units such as `KiB` and `MiB`.
+Use `-StyleRenderer Auto` to return to automatic styling. Symbols are controlled separately by `ShowGlyphs`.
 
-Theme and glyph-set names complete dynamically for `Set-GlyTheme`,
-`Set-GlyGlyphSet`, and the corresponding `Set-GlyConfiguration` parameters.
-Items registered during the current session are available on the next completion
-request; command validation still rejects unknown names.
+`gly` also respects the `NO_COLOR` environment variable by default. If it is set, names use plain text. See [Troubleshooting](../troubleshooting/index.md#colors-do-not-appear) if colors are missing unexpectedly.
 
-## Renderer Backend
+## Turn Formatting Off
 
-Supported values:
-
-- `Auto`
-- `PSStyle`
-- `Ansi`
-- `PlainText`
-
-The global preference variable has priority over configuration:
+`Disable-Gly` turns off colors and symbols. To turn them back on:
 
 ```powershell
-$GlyStyleRenderer = 'PlainText'
-Remove-Variable GlyStyleRenderer -Scope Global
+Enable-Gly
+Set-GlyConfiguration -ShowColors $true -ShowGlyphs $true
 ```
 
-If `RespectNoColor` is enabled and `NO_COLOR` exists, `gly` renders plain text.
+To restore the standard PowerShell view completely, open a new session without importing `gly`.
