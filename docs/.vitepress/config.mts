@@ -33,6 +33,7 @@ export default defineConfig({
           { text: "Configuration", link: "/guide/configuration" },
           { text: "Themes", link: "/guide/themes" },
           { text: "Glyph Sets", link: "/guide/glyph-sets" },
+          { text: "Capture Gallery", link: "/guide/captures" },
           { text: "Renderer Commands", link: "/guide/renderers" },
           { text: "Custom Rules", link: "/guide/selectors" },
         ],
