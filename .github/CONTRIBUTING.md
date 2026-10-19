@@ -30,7 +30,7 @@ Good bug reports include the `gly` version, PowerShell version, operating system
 
 5. Open a pull request using the repository template and describe the motivation, implementation, and validation.
 
-The CI workflow runs the test suite on Windows and Ubuntu and builds the documentation. Maintainers may request changes to keep the module's PowerShell 7+ scope, pipeline semantics, and MVP boundaries intact.
+The CI workflow runs the test suite on Windows and Ubuntu and builds the documentation. Maintainers may request changes to keep the module's PowerShell 7+ scope, pipeline semantics, and feature boundaries intact.
 
 ## Style and Scope
 

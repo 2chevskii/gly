@@ -1,0 +1,5 @@
+{
+  "WithReset": "\u001b[38;2;212;212;212m[file] README.md\u001b[0m",
+  "WithoutReset": "\u001b[38;2;212;212;212m[file] README.md",
+  "NoColorTheme": "[file] README.md"
+}

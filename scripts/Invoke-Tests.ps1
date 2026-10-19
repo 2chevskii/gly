@@ -2,6 +2,9 @@
 param(
   [string] $OutputPath = './artifacts/tests/local',
 
+  [ValidateSet('All', 'Unit', 'Snapshots')]
+  [string] $TestType = 'All',
+
   [switch] $Coverage,
 
   [string] $CoverageOutputPath = './artifacts/coverage/coverage.cobertura.xml'
@@ -30,13 +33,27 @@ $htmlDirectory = Join-Path $resultDirectory 'html'
 New-Item -Path $resultDirectory -ItemType Directory -Force | Out-Null
 
 Import-Module Pester -RequiredVersion 5.7.1
+. (Join-Path $PSScriptRoot 'Export-GlyJUnitReport.ps1')
 
 $configuration = New-PesterConfiguration
-$configuration.Run.Path = Join-Path $repositoryRoot 'tests'
+$testDirectory = Join-Path $repositoryRoot 'tests'
+$snapshotTestPath = Join-Path $testDirectory 'Snapshots.Tests.ps1'
+
+switch ($TestType) {
+  'Unit' {
+    $configuration.Run.Path = @(Get-ChildItem -LiteralPath $testDirectory -Filter '*.Tests.ps1' -File |
+      Where-Object FullName -NE $snapshotTestPath |
+      Select-Object -ExpandProperty FullName)
+  }
+  'Snapshots' {
+    $configuration.Run.Path = $snapshotTestPath
+  }
+  default {
+    $configuration.Run.Path = $testDirectory
+  }
+}
 $configuration.Run.PassThru = $true
-$configuration.TestResult.Enabled = $true
-$configuration.TestResult.OutputFormat = 'JUnitXml'
-$configuration.TestResult.OutputPath = $junitPath
+$configuration.TestResult.Enabled = $false
 
 if ($Coverage) {
   $coveragePath = Resolve-RepositoryPath $CoverageOutputPath
@@ -61,6 +78,8 @@ try {
 finally {
   $env:GLY_PESTER_COVERAGE = $previousCoverageMode
 }
+
+Export-GlyJUnitReport -Result $result -Path $junitPath
 
 Push-Location $repositoryRoot
 try {

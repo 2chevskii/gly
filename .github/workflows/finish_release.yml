@@ -18,7 +18,7 @@ env:
 jobs:
   release-metadata:
     name: Validate release metadata
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     outputs:
       package: ${{ steps.version.outputs.package }}
       version: ${{ steps.version.outputs.version }}
@@ -52,7 +52,7 @@ jobs:
   publish-powershell-gallery:
     name: Publish to PowerShell Gallery
     needs: release-metadata
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - name: Install PSResourceGet
         shell: pwsh
@@ -89,7 +89,7 @@ jobs:
   publish-github-packages:
     name: Publish to GitHub Packages
     needs: release-metadata
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     permissions:
       contents: read
       packages: write

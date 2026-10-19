@@ -1,0 +1,42 @@
+{
+  "Records": [
+    {
+      "LastWriteTime": "2024-01-02 03:04",
+      "Length": 0,
+      "Name": "[file] app.ps1"
+    },
+    {
+      "LastWriteTime": "2024-01-02 03:04",
+      "Length": 1536,
+      "Name": "[file] README.md"
+    },
+    {
+      "LastWriteTime": "2024-01-02 03:04",
+      "Length": "",
+      "Name": "[dir] src"
+    }
+  ],
+  "Tree": [
+    "[dir] src",
+    "+-- [file] nested.txt"
+  ],
+  "Grid": [
+    "[file] app.ps1    [file] README.md  [dir] src"
+  ],
+  "BinaryRecord": {
+    "LastWriteTime": "2024-01-02 03:04",
+    "Length": "1.5 KiB",
+    "Name": "[file] README.md"
+  },
+  "StandardView": {
+    "ViewName": "gly.FileSystem.Table",
+    "Headers": [
+      "Mode",
+      "LastWriteTime",
+      "Length",
+      "Name"
+    ],
+    "BinarySize": true,
+    "DisplayName": true
+  }
+}

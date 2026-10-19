@@ -31,6 +31,7 @@ Remove-Variable directory, path
 Initialize-GlyConfiguration
 Initialize-GlyThemeRegistry
 Initialize-GlyGlyphSetRegistry
+Register-GlyArgumentCompleters
 Enable-Gly
 
 Set-Alias -Name gly -Value Show-Gly

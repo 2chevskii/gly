@@ -18,7 +18,20 @@ Describe 'gly glyph set registry' {
     $glyphSet.GetType().Name | Should -Be 'GlyGlyphSet'
     $glyphSet.Rules[0].GetType().Name | Should -Be 'GlyGlyphRule'
     $glyphSet.Rules[0].Selector.GetType().Name | Should -Be 'GlySelector'
-    $glyphSet.Rules.Count | Should -BeGreaterThan 50
+    $glyphSet.Rules.Count | Should -BeGreaterThan 150
+  }
+
+  It 'uses Nerd Fonts-specific glyphs for extended file types' {
+    $glyphs = Get-GlyGlyphSet NerdFonts
+    $byExtension = @{}
+    foreach ($rule in $glyphs.Rules) {
+      foreach ($extension in $rule.Selector.Extension) { $byExtension[$extension] = $rule.Glyph }
+    }
+    $byExtension['.astro'] | Should -Be ([string] [char] 0xe735)
+    $byExtension['.graphql'] | Should -Be ([string] [char] 0xe7f4)
+    $byExtension['.zig'] | Should -Be ([string] [char] 0xe8ef)
+    $byExtension['.cr'] | Should -Be ([string] [char] 0xe7ac)
+    $byExtension['.svg'] | Should -Be ([string] [char] 0xe698)
   }
 
   It 'keeps fallback glyph sets limited to essential matchers' {

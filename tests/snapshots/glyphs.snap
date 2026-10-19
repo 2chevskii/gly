@@ -1,0 +1,2973 @@
+[
+  {
+    "Name": "NerdFonts",
+    "Default": "",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Name": null,
+        "Extension": [],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "Junction",
+        "Name": null,
+        "Extension": [],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "Symlink",
+        "Name": null,
+        "Extension": [],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [],
+        "Glob": [],
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".ps1",
+          ".psm1",
+          ".psd1",
+          ".ps1xml",
+          ".psc1",
+          ".pssc"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "󰞷"
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".sh",
+          ".bash",
+          ".zsh",
+          ".fish",
+          ".bat",
+          ".cmd"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".cs",
+          ".csx",
+          ".fs",
+          ".fsx",
+          ".vb"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "󰌛"
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".c",
+          ".h",
+          ".cpp",
+          ".cc",
+          ".cxx",
+          ".hpp"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "󰙲"
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".java",
+          ".class",
+          ".jar",
+          ".kt",
+          ".kts",
+          ".scala",
+          ".gradle"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".js",
+          ".mjs",
+          ".cjs"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".ts"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".d.ts"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".jsx",
+          ".tsx"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".py",
+          ".pyw",
+          ".pyc",
+          ".ipynb"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".rs"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".go"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".rb",
+          ".rake",
+          ".gemspec"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".php"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".html",
+          ".htm",
+          ".css",
+          ".scss",
+          ".sass",
+          ".less",
+          ".vue",
+          ".svelte"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".json",
+          ".jsonc"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".yaml",
+          ".yml"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".toml",
+          ".ini",
+          ".cfg",
+          ".conf",
+          ".config",
+          ".properties",
+          ".env"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".xml",
+          ".xsd",
+          ".xsl",
+          ".xslt",
+          ".resx",
+          ".xaml",
+          ".plist"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "󰗀"
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".md",
+          ".mdx",
+          ".markdown",
+          ".rst"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".txt",
+          ".rtf"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "󰈙"
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".log",
+          ".trace"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".tar.gz",
+          ".tar.bz2",
+          ".tar.xz",
+          ".zip",
+          ".tar",
+          ".gz",
+          ".bz2",
+          ".xz",
+          ".7z",
+          ".rar",
+          ".tgz",
+          ".zst"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".png",
+          ".jpg",
+          ".jpeg",
+          ".gif",
+          ".bmp",
+          ".webp",
+          ".ico",
+          ".svg",
+          ".tif",
+          ".tiff"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".mp3",
+          ".wav",
+          ".flac",
+          ".m4a",
+          ".aac",
+          ".ogg",
+          ".opus"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".mp4",
+          ".mkv",
+          ".avi",
+          ".mov",
+          ".webm",
+          ".wmv"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".pdf"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".doc",
+          ".docx",
+          ".odt"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "󰈬"
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".xls",
+          ".xlsx",
+          ".ods",
+          ".csv",
+          ".tsv"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "󰈛"
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".ppt",
+          ".pptx",
+          ".odp"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "󰈧"
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".db",
+          ".sqlite",
+          ".sqlite3",
+          ".sql",
+          ".pdb",
+          ".accdb",
+          ".mdb"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".ttf",
+          ".otf",
+          ".woff",
+          ".woff2",
+          ".eot"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".pem",
+          ".cer",
+          ".cert",
+          ".crt",
+          ".pfx",
+          ".gpg",
+          ".asc"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".exe",
+          ".dll",
+          ".so",
+          ".dylib",
+          ".wasm",
+          ".msi",
+          ".msix"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".ada",
+          ".adb",
+          ".ads"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".asm",
+          ".s",
+          ".inc"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".astro"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".awk"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".bicep"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".clj",
+          ".cljs",
+          ".cljc",
+          ".edn"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".cmake"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".coffee",
+          ".cson"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".cfm",
+          ".cfc",
+          ".cfml"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".dart"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".d",
+          ".di"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".ex",
+          ".exs"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".elm"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".erl",
+          ".hrl"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".fnl"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".f",
+          ".for",
+          ".f90",
+          ".f95"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".graphql",
+          ".gql"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".groovy",
+          ".gvy",
+          ".gy",
+          ".gsh"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".hs",
+          ".lhs"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".hx"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".hcl"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".jade",
+          ".pug"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".jl"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".kt",
+          ".kts"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".tex",
+          ".latex",
+          ".sty",
+          ".cls"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".lisp",
+          ".lsp",
+          ".cl"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".lua"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".matlab",
+          ".m"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".nim",
+          ".nims"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".nix"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".ml",
+          ".mli"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".org"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".pl",
+          ".pm",
+          ".pod"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".prisma"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".pro",
+          ".prolog"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".purs"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".r",
+          ".rmd"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".re",
+          ".rei"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".res",
+          ".resi"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".scala",
+          ".sc"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".scm",
+          ".ss"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".sol"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".styl"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".swift"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".tf",
+          ".tfvars"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".twig"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".vala",
+          ".vapi"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".v"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".wasm",
+          ".wat"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".zig"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".ad"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".bsl"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".cake"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".cjsx"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".cr"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".csv"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".cu",
+          ".cuh"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".ejs"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".fs",
+          ".fsx",
+          ".fsi"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".hack"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".haml"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".html",
+          ".htm"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".ionic"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".less"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".liquid"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".ls"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".mdo"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".mustache",
+          ".hbs"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".njk",
+          ".nunjucks"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".odata"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".pddl"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".pp"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".sbt"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".slim"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".smarty"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".svg"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".wgt"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "Directory",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          ".git"
+        ],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "Directory",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          ".github"
+        ],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "Directory",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          ".config",
+          ".vscode",
+          ".vscode-insiders",
+          ".idea"
+        ],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "Directory",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "node_modules",
+          "vendor",
+          "packages",
+          "bower_components"
+        ],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "Directory",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "src",
+          "source",
+          "scripts"
+        ],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "Directory",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "test",
+          "tests",
+          "spec",
+          "specs",
+          "coverage"
+        ],
+        "Attributes": [],
+        "Glyph": "󰙨"
+      },
+      {
+        "Kind": "Directory",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "doc",
+          "docs",
+          "documentation"
+        ],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "Directory",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "build",
+          "dist",
+          "out",
+          "output",
+          "artifacts",
+          "target",
+          "bin"
+        ],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "Directory",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          ".cache",
+          "__pycache__",
+          ".pytest_cache",
+          ".mypy_cache"
+        ],
+        "Attributes": [],
+        "Glyph": "󰃨"
+      },
+      {
+        "Kind": "Directory",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "download",
+          "downloads"
+        ],
+        "Attributes": [],
+        "Glyph": "󰉍"
+      },
+      {
+        "Kind": "Directory",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "image",
+          "images",
+          "photo",
+          "photos",
+          "picture",
+          "pictures"
+        ],
+        "Attributes": [],
+        "Glyph": "󰉏"
+      },
+      {
+        "Kind": "Directory",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "audio",
+          "music",
+          "songs"
+        ],
+        "Attributes": [],
+        "Glyph": "󰌳"
+      },
+      {
+        "Kind": "Directory",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "video",
+          "videos",
+          "movie",
+          "movies"
+        ],
+        "Attributes": [],
+        "Glyph": "󰎁"
+      },
+      {
+        "Kind": "Directory",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          ".docker",
+          ".kube",
+          ".terraform",
+          "infra",
+          "deploy",
+          "charts"
+        ],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "File",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          ".gitignore",
+          ".gitattributes",
+          ".gitmodules",
+          ".gitconfig",
+          ".gitkeep"
+        ],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "File",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "Dockerfile",
+          "Dockerfile.*",
+          ".dockerignore",
+          "docker-compose*.yml",
+          "docker-compose*.yaml",
+          "compose*.yml",
+          "compose*.yaml"
+        ],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "File",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "README",
+          "README.*"
+        ],
+        "Attributes": [],
+        "Glyph": "󰪷"
+      },
+      {
+        "Kind": "File",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "LICENSE",
+          "LICENSE.*",
+          "LICENCE",
+          "LICENCE.*",
+          "COPYING",
+          "COPYING.*"
+        ],
+        "Attributes": [],
+        "Glyph": "󰄤"
+      },
+      {
+        "Kind": "File",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "CHANGELOG",
+          "CHANGELOG.*",
+          "HISTORY",
+          "HISTORY.*"
+        ],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "File",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "package.json",
+          "package-lock.json",
+          "yarn.lock",
+          "pnpm-lock.yaml",
+          "composer.json",
+          "composer.lock",
+          "go.mod",
+          "go.sum",
+          "Cargo.toml",
+          "Cargo.lock",
+          "requirements.txt",
+          "pyproject.toml",
+          "Pipfile"
+        ],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "File",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "*.sln",
+          "*.slnx",
+          "*.csproj",
+          "*.fsproj",
+          "*.vbproj",
+          "CMakeLists.txt",
+          "Makefile",
+          "makefile"
+        ],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "File",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          ".editorconfig",
+          ".eslintrc*",
+          "eslint.config.*",
+          ".prettierrc*",
+          "prettier.config.*",
+          "tsconfig*.json",
+          "jsconfig*.json"
+        ],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "File",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          ".gitlab-ci.yml",
+          ".travis.yml",
+          ".azure-pipelines.yml",
+          "azure-pipelines.yml",
+          "bitbucket-pipelines.yml",
+          "bitbucket-pipelines.yaml",
+          "Jenkinsfile",
+          ".jenkinsfile"
+        ],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "File",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "angular.json",
+          "angular-cli.json"
+        ],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "File",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "ansible.cfg",
+          "playbook.yml",
+          "playbook.yaml"
+        ],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "File",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          ".babelrc",
+          ".babelrc.*",
+          "babel.config.*"
+        ],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "File",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "bower.json",
+          ".bowerrc"
+        ],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "File",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "deno.json",
+          "deno.jsonc",
+          "deno.lock"
+        ],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "File",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "manage.py"
+        ],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "File",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "Dockerfile",
+          "Dockerfile.*",
+          ".dockerignore"
+        ],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "File",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          ".eslintrc*",
+          "eslint.config.*"
+        ],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "File",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "firebase.json",
+          ".firebaserc"
+        ],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "File",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "app.py"
+        ],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "File",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "project.godot"
+        ],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "File",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "build.gradle",
+          "build.gradle.kts",
+          "settings.gradle",
+          "settings.gradle.kts",
+          "gradlew",
+          "gradlew.bat"
+        ],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "File",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "gulpfile.*",
+          "gulpfile"
+        ],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "File",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "gruntfile.*",
+          "gruntfile"
+        ],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "File",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "Jenkinsfile",
+          ".jenkinsfile"
+        ],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".jinja",
+          ".jinja2",
+          ".j2"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".ipynb"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "File",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "Makefile",
+          "makefile",
+          "GNUmakefile"
+        ],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "File",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "pom.xml"
+        ],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "File",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "next.config.*",
+          "next-env.d.ts"
+        ],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "File",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "package.json",
+          "package-lock.json"
+        ],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "File",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "nuxt.config.*",
+          "nuxt.config"
+        ],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "File",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "postcss.config.*",
+          ".postcssrc*"
+        ],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "File",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "pytest.ini",
+          "tox.ini"
+        ],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "File",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "Gemfile",
+          "Rakefile"
+        ],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "File",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "rollup.config.*",
+          "rollup.config"
+        ],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".svelte"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "File",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "vite.config.*",
+          "vite.config"
+        ],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".vue"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "File",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "webpack.config.*",
+          "webpack.*.js"
+        ],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "File",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "yarn.lock"
+        ],
+        "Attributes": [],
+        "Glyph": ""
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [],
+        "Glob": [],
+        "Attributes": [
+          "Hidden"
+        ],
+        "Glyph": ""
+      }
+    ]
+  },
+  {
+    "Name": "ANSI",
+    "Default": "[file]",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Name": null,
+        "Extension": [],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "[dir]"
+      },
+      {
+        "Kind": "Junction",
+        "Name": null,
+        "Extension": [],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "[junction]"
+      },
+      {
+        "Kind": "Symlink",
+        "Name": null,
+        "Extension": [],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "[link]"
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [],
+        "Glob": [],
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Glyph": "[readonly]"
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [],
+        "Glob": [],
+        "Attributes": [
+          "Hidden"
+        ],
+        "Glyph": "[hidden]"
+      }
+    ]
+  },
+  {
+    "Name": "ANSICompact",
+    "Default": "f",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Name": null,
+        "Extension": [],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "d"
+      },
+      {
+        "Kind": "Junction",
+        "Name": null,
+        "Extension": [],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "J"
+      },
+      {
+        "Kind": "Symlink",
+        "Name": null,
+        "Extension": [],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "l"
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [],
+        "Glob": [],
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Glyph": "r"
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [],
+        "Glob": [],
+        "Attributes": [
+          "Hidden"
+        ],
+        "Glyph": "h"
+      }
+    ]
+  },
+  {
+    "Name": "Unicode",
+    "Default": "□",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Name": null,
+        "Extension": [],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "▣"
+      },
+      {
+        "Kind": "Junction",
+        "Name": null,
+        "Extension": [],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "⇄"
+      },
+      {
+        "Kind": "Symlink",
+        "Name": null,
+        "Extension": [],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "↗"
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [],
+        "Glob": [],
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Glyph": "◆"
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [],
+        "Glob": [],
+        "Attributes": [
+          "Hidden"
+        ],
+        "Glyph": "·"
+      }
+    ]
+  },
+  {
+    "Name": "Emoji",
+    "Default": "📄",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Name": null,
+        "Extension": [],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "📁"
+      },
+      {
+        "Kind": "Junction",
+        "Name": null,
+        "Extension": [],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "🔀"
+      },
+      {
+        "Kind": "Symlink",
+        "Name": null,
+        "Extension": [],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "🔗"
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [],
+        "Glob": [],
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Glyph": "🔒"
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".ps1",
+          ".psm1",
+          ".psd1",
+          ".ps1xml",
+          ".psc1",
+          ".pssc"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "💻"
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".sh",
+          ".bash",
+          ".zsh",
+          ".fish",
+          ".bat",
+          ".cmd"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "⌨️"
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".cs",
+          ".csx",
+          ".fs",
+          ".fsx",
+          ".vb"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "#️⃣"
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".c",
+          ".h",
+          ".cpp",
+          ".cc",
+          ".cxx",
+          ".hpp"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "➕"
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".java",
+          ".class",
+          ".jar",
+          ".kt",
+          ".kts",
+          ".scala",
+          ".gradle"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "☕"
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".js",
+          ".mjs",
+          ".cjs"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "🟨"
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".ts"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "🟦"
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".d.ts"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "DTS"
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".jsx",
+          ".tsx"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "⚛️"
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".py",
+          ".pyw",
+          ".pyc",
+          ".ipynb"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "🐍"
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".rs"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "🦀"
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".go"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "🐹"
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".rb",
+          ".rake",
+          ".gemspec"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "💎"
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".php"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "🐘"
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".html",
+          ".htm",
+          ".css",
+          ".scss",
+          ".sass",
+          ".less",
+          ".vue",
+          ".svelte"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "🌐"
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".json",
+          ".jsonc"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "{}"
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".yaml",
+          ".yml"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "📋"
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".toml",
+          ".ini",
+          ".cfg",
+          ".conf",
+          ".config",
+          ".properties",
+          ".env"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "⚙️"
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".xml",
+          ".xsd",
+          ".xsl",
+          ".xslt",
+          ".resx",
+          ".xaml",
+          ".plist"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "<>"
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".md",
+          ".mdx",
+          ".markdown",
+          ".rst"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "📝"
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".txt",
+          ".rtf"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "📃"
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".log",
+          ".trace"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "📜"
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".tar.gz",
+          ".tar.bz2",
+          ".tar.xz",
+          ".zip",
+          ".tar",
+          ".gz",
+          ".bz2",
+          ".xz",
+          ".7z",
+          ".rar",
+          ".tgz",
+          ".zst"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "🗜️"
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".png",
+          ".jpg",
+          ".jpeg",
+          ".gif",
+          ".bmp",
+          ".webp",
+          ".ico",
+          ".svg",
+          ".tif",
+          ".tiff"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "🖼️"
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".mp3",
+          ".wav",
+          ".flac",
+          ".m4a",
+          ".aac",
+          ".ogg",
+          ".opus"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "🎵"
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".mp4",
+          ".mkv",
+          ".avi",
+          ".mov",
+          ".webm",
+          ".wmv"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "🎬"
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".pdf"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "📕"
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".doc",
+          ".docx",
+          ".odt"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "📘"
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".xls",
+          ".xlsx",
+          ".ods",
+          ".csv",
+          ".tsv"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "📗"
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".ppt",
+          ".pptx",
+          ".odp"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "📙"
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".db",
+          ".sqlite",
+          ".sqlite3",
+          ".sql",
+          ".pdb",
+          ".accdb",
+          ".mdb"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "🗄️"
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".ttf",
+          ".otf",
+          ".woff",
+          ".woff2",
+          ".eot"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "🔤"
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".pem",
+          ".cer",
+          ".cert",
+          ".crt",
+          ".pfx",
+          ".gpg",
+          ".asc"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "📜"
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [
+          ".exe",
+          ".dll",
+          ".so",
+          ".dylib",
+          ".wasm",
+          ".msi",
+          ".msix"
+        ],
+        "Glob": [],
+        "Attributes": [],
+        "Glyph": "⚙️"
+      },
+      {
+        "Kind": "Directory",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          ".git"
+        ],
+        "Attributes": [],
+        "Glyph": "⑂"
+      },
+      {
+        "Kind": "Directory",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          ".github"
+        ],
+        "Attributes": [],
+        "Glyph": "🐙"
+      },
+      {
+        "Kind": "Directory",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          ".config",
+          ".vscode",
+          ".vscode-insiders",
+          ".idea"
+        ],
+        "Attributes": [],
+        "Glyph": "⚙️"
+      },
+      {
+        "Kind": "Directory",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "node_modules",
+          "vendor",
+          "packages",
+          "bower_components"
+        ],
+        "Attributes": [],
+        "Glyph": "📦"
+      },
+      {
+        "Kind": "Directory",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "src",
+          "source",
+          "scripts"
+        ],
+        "Attributes": [],
+        "Glyph": "💻"
+      },
+      {
+        "Kind": "Directory",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "test",
+          "tests",
+          "spec",
+          "specs",
+          "coverage"
+        ],
+        "Attributes": [],
+        "Glyph": "🧪"
+      },
+      {
+        "Kind": "Directory",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "doc",
+          "docs",
+          "documentation"
+        ],
+        "Attributes": [],
+        "Glyph": "📚"
+      },
+      {
+        "Kind": "Directory",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "build",
+          "dist",
+          "out",
+          "output",
+          "artifacts",
+          "target",
+          "bin"
+        ],
+        "Attributes": [],
+        "Glyph": "🏗️"
+      },
+      {
+        "Kind": "Directory",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          ".cache",
+          "__pycache__",
+          ".pytest_cache",
+          ".mypy_cache"
+        ],
+        "Attributes": [],
+        "Glyph": "♻️"
+      },
+      {
+        "Kind": "Directory",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "download",
+          "downloads"
+        ],
+        "Attributes": [],
+        "Glyph": "📥"
+      },
+      {
+        "Kind": "Directory",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "image",
+          "images",
+          "photo",
+          "photos",
+          "picture",
+          "pictures"
+        ],
+        "Attributes": [],
+        "Glyph": "🖼️"
+      },
+      {
+        "Kind": "Directory",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "audio",
+          "music",
+          "songs"
+        ],
+        "Attributes": [],
+        "Glyph": "🎵"
+      },
+      {
+        "Kind": "Directory",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "video",
+          "videos",
+          "movie",
+          "movies"
+        ],
+        "Attributes": [],
+        "Glyph": "🎬"
+      },
+      {
+        "Kind": "Directory",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          ".docker",
+          ".kube",
+          ".terraform",
+          "infra",
+          "deploy",
+          "charts"
+        ],
+        "Attributes": [],
+        "Glyph": "☁️"
+      },
+      {
+        "Kind": "File",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          ".gitignore",
+          ".gitattributes",
+          ".gitmodules",
+          ".gitconfig",
+          ".gitkeep"
+        ],
+        "Attributes": [],
+        "Glyph": "⑂"
+      },
+      {
+        "Kind": "File",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "Dockerfile",
+          "Dockerfile.*",
+          ".dockerignore",
+          "docker-compose*.yml",
+          "docker-compose*.yaml",
+          "compose*.yml",
+          "compose*.yaml"
+        ],
+        "Attributes": [],
+        "Glyph": "🐳"
+      },
+      {
+        "Kind": "File",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "README",
+          "README.*"
+        ],
+        "Attributes": [],
+        "Glyph": "ℹ️"
+      },
+      {
+        "Kind": "File",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "LICENSE",
+          "LICENSE.*",
+          "LICENCE",
+          "LICENCE.*",
+          "COPYING",
+          "COPYING.*"
+        ],
+        "Attributes": [],
+        "Glyph": "📜"
+      },
+      {
+        "Kind": "File",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "CHANGELOG",
+          "CHANGELOG.*",
+          "HISTORY",
+          "HISTORY.*"
+        ],
+        "Attributes": [],
+        "Glyph": "✅"
+      },
+      {
+        "Kind": "File",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "package.json",
+          "package-lock.json",
+          "yarn.lock",
+          "pnpm-lock.yaml",
+          "composer.json",
+          "composer.lock",
+          "go.mod",
+          "go.sum",
+          "Cargo.toml",
+          "Cargo.lock",
+          "requirements.txt",
+          "pyproject.toml",
+          "Pipfile"
+        ],
+        "Attributes": [],
+        "Glyph": "📦"
+      },
+      {
+        "Kind": "File",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          "*.sln",
+          "*.slnx",
+          "*.csproj",
+          "*.fsproj",
+          "*.vbproj",
+          "CMakeLists.txt",
+          "Makefile",
+          "makefile"
+        ],
+        "Attributes": [],
+        "Glyph": "🧩"
+      },
+      {
+        "Kind": "File",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          ".editorconfig",
+          ".eslintrc*",
+          "eslint.config.*",
+          ".prettierrc*",
+          "prettier.config.*",
+          "tsconfig*.json",
+          "jsconfig*.json"
+        ],
+        "Attributes": [],
+        "Glyph": "⚙️"
+      },
+      {
+        "Kind": "File",
+        "Name": null,
+        "Extension": [],
+        "Glob": [
+          ".gitlab-ci.yml",
+          ".travis.yml",
+          ".azure-pipelines.yml",
+          "azure-pipelines.yml",
+          "bitbucket-pipelines.yml",
+          "bitbucket-pipelines.yaml",
+          "Jenkinsfile",
+          ".jenkinsfile"
+        ],
+        "Attributes": [],
+        "Glyph": "🚦"
+      },
+      {
+        "Kind": "",
+        "Name": null,
+        "Extension": [],
+        "Glob": [],
+        "Attributes": [
+          "Hidden"
+        ],
+        "Glyph": "🙈"
+      }
+    ]
+  }
+]

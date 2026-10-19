@@ -1,0 +1,54 @@
+{
+  "Initial": {
+    "Enabled": true,
+    "Theme": "DefaultDark",
+    "GlyphSet": "ANSI",
+    "ShowGlyphs": true,
+    "ShowColors": false,
+    "SizeFormat": 0,
+    "DateFormat": 1,
+    "StyleRenderer": 3,
+    "RespectNoColor": true,
+    "ResetAfterName": true
+  },
+  "Registered": {
+    "Theme": "SnapshotTheme:False:5",
+    "GlyphSet": "SnapshotGlyphs:False:5"
+  },
+  "Configured": {
+    "Enabled": true,
+    "Theme": "SnapshotTheme",
+    "GlyphSet": "SnapshotGlyphs",
+    "ShowGlyphs": true,
+    "ShowColors": false,
+    "SizeFormat": 1,
+    "DateFormat": 1,
+    "StyleRenderer": 3,
+    "RespectNoColor": true,
+    "ResetAfterName": false
+  },
+  "Disabled": {
+    "Enabled": false,
+    "Theme": "SnapshotTheme",
+    "GlyphSet": "SnapshotGlyphs",
+    "ShowGlyphs": false,
+    "ShowColors": false,
+    "SizeFormat": 1,
+    "DateFormat": 1,
+    "StyleRenderer": 3,
+    "RespectNoColor": true,
+    "ResetAfterName": false
+  },
+  "Enabled": {
+    "Enabled": true,
+    "Theme": "SnapshotTheme",
+    "GlyphSet": "SnapshotGlyphs",
+    "ShowGlyphs": false,
+    "ShowColors": false,
+    "SizeFormat": 1,
+    "DateFormat": 1,
+    "StyleRenderer": 3,
+    "RespectNoColor": true,
+    "ResetAfterName": false
+  }
+}

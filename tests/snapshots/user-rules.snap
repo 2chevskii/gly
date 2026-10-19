@@ -1,0 +1,10 @@
+{
+  "Matching": "\u001b[38;2;254;220;186mname app.ps1\u001b[0m",
+  "Fallback": "\u001b[38;2;17;17;17m? README.md\u001b[0m",
+  "GlyphRules": [
+    "extension",
+    "name"
+  ],
+  "UnknownTheme": "Unknown gly theme 'MissingTheme'. Use Get-GlyTheme to list available themes.",
+  "UnknownGlyphSet": "Unknown gly glyph set 'MissingGlyphSet'. Use Get-GlyGlyphSet to list available glyph sets."
+}

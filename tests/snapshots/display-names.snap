@@ -1,0 +1,82 @@
+[
+  {
+    "GlyphSet": "ANSI",
+    "File": "app.ps1",
+    "Display": "[file] app.ps1"
+  },
+  {
+    "GlyphSet": "ANSI",
+    "File": "README.md",
+    "Display": "[file] README.md"
+  },
+  {
+    "GlyphSet": "ANSI",
+    "File": "src",
+    "Display": "[dir] src"
+  },
+  {
+    "GlyphSet": "ANSICompact",
+    "File": "app.ps1",
+    "Display": "f app.ps1"
+  },
+  {
+    "GlyphSet": "ANSICompact",
+    "File": "README.md",
+    "Display": "f README.md"
+  },
+  {
+    "GlyphSet": "ANSICompact",
+    "File": "src",
+    "Display": "d src"
+  },
+  {
+    "GlyphSet": "Unicode",
+    "File": "app.ps1",
+    "Display": "□ app.ps1"
+  },
+  {
+    "GlyphSet": "Unicode",
+    "File": "README.md",
+    "Display": "□ README.md"
+  },
+  {
+    "GlyphSet": "Unicode",
+    "File": "src",
+    "Display": "▣ src"
+  },
+  {
+    "GlyphSet": "Emoji",
+    "File": "app.ps1",
+    "Display": "💻 app.ps1"
+  },
+  {
+    "GlyphSet": "Emoji",
+    "File": "README.md",
+    "Display": "ℹ️ README.md"
+  },
+  {
+    "GlyphSet": "Emoji",
+    "File": "src",
+    "Display": "💻 src"
+  },
+  {
+    "GlyphSet": "NerdFonts",
+    "File": "app.ps1",
+    "Display": "󰞷 app.ps1"
+  },
+  {
+    "GlyphSet": "NerdFonts",
+    "File": "README.md",
+    "Display": "󰪷 README.md"
+  },
+  {
+    "GlyphSet": "NerdFonts",
+    "File": "src",
+    "Display": " src"
+  },
+  {
+    "GlyphSet": "None",
+    "File": "README.md",
+    "Display": "README.md"
+  }
+]

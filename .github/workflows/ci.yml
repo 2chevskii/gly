@@ -18,20 +18,24 @@ env:
 
 jobs:
   tests:
-    name: PowerShell tests (${{ matrix.os }})
+    name: PowerShell ${{ matrix.type }} tests (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
         os:
-          - ubuntu-latest
-          - windows-latest
+          - ubuntu-26.04
+          - windows-2025
+          - macos-26
+        type:
+          - Unit
+          - Snapshots
     steps:
       - name: Checkout
         uses: actions/checkout@v7
 
       - name: Setup Node
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: 24
           cache: npm
@@ -49,48 +53,48 @@ jobs:
         shell: pwsh
         run: Import-Module ./src/gly.psd1 -Force
 
-      - name: Run Pester and generate reports
-        run: npm test -- --OutputPath './artifacts/tests/${{ matrix.os }}'
+      - name: Run Pester tests and generate reports
+        run: npm test -- --TestType '${{ matrix.type }}' --OutputPath './artifacts/tests/${{ matrix.os }}/${{ matrix.type }}'
 
       - name: Upload JUnit test results
         if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v7
         with:
-          name: test-junit-${{ matrix.os }}
-          path: artifacts/tests/${{ matrix.os }}/pester.junit.xml
+          name: test-junit-${{ matrix.os }}-${{ matrix.type }}
+          path: artifacts/tests/${{ matrix.os }}/${{ matrix.type }}/pester.junit.xml
           if-no-files-found: error
 
       - name: Upload CTRF test results
         if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v7
         with:
-          name: test-ctrf-${{ matrix.os }}
-          path: artifacts/tests/${{ matrix.os }}/pester.ctrf.json
+          name: test-ctrf-${{ matrix.os }}-${{ matrix.type }}
+          path: artifacts/tests/${{ matrix.os }}/${{ matrix.type }}/pester.ctrf.json
           if-no-files-found: error
 
       - name: Upload HTML test report
         if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v7
         with:
-          name: test-html-${{ matrix.os }}
-          path: artifacts/tests/${{ matrix.os }}/html
+          name: test-html-${{ matrix.os }}-${{ matrix.type }}
+          path: artifacts/tests/${{ matrix.os }}/${{ matrix.type }}/html
           if-no-files-found: error
 
   coverage:
     name: Coverage analysis
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - name: Checkout
         uses: actions/checkout@v7
 
       - name: Setup Node
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: 24
           cache: npm
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v5
+        uses: actions/setup-dotnet@v6
         with:
           dotnet-version: 8.x
 
@@ -111,27 +115,63 @@ jobs:
 
       - name: Generate coverage HTML and Markdown
         if: ${{ !cancelled() }}
-        uses: danielpalme/ReportGenerator-GitHub-Action@5.5.10
+        uses: danielpalme/ReportGenerator-GitHub-Action@5.5.11
         with:
           reports: artifacts/coverage/coverage.cobertura.xml
           targetdir: artifacts/coverage/html
           reporttypes: Html;MarkdownSummaryGithub
           title: gly coverage
 
-      - name: Download default-branch coverage baseline
+      - name: Find default-branch coverage baseline
+        id: coverage-baseline
         if: ${{ !cancelled() }}
-        continue-on-error: true
-        uses: Legit-Labs/action-download-artifact@v2
+        uses: actions/github-script@v9
         with:
-          github_token: ${{ github.token }}
-          workflow: ci.yml
-          workflow_conclusion: success
-          branch: master
-          event: push
+          script: |
+            const runs = await github.paginate(
+              github.rest.actions.listWorkflowRuns,
+              {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                workflow_id: 'ci.yml',
+                branch: 'master',
+                event: 'push',
+                status: 'success',
+                per_page: 100,
+              },
+            )
+
+            for (const run of runs) {
+              const artifacts = await github.paginate(
+                github.rest.actions.listWorkflowRunArtifacts,
+                {
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  run_id: run.id,
+                  per_page: 100,
+                },
+              )
+              const baseline = artifacts.find(
+                (artifact) => artifact.name === 'coverage-cobertura' && !artifact.expired,
+              )
+
+              if (baseline) {
+                core.setOutput('run-id', run.id)
+                return
+              }
+            }
+
+            core.notice('No unexpired coverage baseline artifact is available yet.')
+
+      - name: Download default-branch coverage baseline
+        if: ${{ !cancelled() && steps.coverage-baseline.outputs.run-id != '' }}
+        uses: actions/download-artifact@v8
+        with:
           name: coverage-cobertura
           path: artifacts/baseline
-          check_artifacts: true
-          search_artifacts: true
+          github-token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          run-id: ${{ steps.coverage-baseline.outputs.run-id }}
 
       - name: Validate coverage regression
         if: ${{ !cancelled() }}
@@ -171,7 +211,7 @@ jobs:
 
   package:
     name: Build module artifacts
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -210,13 +250,23 @@ jobs:
 
   docs:
     name: VitePress build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - name: Checkout
         uses: actions/checkout@v7
 
+      - name: Validate package and module versions
+        shell: pwsh
+        run: |
+          $manifest = Test-ModuleManifest ./src/gly.psd1
+          $package = Get-Content -Raw -LiteralPath ./package.json | ConvertFrom-Json
+
+          if ($package.version -cne $manifest.Version.ToString()) {
+            throw "package.json version '$($package.version)' must match ModuleVersion '$($manifest.Version)'."
+          }
+
       - name: Setup Node
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: 24
           cache: npm
@@ -229,13 +279,13 @@ jobs:
 
   benchmarks:
     name: Performance benchmarks
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - name: Checkout
         uses: actions/checkout@v7
 
       - name: Setup Node
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: 24
           cache: npm
@@ -247,28 +297,13 @@ jobs:
           npm run bench:startup -- --OutputPath ./artifacts/benchmarks/results/startup.json
           npm run bench:rendering -- --OutputPath ./artifacts/benchmarks/results/rendering.json
 
-      - name: Download default-branch benchmark baseline
-        if: ${{ !cancelled() }}
-        continue-on-error: true
-        uses: Legit-Labs/action-download-artifact@v2
-        with:
-          github_token: ${{ github.token }}
-          workflow: ci.yml
-          workflow_conclusion: success
-          branch: master
-          event: push
-          name: benchmark-results
-          path: artifacts/benchmarks/baseline
-          check_artifacts: true
-          search_artifacts: true
-
       - name: Validate benchmark regression
         if: ${{ !cancelled() }}
         shell: pwsh
         run: |
           ./scripts/Compare-Benchmarks.ps1 `
             -CurrentPath ./artifacts/benchmarks/results `
-            -BaselinePath ./artifacts/benchmarks/baseline `
+            -BaselinePath ./benchmarks/baselines/ubuntu-26.04 `
             -MaximumRegressionPercent 20 `
             -SummaryPath ./artifacts/benchmarks/BenchmarkRegression.md
 
@@ -276,7 +311,7 @@ jobs:
         if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v7
         with:
-          name: benchmark-results
+          name: benchmark-results-ubuntu-26.04
           path: artifacts/benchmarks/results
           if-no-files-found: error
 
@@ -288,15 +323,12 @@ jobs:
           path: artifacts/benchmarks/BenchmarkRegression.md
           if-no-files-found: error
 
-  summary:
-    name: Publish test, coverage, and benchmark results
+  test-summary:
+    name: Publish test results
     if: ${{ always() && !cancelled() }}
     needs:
       - tests
-      - coverage
-      - package
-      - benchmarks
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - name: Download CTRF test results
         continue-on-error: true
@@ -305,6 +337,25 @@ jobs:
           pattern: test-ctrf-*
           path: artifacts/summary/tests
 
+      - name: Publish test results
+        uses: ctrf-io/github-test-reporter@v1
+        with:
+          report-path: artifacts/summary/tests/**/pester.ctrf.json
+          title: Pester test results
+          summary-report: true
+          failed-folded-report: true
+          skipped-report: true
+          exit-on-no-files: false
+          exit-on-fail: false
+
+  summary:
+    name: Publish coverage and benchmark results
+    if: ${{ always() && !cancelled() }}
+    needs:
+      - coverage
+      - benchmarks
+    runs-on: ubuntu-26.04
+    steps:
       - name: Download Markdown coverage summaries
         continue-on-error: true
         uses: actions/download-artifact@v8
@@ -318,17 +369,6 @@ jobs:
         with:
           name: benchmark-markdown
           path: artifacts/summary/benchmarks
-
-      - name: Publish test results
-        uses: ctrf-io/github-test-reporter@v1
-        with:
-          report-path: artifacts/summary/tests/**/pester.ctrf.json
-          title: Pester test results
-          summary-report: true
-          failed-folded-report: true
-          skipped-report: true
-          exit-on-no-files: false
-          exit-on-fail: false
 
       - name: Publish coverage results
         shell: pwsh

@@ -1,0 +1,8 @@
+{
+  "Scenario": "ImportModule",
+  "Iterations": 10,
+  "MinMs": 281.07,
+  "MedianMs": 740.75,
+  "MeanMs": 660.89,
+  "MaxMs": 789.64
+}

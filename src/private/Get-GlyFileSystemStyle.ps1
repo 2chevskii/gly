@@ -14,16 +14,9 @@ function Get-GlyFileSystemStyle {
   }
 
   if ($theme -isnot [GlyTheme]) {
-    $definition = if ($theme.HasRules) {
-      Resolve-GlyBuiltInSelector -InputObject $InputObject
-    }
-    else {
-      $null
-    }
     return Resolve-GlyBuiltInThemeStyle `
       -Theme $theme `
-      -InputObject $InputObject `
-      -ResolvedSelector $definition
+      -InputObject $InputObject
   }
 
   $rule = Resolve-GlyFileSystemRule -InputObject $InputObject -Rules $theme.Rules

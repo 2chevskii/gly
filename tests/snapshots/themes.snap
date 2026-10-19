@@ -1,0 +1,3567 @@
+[
+  {
+    "Name": "DefaultDark",
+    "Default": "#d4d4d4",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#8ec07c",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#83a598",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#83a598",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#fabd2f",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#928374",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "DefaultLight",
+    "Default": "#24292f",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#0969da",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#8250df",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#8250df",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#9a6700",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#6e7781",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "NoColor",
+    "Default": null,
+    "Rules": []
+  },
+  {
+    "Name": "Dracula",
+    "Default": "#f8f8f2",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#50fa7b",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#8be9fd",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#8be9fd",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#f1fa8c",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#6272a4",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "Nord",
+    "Default": "#d8dee9",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#88c0d0",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#8fbcbb",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#8fbcbb",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#ebcb8b",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#4c566a",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "GruvboxDark",
+    "Default": "#ebdbb2",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#b8bb26",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#83a598",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#83a598",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#fabd2f",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#928374",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "GruvboxLight",
+    "Default": "#3c3836",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#79740e",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#076678",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#076678",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#b57614",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#928374",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "CatppuccinMocha",
+    "Default": "#cdd6f4",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#a6e3a1",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#89dceb",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#89dceb",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#f9e2af",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#7f849c",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "CatppuccinLatte",
+    "Default": "#4c4f69",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#40a02b",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#179299",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#179299",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#df8e1d",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#8c8fa1",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "TokyoNight",
+    "Default": "#c0caf5",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#9ece6a",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#7dcfff",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#7dcfff",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#e0af68",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#565f89",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "SolarizedDark",
+    "Default": "#839496",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#859900",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#2aa198",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#2aa198",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#b58900",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#586e75",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "SolarizedLight",
+    "Default": "#657b83",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#859900",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#2aa198",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#2aa198",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#b58900",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#93a1a1",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "CatppuccinFrappe",
+    "Default": "#c6d0f5",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#a6d189",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#99d1db",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#99d1db",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#e5c890",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#838ba7",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "CatppuccinMacchiato",
+    "Default": "#cad3f5",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#a6da95",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#91d7e3",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#91d7e3",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#eed49f",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#8087a2",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "RosePine",
+    "Default": "#e0def4",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#31748f",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#9ccfd8",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#9ccfd8",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#f6c177",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#6e6a86",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "RosePineMoon",
+    "Default": "#e0def4",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#3e8fb0",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#9ccfd8",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#9ccfd8",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#f6c177",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#6e6a86",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "RosePineDawn",
+    "Default": "#575279",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#286983",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#56949f",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#56949f",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#ea9d34",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#9893a5",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "TokyoNightStorm",
+    "Default": "#c0caf5",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#9ece6a",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#7dcfff",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#7dcfff",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#e0af68",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#565f89",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "TokyoNightMoon",
+    "Default": "#c8d3f5",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#c3e88d",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#86e1fc",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#86e1fc",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#ffc777",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#636da6",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "TokyoNightDay",
+    "Default": "#3760bf",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#485e30",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#166775",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#166775",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#8c6c3e",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#8990b3",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "KanagawaWave",
+    "Default": "#dcd7ba",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#98bb6c",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#7e9cd8",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#7e9cd8",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#e6c384",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#727169",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "KanagawaDragon",
+    "Default": "#c5c9c5",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#87a987",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#8ba4b0",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#8ba4b0",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#c4b28a",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#737c73",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "KanagawaLotus",
+    "Default": "#545464",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#6f894e",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#4d699b",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#4d699b",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#77713f",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#8a8980",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "EverforestDark",
+    "Default": "#d3c6aa",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#a7c080",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#7fbbb3",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#7fbbb3",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#dbbc7f",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#859289",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "EverforestLight",
+    "Default": "#5c6a72",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#8da101",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#35a77c",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#35a77c",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#dfa000",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#939f91",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "OneDark",
+    "Default": "#abb2bf",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#98c379",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#56b6c2",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#56b6c2",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#e5c07b",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#5c6370",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "OneLight",
+    "Default": "#383a42",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#50a14f",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#0184bc",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#0184bc",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#c18401",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#a0a1a7",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "OneDarkPro",
+    "Default": "#abb2bf",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#98c379",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#56b6c2",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#56b6c2",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#e5c07b",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#5c6370",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "GitHubDark",
+    "Default": "#c9d1d9",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#3fb950",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#58a6ff",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#58a6ff",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#d29922",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#8b949e",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "GitHubLight",
+    "Default": "#24292f",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#1a7f37",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#0969da",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#0969da",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#9a6700",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#6e7781",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "GitHubDimmed",
+    "Default": "#adbac7",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#57ab5a",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#6cb6ff",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#6cb6ff",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#c69026",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#768390",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "GitHubHighContrast",
+    "Default": "#ffffff",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#09b43a",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#71b7ff",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#71b7ff",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#f0b72f",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#bdc4cc",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "VSCodeDarkPlus",
+    "Default": "#d4d4d4",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#4ec9b0",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#9cdcfe",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#9cdcfe",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#dcdcaa",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#808080",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "VSCodeLightPlus",
+    "Default": "#000000",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#267f99",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#0070c1",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#0070c1",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#795e26",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#808080",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "VSCodeHighContrast",
+    "Default": "#ffffff",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#00ffff",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#569cd6",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#569cd6",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#ffff00",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#b3b3b3",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "JetBrainsDarcula",
+    "Default": "#a9b7c6",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#6a8759",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#6897bb",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#6897bb",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#bbb529",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#808080",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "Monokai",
+    "Default": "#f8f8f2",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#a6e22e",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#66d9ef",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#66d9ef",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#e6db74",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#75715e",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "MonokaiPro",
+    "Default": "#fcfcfa",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#a9dc76",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#78dce8",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#78dce8",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#ffd866",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#727072",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "Molokai",
+    "Default": "#f8f8f2",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#a6e22e",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#66d9ef",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#66d9ef",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#e6db74",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#75715e",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "MaterialDark",
+    "Default": "#eeffff",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#c3e88d",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#89ddff",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#89ddff",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#ffcb6b",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#546e7a",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "MaterialLight",
+    "Default": "#90a4ae",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#91b859",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#39adb5",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#39adb5",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#f6a434",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#cfd8dc",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "MaterialPalenight",
+    "Default": "#a6accd",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#c3e88d",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#89ddff",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#89ddff",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#ffcb6b",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#676e95",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "MaterialOcean",
+    "Default": "#c3cee3",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#c3e88d",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#89ddff",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#89ddff",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#ffcb6b",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#546e7a",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "Palenight",
+    "Default": "#a6accd",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#c3e88d",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#89ddff",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#89ddff",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#ffcb6b",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#676e95",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "AyuDark",
+    "Default": "#b3b1ad",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#aad94c",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#39bae6",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#39bae6",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#ffb454",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#626a73",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "AyuLight",
+    "Default": "#5c6773",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#6cbf43",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#55b4d4",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#55b4d4",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#ff9940",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#abb0b6",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "AyuMirage",
+    "Default": "#cbccc6",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#bae67e",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#5ccfe6",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#5ccfe6",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#ffd580",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#707a8c",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "NightOwl",
+    "Default": "#d6deeb",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#addb67",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#7fdbca",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#7fdbca",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#ecc48d",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#637777",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "LightOwl",
+    "Default": "#403f53",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#2aa298",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#08916a",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#08916a",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#daaa01",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#989fb1",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "Cobalt2",
+    "Default": "#ffffff",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#3ad900",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#9effff",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#9effff",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#ffc600",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#0088ff",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "SynthWave84",
+    "Default": "#ffffff",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#72f1b8",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#36f9f6",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#36f9f6",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#fede5d",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#848bbd",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "ShadesOfPurple",
+    "Default": "#ffffff",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#a5ff90",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#9effff",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#9effff",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#fad000",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#b362ff",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "Horizon",
+    "Default": "#d5d8da",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#efaf8e",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#24a8b4",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#24a8b4",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#fac29a",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#6c6f93",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "Omni",
+    "Default": "#e1e1e6",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#67e480",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#78d1e1",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#78d1e1",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#e7de79",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#585858",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "NoctisDark",
+    "Default": "#b5b9c4",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#49e9a6",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#16b0c9",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#16b0c9",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#e4b781",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#697098",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "NoctisLight",
+    "Default": "#2f3e4e",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#42a77a",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#0097a7",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#0097a7",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#b66d00",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#9aa5b1",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "Andromeda",
+    "Default": "#d5ced9",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#95c862",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#00e8c6",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#00e8c6",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#ffe66d",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#6e6a86",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "Aura",
+    "Default": "#edecee",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#61ffca",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#82e2ff",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#82e2ff",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#ffca85",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#6d6d6d",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "EvaDark",
+    "Default": "#9fa2a6",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#66ff66",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#00ffff",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#00ffff",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#ffff66",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#55799c",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "EvaLight",
+    "Default": "#4b5263",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#379a37",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#008c99",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#008c99",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#a98200",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#9aa5b1",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "CityLights",
+    "Default": "#b7c5d3",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#8bd49c",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#70e1e8",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#70e1e8",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#e6cd69",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#718ca1",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "Jellybeans",
+    "Default": "#e8e8d3",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#99ad6a",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#8fbfdc",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#8fbfdc",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#fad07a",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#888888",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "PaperColorDark",
+    "Default": "#d0d0d0",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#afd700",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#5fafaf",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#5fafaf",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#ffaf00",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#808080",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "PaperColorLight",
+    "Default": "#444444",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#008700",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#0087af",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#0087af",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#af5f00",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#878787",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "OceanicNext",
+    "Default": "#c0c5ce",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#99c794",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#5fb3b3",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#5fb3b3",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#fac863",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#65737e",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "Sonokai",
+    "Default": "#e2e2e3",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#9ed072",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#76cce0",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#76cce0",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#e7c664",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#7f8490",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "EdgeDark",
+    "Default": "#c5cdd9",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#a1bf78",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#5ebaa5",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#5ebaa5",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#dbb774",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#6b7089",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "EdgeLight",
+    "Default": "#4b505b",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#608e32",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#3a8b84",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#3a8b84",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#a76b00",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#8790a0",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "Nightfox",
+    "Default": "#cdcecf",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#81b29a",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#63cdcf",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#63cdcf",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#f4a261",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#738091",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "Dayfox",
+    "Default": "#34455a",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#618774",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#287980",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#287980",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#a06000",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#a8aeb7",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "Dawnfox",
+    "Default": "#575279",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#618774",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#286983",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#286983",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#ea9d34",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#9893a5",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "Nordfox",
+    "Default": "#cdcecf",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#a3be8c",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#8fbcbb",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#8fbcbb",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#ebcb8b",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#60728a",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "Carbonfox",
+    "Default": "#f2f4f8",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#25be6a",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#33b1ff",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#33b1ff",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#f1c21b",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#6e7781",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "FlexokiDark",
+    "Default": "#cecdc3",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#879a39",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#3aa99f",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#3aa99f",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#d0a215",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#878580",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "FlexokiLight",
+    "Default": "#100f0f",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#66800b",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#24837b",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#24837b",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#ad8301",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#b7b5ac",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "SerendipityDark",
+    "Default": "#dee0f0",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#72d5a3",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#7bdff2",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#7bdff2",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#f8c555",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#8f95b2",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "SerendipityLight",
+    "Default": "#4a4a5e",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#4f9f69",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#2b8c9f",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#2b8c9f",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#b88700",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#a1a6bd",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "IcebergDark",
+    "Default": "#c6c8d1",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#b4be82",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#89b8c2",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#89b8c2",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#e2a478",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#6b7089",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "IcebergLight",
+    "Default": "#33374c",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#668e3d",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#3f83a6",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#3f83a6",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#b6662d",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#8389a3",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "Srcery",
+    "Default": "#fce8c3",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#98bc37",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#68a8e4",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#68a8e4",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#fed06e",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#918175",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "Apprentice",
+    "Default": "#bcbcbc",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#87af87",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#87afd7",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#87afd7",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#ffffaf",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#6c6c6c",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "Deus",
+    "Default": "#b3b3b3",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#98c379",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#56b6c2",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#56b6c2",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#e5c07b",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#666666",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "VitesseDark",
+    "Default": "#dbd7ca",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#4d9375",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#5eaab5",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#5eaab5",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#c98a7d",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#666666",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "VitesseLight",
+    "Default": "#393a34",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#59873a",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#2c7a7b",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#2c7a7b",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#b08800",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#a0ada0",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "Poimandres",
+    "Default": "#a6accd",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#5de4c7",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#89ddff",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#89ddff",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#fffac2",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#767c9d",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "Spacegray",
+    "Default": "#b3b8c3",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#a6bc69",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#7cafc2",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#7cafc2",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#fac863",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#5f6672",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "Gotham",
+    "Default": "#98d1ce",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#2aa889",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#599cab",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#599cab",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#edb54b",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#245361",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "Flatland",
+    "Default": "#b8dbef",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#a7d42c",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#4fb4d7",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#4fb4d7",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#ffcc66",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#555555",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "ParaisoDark",
+    "Default": "#a39e9b",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#48b685",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#5bc4bf",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#5bc4bf",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#fec418",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#776e71",
+        "Bold": false
+      }
+    ]
+  },
+  {
+    "Name": "ParaisoLight",
+    "Default": "#2f1e2e",
+    "Rules": [
+      {
+        "Kind": "Directory",
+        "Attributes": [],
+        "Foreground": "#48b685",
+        "Bold": true
+      },
+      {
+        "Kind": "Junction",
+        "Attributes": [],
+        "Foreground": "#5bc4bf",
+        "Bold": false
+      },
+      {
+        "Kind": "Symlink",
+        "Attributes": [],
+        "Foreground": "#5bc4bf",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "ReadOnly"
+        ],
+        "Foreground": "#f99b15",
+        "Bold": false
+      },
+      {
+        "Kind": "",
+        "Attributes": [
+          "Hidden"
+        ],
+        "Foreground": "#8d8687",
+        "Bold": false
+      }
+    ]
+  }
+]

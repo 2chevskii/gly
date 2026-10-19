@@ -1,0 +1,104 @@
+name: Refresh benchmark baselines
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: refresh-benchmarks
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    name: Generate benchmark baselines
+    runs-on: ubuntu-26.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+
+      - name: Generate benchmark baselines
+        shell: pwsh
+        run: |
+          New-Item -Path ./artifacts/benchmarks/baselines -ItemType Directory -Force | Out-Null
+          npm run bench:startup -- --OutputPath ./artifacts/benchmarks/baselines/startup.json
+          if ($LASTEXITCODE -ne 0) {
+            throw 'Startup benchmark baseline generation failed.'
+          }
+          npm run bench:rendering -- --OutputPath ./artifacts/benchmarks/baselines/rendering.json
+          if ($LASTEXITCODE -ne 0) {
+            throw 'Rendering benchmark baseline generation failed.'
+          }
+
+      - name: Upload benchmark baselines
+        uses: actions/upload-artifact@v7
+        with:
+          name: benchmark-baselines-ubuntu-26.04
+          path: artifacts/benchmarks/baselines/*.json
+          if-no-files-found: error
+
+  pull-request:
+    name: Open benchmark baseline pull request
+    needs: generate
+    runs-on: ubuntu-26.04
+    permissions:
+      actions: write
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Download benchmark baselines
+        uses: actions/download-artifact@v8
+        with:
+          name: benchmark-baselines-ubuntu-26.04
+          path: benchmarks/baselines/ubuntu-26.04
+
+      - name: Create pull request
+        id: create-pr
+        uses: peter-evans/create-pull-request@v8
+        with:
+          add-paths: benchmarks/baselines/ubuntu-26.04/*.json
+          branch: chore/refresh-benchmarks
+          base: master
+          delete-branch: true
+          commit-message: 'test: refresh benchmark baselines'
+          title: 'test: refresh benchmark baselines'
+          labels: |
+            area-tests
+            github_actions
+          assignees: ${{ github.actor }}
+          body: |
+            ## Summary
+
+            Refresh committed startup and rendering benchmark baselines from PowerShell runs on ubuntu-26.04.
+
+            ## Validation
+
+            - Both benchmark suites completed successfully in the workflow run.
+            - CI is dispatched for the updated branch to validate the generated baselines.
+            - Review the generated timing changes before merging.
+
+            - [ ] Pester tests
+            - [ ] Documentation build, when documentation changed
+            - [ ] Manual verification, when applicable
+
+            ## Checklist
+
+            - [x] The change is focused and does not include unrelated modifications.
+            - [x] Tests and documentation have been updated where needed.
+            - [x] I have read and agree to follow the Code of Conduct.
+
+      - name: Run CI for updated benchmark baselines
+        if: ${{ steps.create-pr.outputs.pull-request-operation == 'created' || steps.create-pr.outputs.pull-request-operation == 'updated' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_BRANCH: ${{ steps.create-pr.outputs.pull-request-branch }}
+        run: gh workflow run ci.yml --ref "$PR_BRANCH"

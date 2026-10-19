@@ -36,7 +36,14 @@
                 <PropertyName>LastWriteTime</PropertyName>
               </TableColumnItem>
               <TableColumnItem>
-                <PropertyName>Length</PropertyName>
+                <ScriptBlock>
+                  $module = Get-Module -Name gly
+                  &amp; $module {
+                    param($inputObject)
+
+                    Format-GlyFileSize -InputObject $inputObject
+                  } $_
+                </ScriptBlock>
               </TableColumnItem>
               <TableColumnItem>
                 <ScriptBlock>Get-GlyFileSystemDisplayName -InputObject $_</ScriptBlock>

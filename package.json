@@ -1,6 +1,6 @@
 {
   "name": "@gly/docs",
-  "version": "1.0.0",
+  "version": "1.1.2",
   "author": "2CHEVSKII",
   "license": "MIT",
   "private": true,
@@ -21,7 +21,7 @@
     "docs:preview": "vitepress preview docs"
   },
   "devDependencies": {
-    "@types/node": "^26.1.1",
+    "@types/node": "^26.6.4",
     "ctrf-html-reporter": "^1.1.22",
     "junit-to-ctrf": "^0.0.14",
     "vitepress": "^1.6.4"

@@ -1,37 +1,55 @@
 # Troubleshooting
 
-## Glyphs Do Not Render
+## Icons Appear as Boxes or Unexpected Characters
 
-Switch away from `NerdFonts`:
+The default `NerdFonts` set requires a Nerd Font selected in your terminal settings. For ordinary fonts, try Unicode symbols:
 
 ```powershell
 Set-GlyGlyphSet Unicode
-Set-GlyGlyphSet ANSI
-Set-GlyGlyphSet ANSICompact
-Set-GlyGlyphSet Emoji
 ```
 
-## Disable Color
+If those symbols also look wrong, use simple text labels:
+
+```powershell
+Set-GlyGlyphSet ANSI
+```
+
+See [Glyph Sets](../guide/glyph-sets.md) to compare the available sets.
+
+## Colors Do Not Appear
+
+Check your settings and select a color theme:
+
+```powershell
+Get-GlyConfiguration
+Enable-Gly
+Set-GlyTheme DefaultDark
+Set-GlyConfiguration -ShowColors $true -StyleRenderer Auto
+```
+
+Use `DefaultLight` if your terminal has a light background. The `NoColor` theme deliberately leaves names uncolored.
+
+If colors are still missing, check for overrides:
+
+```powershell
+Get-Item Env:NO_COLOR -ErrorAction SilentlyContinue
+Get-Variable GlyStyleRenderer -Scope Global -ErrorAction SilentlyContinue
+```
+
+`NO_COLOR` requests plain text. If you want `gly` to ignore it, use `Set-GlyConfiguration -RespectNoColor $false`. If `$GlyStyleRenderer` is set to `PlainText`, remove the override with `Remove-Variable GlyStyleRenderer -Scope Global`.
+
+## Turn Off Colors
 
 ```powershell
 Set-GlyConfiguration -ShowColors $false
 ```
 
-Or force plain text:
+To turn off both colors and symbols, use `Disable-Gly`.
 
-```powershell
-$GlyStyleRenderer = 'PlainText'
-```
+## Settings Disappear in a New Session
 
-## View Remains After Remove-Module
+Settings last for the current session. Add your import and setup commands to your [PowerShell profile](../guide/installation.md#load-gly-in-every-session) to apply them each time PowerShell starts.
 
-This is expected PowerShell behavior. Format data is session-wide.
+## The Custom View Remains After Removing the Module
 
-Use:
-
-```powershell
-Disable-Gly
-```
-
-Start a new PowerShell session to fully clear loaded format data.
-
+Use `Disable-Gly` before removing the module to turn off colors and symbols. Open a new PowerShell session without importing `gly` to restore the standard view completely.
