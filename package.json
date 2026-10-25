@@ -22,7 +22,7 @@
   "devDependencies": {
     "@types/node": "^26.6.5",
     "ctrf-html-reporter": "^1.1.22",
-    "junit-to-ctrf": "^0.0.14",
+    "junit-to-ctrf": "^0.1.0",
     "vitepress": "^1.6.4"
   }
 }
