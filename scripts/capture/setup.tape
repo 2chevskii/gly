@@ -1,5 +1,5 @@
 Hide
-Wait+Screen /PS [^\r\n]*>/
+Wait+Line /^>\s*$/
 Type ". ./scripts/capture/Initialize-GlyCapture.ps1"
 Enter
 Wait+Screen /GLY_CAPTURE_READY/
