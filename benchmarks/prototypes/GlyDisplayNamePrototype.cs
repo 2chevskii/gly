@@ -27,7 +27,7 @@ public sealed class GlyPrototypeRule
         {
             if (glob.Contains('*') || glob.Contains('?'))
             {
-                string pattern = "^" + Regex.Escape(glob).Replace("\\*", ".*").Replace("\\?", ".") + "$";
+                string pattern = "\\A" + Regex.Escape(glob).Replace("\\*", ".*").Replace("\\?", ".") + "\\z";
                 patterns.Add(new Regex(pattern, RegexOptions.IgnoreCase | RegexOptions.CultureInvariant | RegexOptions.Compiled));
             }
             else

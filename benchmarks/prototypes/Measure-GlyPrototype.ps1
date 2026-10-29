@@ -1,7 +1,10 @@
 [CmdletBinding()]
 param(
+  [ValidateRange(1, [int]::MaxValue)]
   [int] $ItemCount = 3000,
-  [int] $Iterations = 3
+  [ValidateRange(1, [int]::MaxValue)]
+  [int] $Iterations = 3,
+  [switch] $PassThru
 )
 
 Set-StrictMode -Version Latest
@@ -26,9 +29,14 @@ function Measure-Case {
   }
 
   $ordered = @($samples | Sort-Object)
+  $middle = [int] [Math]::Floor($ordered.Count / 2)
+  $median = if (($ordered.Count % 2) -eq 0) {
+    ($ordered[$middle - 1] + $ordered[$middle]) / 2
+  }
+  else { $ordered[$middle] }
   [pscustomobject]@{
     Scenario = $Name
-    MedianMs = [Math]::Round($ordered[[int] [Math]::Floor($ordered.Count / 2)], 2)
+    MedianMs = [Math]::Round($median, 2)
     MinMs = [Math]::Round($ordered[0], 2)
     MaxMs = [Math]::Round($ordered[-1], 2)
   }
@@ -40,20 +48,28 @@ if (Test-Path -LiteralPath $dataPath) {
 }
 
 New-Item -ItemType Directory -Path $dataPath | Out-Null
+$previousStyleRenderer = Get-Variable GlyStyleRenderer -Scope Global -ErrorAction SilentlyContinue
+$previousStyleRendererValue = if ($null -ne $previousStyleRenderer) { $previousStyleRenderer.Value }
 try {
   $extensions = @('.ps1', '.psm1', '.psd1', '.cs', '.js', '.ts', '.d.ts', '.json', '.md', '.tar.gz', '.txt', '.unknown')
   for ($index = 0; $index -lt $ItemCount; $index++) {
     if (($index % 50) -eq 0) {
-      New-Item -ItemType Directory -Path (Join-Path $dataPath ('dir-{0:D5}' -f $index)) | Out-Null
+      $directoryName = if ($index -eq 0) { 'src' } else { 'dir-{0:D5}' -f $index }
+      New-Item -ItemType Directory -Path (Join-Path $dataPath $directoryName) | Out-Null
       continue
     }
 
     $name = 'file-{0:D5}{1}' -f $index, $extensions[$index % $extensions.Count]
+    if (($index % 40) -eq 0) { $name = '.' + $name }
     $path = Join-Path $dataPath $name
     [IO.File]::WriteAllText($path, "gly benchmark item $index")
     if (($index % 40) -eq 0) {
-      $item = Get-Item -LiteralPath $path
+      $item = Get-Item -LiteralPath $path -Force
       $item.Attributes = $item.Attributes -bor [IO.FileAttributes]::Hidden
+    }
+    if (($index % 17) -eq 0) {
+      $item = Get-Item -LiteralPath $path -Force
+      $item.Attributes = $item.Attributes -bor [IO.FileAttributes]::ReadOnly
     }
   }
 
@@ -61,6 +77,7 @@ try {
   [IO.File]::WriteAllText((Join-Path $dataPath 'Dockerfile'), "FROM scratch`n")
 
   Import-Module (Join-Path $PSScriptRoot '../../src/gly.psd1') -Force
+  $global:GlyStyleRenderer = 'Ansi'
   Set-GlyConfiguration -StyleRenderer Ansi -ShowGlyphs $true -ShowColors $true -RespectNoColor $false | Out-Null
   $items = @(Get-ChildItem -LiteralPath $dataPath -Force)
   $module = Get-Module gly
@@ -148,10 +165,29 @@ try {
     Measure-Case 'C# with native Length' { $items | Format-Table -View gly.FileSystem.Prototype.FastTable | Out-String -Width 4096 | Out-Null }
   )
 
-  "Items: $($items.Count); prototype setup: $setupMs ms (C# compile: $compileMs ms); output mismatches: $mismatches"
-  $results | Format-Table -AutoSize
+  if ($PassThru) {
+    [pscustomobject]@{
+      ItemCount = $items.Count
+      SetupMs = $setupMs
+      CompileMs = $compileMs
+      Mismatches = $mismatches
+      Results = $results
+    }
+  }
+  else {
+    "Items: $($items.Count); prototype setup: $setupMs ms (C# compile: $compileMs ms); output mismatches: $mismatches"
+    $results | Format-Table -AutoSize
+  }
 }
 finally {
+  # Prototype views have session-wide precedence, even after the script exits.
+  Update-FormatData -PrependPath (Join-Path $PSScriptRoot '../../src/formats/FileSystem.format.ps1xml')
+  if ($null -ne $previousStyleRenderer) {
+    $global:GlyStyleRenderer = $previousStyleRendererValue
+  }
+  else {
+    Remove-Variable GlyStyleRenderer -Scope Global -ErrorAction SilentlyContinue
+  }
   Remove-Variable GlyPrototypeRenderer -Scope Global -ErrorAction SilentlyContinue
   if (Test-Path -LiteralPath $dataPath) {
     Remove-Item -LiteralPath $dataPath -Recurse -Force
