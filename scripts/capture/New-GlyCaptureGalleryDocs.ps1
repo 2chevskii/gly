@@ -5,6 +5,7 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
+$OutputPath = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($OutputPath)
 
 $repositoryRoot = [System.IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../..'))
 Import-Module (Join-Path $repositoryRoot 'src/gly.psd1') -Force
@@ -33,12 +34,14 @@ $lines.Add('</script>')
 $lines.Add('')
 $lines.Add('# Terminal capture gallery')
 $lines.Add('')
-$lines.Add('The previews below are generated on a fixed Ubuntu runner with PowerShell 7, 24-bit ANSI rendering, and a pinned Nerd Font. They show the local module rather than a published package.')
+$lines.Add('The previews below are generated on Ubuntu 24.04 with PowerShell 7, 24-bit ANSI rendering, and a pinned Nerd Font. They show the local module rather than a published package.')
 $lines.Add('')
 $lines.Add('<video controls preload="metadata" :poster="withBase(''/captures/overview.png'')">')
 $lines.Add('  <source :src="withBase(''/captures/overview.webm'')" type="video/webm">')
 $lines.Add('  Your browser does not support the preview video. Use the static overview image below.')
 $lines.Add('</video>')
+$lines.Add('')
+$lines.Add('<a :href="withBase(''/captures/overview.png'')">Open the static overview image.</a>')
 $lines.Add('')
 $lines.Add('The animation switches from the Dracula theme with Nerd Fonts to DefaultLight with Emoji. It does not autoplay; the same information is available in the screenshots and command examples throughout this guide.')
 $lines.Add('')

@@ -1,4 +1,35 @@
 Describe 'gly theme gallery tape' {
+  It 'writes relative outputs in the current PowerShell location' {
+    $captureScripts = Join-Path $PSScriptRoot '../scripts/capture'
+    Push-Location $TestDrive
+    try {
+      & (Join-Path $captureScripts 'New-GlyThemeGalleryTape.ps1') -OutputDirectory 'tapes'
+      & (Join-Path $captureScripts 'New-GlyGlyphSetGalleryTape.ps1') -OutputPath 'glyphs.tape'
+      & (Join-Path $captureScripts 'New-GlyCaptureGalleryDocs.ps1') -OutputPath 'captures.md'
+
+      Join-Path $TestDrive 'tapes/theme-gallery-dark.tape' | Should -Exist
+      Join-Path $TestDrive 'tapes/theme-gallery-light.tape' | Should -Exist
+      Join-Path $TestDrive 'glyphs.tape' | Should -Exist
+      Join-Path $TestDrive 'captures.md' | Should -Exist
+    }
+    finally {
+      Pop-Location
+    }
+  }
+
+  It 'keeps the published gallery in sync with the registry and existing media' {
+    $galleryPath = Join-Path $TestDrive 'captures.md'
+    & (Join-Path $PSScriptRoot '../scripts/capture/New-GlyCaptureGalleryDocs.ps1') -OutputPath $galleryPath
+    $gallery = (Get-Content -Raw -LiteralPath $galleryPath) -replace '\r\n', "`n"
+    $committed = (Get-Content -Raw -LiteralPath (Join-Path $PSScriptRoot '../docs/guide/captures.md')) -replace '\r\n', "`n"
+    $gallery | Should -BeExactly $committed
+
+    foreach ($match in [regex]::Matches($gallery, "/captures/[^']+")) {
+      Join-Path $PSScriptRoot "../assets$($match.Value)" | Should -Exist
+    }
+    $gallery | Should -Match '<a :href="withBase\(''/captures/overview.png''\)">'
+  }
+
   It 'covers every built-in theme exactly once with an explicit background' {
     $generatorPath = Join-Path $PSScriptRoot '../scripts/capture/New-GlyThemeGalleryTape.ps1'
 

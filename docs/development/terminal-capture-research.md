@@ -23,7 +23,17 @@ The proof of concept is implemented in the repository:
 
 - `scripts/capture/overview.tape` emits the shared PNG poster, GIF, and WebM overview.
 - `scripts/capture/New-GlyThemeGalleryTape.ps1` imports the local module, reads its built-in theme registry, and writes dark and light gallery tapes. It validates every built-in theme against the explicit dark/light assignments in `scripts/capture/ThemeBackgrounds.psd1` before rendering. Separate tapes keep VHS settings at the top of each tape while giving each screenshot its fixed terminal background.
-- `.github/workflows/captures.yml` runs on `workflow_dispatch` and relevant pull requests. It renders on Ubuntu with VHS, uploads both committed and intermediate outputs, and fails if the generated files differ from `assets/captures`.
+- `.github/workflows/captures.yml` runs on `workflow_dispatch` and pull requests that change module sources, capture scripts, capture assets, or the generated gallery page. It renders on Ubuntu 24.04 with VHS and uploads both committed and intermediate outputs. It checks generated PNGs and gallery documentation against Git; GIF and WebM bytes are excluded because their encoding is not deterministic.
+
+The runner's Ubuntu release, VHS version, and Nerd Font release are pinned. Runner image updates and distribution packages (including Noto Color Emoji) can still change rendering. When that happens, inspect the uploaded images before updating the committed captures. To regenerate the tapes and gallery Markdown without installing VHS, run:
+
+```powershell
+./scripts/capture/New-GlyThemeGalleryTape.ps1
+./scripts/capture/New-GlyGlyphSetGalleryTape.ps1
+./scripts/capture/New-GlyCaptureGalleryDocs.ps1
+```
+
+The generators accept absolute output paths or paths relative to the current PowerShell location, including a bare file name for `-OutputPath`.
 
 Run the workflow manually for the initial artifact. It will fail the capture-diff step until the uploaded output has been reviewed and committed in a focused generated-media pull request. This preserves the read-only permissions of pull-request workflows and keeps capture tooling off contributors' workstations.
 

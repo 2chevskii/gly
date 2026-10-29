@@ -4,12 +4,14 @@ import { withBase } from 'vitepress'
 
 # Terminal capture gallery
 
-The previews below are generated on a fixed Ubuntu runner with PowerShell 7, 24-bit ANSI rendering, and a pinned Nerd Font. They show the local module rather than a published package.
+The previews below are generated on Ubuntu 24.04 with PowerShell 7, 24-bit ANSI rendering, and a pinned Nerd Font. They show the local module rather than a published package.
 
 <video controls preload="metadata" :poster="withBase('/captures/overview.png')">
   <source :src="withBase('/captures/overview.webm')" type="video/webm">
   Your browser does not support the preview video. Use the static overview image below.
 </video>
+
+<a :href="withBase('/captures/overview.png')">Open the static overview image.</a>
 
 The animation switches from the Dracula theme with Nerd Fonts to DefaultLight with Emoji. It does not autoplay; the same information is available in the screenshots and command examples throughout this guide.
 
