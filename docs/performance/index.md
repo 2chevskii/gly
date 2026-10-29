@@ -30,7 +30,7 @@ The two timed operations are:
 - **Import:** `Import-Module` in a fresh `pwsh -NoProfile -NonInteractive` process. PowerShell process startup and module download are outside the timed region. The table reports the median of 10 measurements after 2 warmups.
 - **Standard table:** the already-enumerated objects are passed through `Format-Table | Out-String -Width 4096`. Module import, object enumeration, and terminal drawing are outside the timed region. The table reports the median of 5 measurements after 1 warmup, with garbage collection requested before each measurement.
 
-Each module's rendering samples run in a separate PowerShell process so its session-wide format and type data cannot affect another module. The benchmark keeps each module's default visual behavior; GlyphShell therefore renders additional columns, while the other modules replace or customize the standard file-system table.
+Each module's rendering samples run in a separate PowerShell process so its session-wide format and type data cannot affect another module. Workers clear inherited `NO_COLOR` and force `$PSStyle.OutputRendering = 'Ansi'` on PowerShell 7.2 or later so redirection does not strip formatting. They otherwise keep each module's default visual behavior; GlyphShell therefore renders additional columns, while the other modules replace or customize the standard file-system table.
 
 ## Reproduce
 
@@ -40,7 +40,7 @@ From the repository root, run:
 npm run bench:comparison -- --OutputPath ./artifacts/benchmarks/module-comparison.json
 ```
 
-The command requires PowerShellGet's `Save-PSResource` command and access to PowerShell Gallery. Override sample sizes when investigating variance:
+The command requires Microsoft.PowerShell.PSResourceGet's `Save-PSResource` command and access to PowerShell Gallery. The JSON output includes the UTC measurement time, PowerShell and .NET versions, and operating system alongside each result. Override sample sizes when investigating variance:
 
 ```powershell
 npm run bench:comparison -- --ItemCount 1000 -ImportIterations 20 -RenderingIterations 10

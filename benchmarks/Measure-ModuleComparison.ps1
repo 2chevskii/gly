@@ -50,6 +50,12 @@ if ($Worker) {
     throw 'Worker mode requires Scenario, ModulePath, Iterations, and WarmupIterations.'
   }
 
+  # Keep inherited terminal color preferences from changing the measured work.
+  Remove-Item Env:NO_COLOR -ErrorAction SilentlyContinue
+  if ($PSVersionTable.PSVersion -ge [version] '7.2') {
+    $PSStyle.OutputRendering = 'Ansi'
+  }
+
   if ($Scenario -eq 'Import') {
     $stopwatch = [System.Diagnostics.Stopwatch]::StartNew()
     Import-Module $ModulePath -Force
@@ -98,6 +104,7 @@ $comparisonRoot = Join-Path ([System.IO.Path]::GetTempPath()) ('gly-module-compa
 $moduleRoot = Join-Path $comparisonRoot 'modules'
 $generatedDataPath = Join-Path $comparisonRoot 'data'
 $workerPath = $PSCommandPath
+$measuredAt = [DateTime]::UtcNow.ToString('o')
 
 $modules = @(
   [pscustomobject]@{
@@ -169,6 +176,10 @@ try {
     [pscustomobject]@{
       Module = $module.Name
       Version = $module.Version
+      MeasuredAtUtc = $measuredAt
+      PowerShellVersion = $PSVersionTable.PSVersion.ToString()
+      RuntimeVersion = [System.Runtime.InteropServices.RuntimeInformation]::FrameworkDescription
+      OS = [System.Runtime.InteropServices.RuntimeInformation]::OSDescription
       Scenario = 'ImportModule'
       ItemCount = $null
       Iterations = $ImportIterations
@@ -181,6 +192,10 @@ try {
     [pscustomobject]@{
       Module = $module.Name
       Version = $module.Version
+      MeasuredAtUtc = $measuredAt
+      PowerShellVersion = $PSVersionTable.PSVersion.ToString()
+      RuntimeVersion = [System.Runtime.InteropServices.RuntimeInformation]::FrameworkDescription
+      OS = [System.Runtime.InteropServices.RuntimeInformation]::OSDescription
       Scenario = 'FormatTable'
       ItemCount = $ItemCount
       Iterations = $RenderingIterations
@@ -201,7 +216,7 @@ try {
     $results | ConvertTo-Json -Depth 4 | Set-Content -LiteralPath $resolvedOutputPath -Encoding utf8
   }
 
-  $results | Format-Table -AutoSize
+  $results | Format-Table Module, Version, Scenario, ItemCount, Iterations, MinMs, MedianMs, MeanMs, MaxMs -AutoSize
 }
 finally {
   if (-not $KeepData -and (Test-Path -LiteralPath $comparisonRoot)) {
