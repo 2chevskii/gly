@@ -50,6 +50,7 @@ The **Refresh snapshots** GitHub Actions workflow can be run manually from the A
 npm run bench
 npm run bench:startup
 npm run bench:rendering
+npm run bench:comparison
 ```
 
 The combined command runs the independent startup and rendering suites concurrently while each suite keeps its own timed measurements sequential. The startup benchmark uses isolated PowerShell processes. The rendering benchmark covers display-name, standard-table, and renderer paths against generated file-system data. Each rendering scenario runs with the `PSStyle`, `Ansi`, and `PlainText` style backends, and reports the backend in the `StyleRenderer` column for direct comparison.
@@ -59,6 +60,8 @@ Pass `-- --OutputPath ./artifacts/benchmarks/local` to the combined command to w
 CI runs both benchmark suites sequentially on `ubuntu-26.04`, publishes their median timings in the workflow summary, and stores the JSON results as the `benchmark-results-ubuntu-26.04` artifact. Each run compares matching scenarios with the committed `startup.json` and `rendering.json` files in `benchmarks/baselines/ubuntu-26.04`. A scenario fails the regression gate when its median time is more than 20% slower. If no baseline exists for the runner image or a scenario, CI reports **Baseline unavailable** and skips that comparison; ordinary CI runs never update the baselines.
 
 Run the **Refresh benchmark baselines** GitHub Actions workflow manually from the Actions tab to establish or intentionally update the baselines. It runs the same startup and rendering suites sequentially on `ubuntu-26.04`, uploads the generated JSON files, then opens or updates a pull request to `master` and starts CI for that branch. Review the timing changes before merging. The new baselines take effect in subsequent runs after the pull request is merged. Keep baselines in a separate directory for each runner image when changing runners.
+
+The comparison command downloads pinned versions of PSFileIcons, GlyphShell, and Terminal-Icons from PowerShell Gallery, then measures module import and the standard file-system table path in isolated PowerShell processes. It is intended for manual comparisons and is not part of the CI regression gate. See [Performance Comparison](/performance/) for the methodology and current snapshot.
 
 ## Documentation Site
 
