@@ -1,4 +1,28 @@
 Describe 'gly theme gallery tape' {
+  It 'signals readiness only after importing the module and stops on preview errors' {
+    $setupPath = Join-Path $PSScriptRoot '../scripts/capture/Initialize-GlyCapture.ps1'
+    $probe = Join-Path $TestDrive 'probe.ps1'
+    Set-Content -LiteralPath $probe -Value @'
+param($SetupPath)
+. $SetupPath
+Show-GlyThemePreview -Theme MissingCaptureTheme
+Write-Output 'UNEXPECTED_PREVIEW_COMPLETION'
+'@
+    $output = & (Get-Process -Id $PID).Path -NoProfile -File $probe $setupPath 2>&1
+    $LASTEXITCODE | Should -Not -Be 0
+    $output | Should -Contain 'GLY_CAPTURE_READY'
+    $output | Should -Not -Contain 'UNEXPECTED_PREVIEW_COMPLETION'
+  }
+
+  It 'does not signal readiness when the local module cannot be imported' {
+    $setupPath = Join-Path $TestDrive 'scripts/capture/Initialize-GlyCapture.ps1'
+    New-Item -ItemType Directory -Path (Split-Path -Parent $setupPath) -Force | Out-Null
+    Copy-Item -LiteralPath (Join-Path $PSScriptRoot '../scripts/capture/Initialize-GlyCapture.ps1') -Destination $setupPath
+    $output = & (Get-Process -Id $PID).Path -NoProfile -File $setupPath 2>&1
+    $LASTEXITCODE | Should -Not -Be 0
+    $output | Should -Not -Contain 'GLY_CAPTURE_READY'
+  }
+
   It 'writes relative outputs in the current PowerShell location' {
     $captureScripts = Join-Path $PSScriptRoot '../scripts/capture'
     Push-Location $TestDrive

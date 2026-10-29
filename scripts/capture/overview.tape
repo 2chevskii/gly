@@ -13,24 +13,7 @@ Set Framerate 30
 Set CursorBlink false
 Set Theme "Catppuccin Mocha"
 
-Hide
-Type "$env:TERM = 'xterm-256color'"
-Enter
-Type "$env:COLORTERM = 'truecolor'"
-Enter
-Type "$env:LANG = 'C.UTF-8'"
-Enter
-Type "$ProgressPreference = 'SilentlyContinue'"
-Enter
-Type "Import-Module ./src/gly.psd1 -Force"
-Enter
-Type "$global:GlyStyleRenderer = 'Ansi'"
-Enter
-Type "function global:prompt { 'PS> ' }"
-Enter
-Type "Clear-Host"
-Enter
-Show
+Source scripts/capture/setup.tape
 
 Type "Show-GlyThemePreview -Theme Dracula -GlyphSet NerdFonts | Select-Object -First 12; Write-Output ('Theme' + ': ' + 'Dracula')"
 Enter

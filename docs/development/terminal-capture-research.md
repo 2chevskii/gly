@@ -35,6 +35,8 @@ The runner's Ubuntu release, VHS version, and Nerd Font release are pinned. Runn
 
 The generators accept absolute output paths or paths relative to the current PowerShell location, including a bare file name for `-OutputPath`.
 
+All tapes source `scripts/capture/setup.tape`, which waits for the initial PowerShell prompt before dot-sourcing `Initialize-GlyCapture.ps1`. The initialization emits a readiness marker only after the local module imports successfully and makes errors terminating. This prevents startup timing from losing typed setup commands and prevents failed previews from printing a successful completion marker.
+
 Run the workflow manually for the initial artifact. It will fail the capture-diff step until the uploaded output has been reviewed and committed in a focused generated-media pull request. This preserves the read-only permissions of pull-request workflows and keeps capture tooling off contributors' workstations.
 
 The proof of concept installs the pinned VHS release and JetBrains Mono Nerd Font, plus `ttyd`, `ffmpeg`, and Noto Color Emoji, directly on the runner. This avoids coupling the generated media to an action-managed dependency installer while retaining fixed VHS and Nerd Font versions.
